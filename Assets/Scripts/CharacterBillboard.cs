@@ -114,7 +114,6 @@ namespace SpriteController {
 			// Essentially set offset to the value of billboard direction minus camera direction.
 			int offset = _bbFacing - _relFacing;
 
-			Debug.Log("Offset before: " + offset);
 			// If offset less than 0...
 			if(offset < 0)
 			{
@@ -122,7 +121,6 @@ namespace SpriteController {
 				// ie: if offset is negative, converts it to its positive equivalent.
 				offset += 8;
 			}
-			Debug.Log("Offset after: " + offset);
 
 			// Brackets are manual or "explicit" casting; used to convert a larger size data type to a smaller size data type.
 			// In this instance, if I understand correctly, we're creating a Facing enum variable named direction and setting it to = the value of offset, converted from an int to an enum?
