@@ -1,0 +1,2797 @@
+fileFormatVersion: 2
+guid: bdbcfaabd149a5f499430b5598e46385
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 12
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 1
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 0
+    wrapV: 0
+    wrapW: 0
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 0
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: IvySpritesheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 206e1b38d639a534aa329d1d88721c47
+      internalID: -87558235
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_1
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: edf099ded57a0d34b94de073f193e5f6
+      internalID: -476352661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_2
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af3e36f05b24f954ca65ccc4c727274f
+      internalID: 1505148663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_3
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 049ccc5d0241a6547a2b5d3c7be73288
+      internalID: 740652716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_4
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8eccd3dc676d32c4c97c8f3c975865d2
+      internalID: -272200565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_5
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 20c8d6062cbfe5b4d954109ac780c28a
+      internalID: -158687267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_6
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dc027b6c748c79648aa35dc0c5aaef40
+      internalID: 1369685306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_7
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18c6edf098f66c34696006e252f19d44
+      internalID: 1067979423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_8
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e607d59c05945ee4f99836c019b8ca5c
+      internalID: -688214964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_9
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 35ba6b53d8dd7f84ea88b00aeac30964
+      internalID: 1866170626
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_10
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d493b6c7b204716468ba5b647f8824cc
+      internalID: -1811090725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_11
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d8766688bcdf0e347b227883008a6db8
+      internalID: 1424914537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_12
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d41e4bf630d09434f93cd54c588841e2
+      internalID: -978619684
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_13
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1490f41067be12a45ac06be33fc6314e
+      internalID: -221812127
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_14
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09389a0979678604d93a30fb855a9f65
+      internalID: 1492615446
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_15
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d77bb58e02ed3494cb38926505f7b38b
+      internalID: -906121451
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_16
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f3596a959f0f9b4abf9de7909198525
+      internalID: 636892444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_17
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b6d000267b011134299d1d5e763a985c
+      internalID: -2134591867
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_18
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 98016afd85129424d8b2aa73cbdbbff4
+      internalID: -1999040568
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_19
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 407af1d12d4b7bf4bb771a02bf67ba3e
+      internalID: 2121100394
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_20
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 169
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 608a53de5a1e8da48bd39e90f500afab
+      internalID: -1515488716
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_21
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bcfb06451c8f58b48a3df03a137e25d2
+      internalID: 894105783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_22
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 000117293eb6474498a4a692dbb12b45
+      internalID: -1700694389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_23
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a8f34be2bda593c43a764112adf245a9
+      internalID: -1574259404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_24
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76a95ff06dc6e2f429590d9c8459efaa
+      internalID: -1974227433
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_25
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8cd0930b52a5ea24a90e93d550d40b49
+      internalID: 908921746
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_26
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4322b25daf32d9c40b29f83c4ab611f9
+      internalID: -1855409830
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_27
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ddfdb75f73c4b4146992640e16af3efd
+      internalID: 1764542017
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_28
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e120df43e91733448e07ae53e3c3ad8
+      internalID: 1662862387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_29
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3ea8e3f3f76c3e342bad33ef5a4c3563
+      internalID: 1590955783
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_30
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 28b06542981145c44925e76e058c21d3
+      internalID: 2029856855
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_31
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15d9f3fb74a143541a940eb531200225
+      internalID: 844165764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_32
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76328ac9b67ae314f8c111a5d01c0590
+      internalID: 1299736094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_33
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cbf75359b5853b341ad54af9d9461a99
+      internalID: -1991189537
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_34
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4573d781eff56b348b5285ea4ce22ad2
+      internalID: 265663110
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_35
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f21beb3a2a7aedd4b81a42b18e6a6baa
+      internalID: 1823701350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_36
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d109e547d12eb06468424d18ae25dc1a
+      internalID: 963465216
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_37
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a76679d32e9a60409dc1aaa71f7086e
+      internalID: 853553458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_38
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af0e72113c9f5264da6fba27901a11f9
+      internalID: -228177063
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_39
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b71f581ef77ea2d4fb7d031f9bdcaaee
+      internalID: 561206090
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_40
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d77ae5b21a79c094a8869e59293400e6
+      internalID: -1882510088
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_41
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 139
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 066eea05b8388564db0b89b11cddd844
+      internalID: -1325071125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_42
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abd38ec13358d57428b147c8e6c4a0c2
+      internalID: 1911498221
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_43
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de00078e78b5d4845b38fd0316e900d2
+      internalID: -742364986
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_44
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f40f33239d8ac004d87af107e94fa55d
+      internalID: 1317715597
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_45
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 46e20aad48a68394ead5847cd3124e1d
+      internalID: 1322463707
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_46
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a65c5124f59c1a44a55687c13ed878d
+      internalID: 2009303503
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_47
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 360c0833f42601d46b94b8df9d9b5def
+      internalID: -1336051489
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_48
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ce6f233cddd868d4ba7e8c4ebbd2a81c
+      internalID: 1589031029
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_49
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5049e04409cc8164d85b3ba9e5197835
+      internalID: 129265806
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_50
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a640db194a05544a8035d2c4a7547b3
+      internalID: 897662015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_51
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37524d0dbba73fb4ca534307d184f995
+      internalID: 406933261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_52
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7496b8548d9a5d943974c018bed4f998
+      internalID: 1311254671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_53
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2f6feca31e2cf744930cf4eb7eafb61
+      internalID: -114559314
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_54
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9673b3b7e92d79d4eb8d16ac9b687a15
+      internalID: -718049788
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_55
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4db9f4fb3aa8fb246b51093fdb61efda
+      internalID: 1862073236
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_56
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a2a89115a75c98b449de30012c7562c5
+      internalID: 2133736254
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_57
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0f5f99d45fada7438e097005cf0446d
+      internalID: 720111850
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_58
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b9dd84cac2e97e4896c9421bd80bc97
+      internalID: 1180999447
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_59
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4ef49f1d86660c342acfef84846a848f
+      internalID: 40792286
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_60
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd4329444f934064596c8eff8f4e07e1
+      internalID: 566661834
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_61
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 241481728b5dbf243a9e39a73e9faefb
+      internalID: 752191590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_62
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 109
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3e74bb4ded2e25f4fb71e5c93f01f513
+      internalID: 608363265
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_63
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8fffdacb6961a704b8c689216dcf994d
+      internalID: 969411663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_64
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 25d7adf91472bf94d95bf1c35abe6aab
+      internalID: 1001886319
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_65
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 790cf78bdc891694b82a901a4ce41f1f
+      internalID: -1751360603
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_66
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b63508adddeaf484bb97172839923e7e
+      internalID: -1707194258
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_67
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 86025025020e500489f14cf619df08c9
+      internalID: 1955209729
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_68
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ba70c34df6207ca46a24d481832f667d
+      internalID: -390272618
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_69
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90fe82d56a7da1e4e9b0924285e2454e
+      internalID: 1963688397
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_70
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b9c4c33d0e7ec5d43820a4c89992f757
+      internalID: -1177728919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_71
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9078fcbfcd185c0449171a23e8660cdd
+      internalID: 735986691
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_72
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a94eb4e728db7349bcb2daca3fc77e4
+      internalID: -1760979162
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_73
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 613e48acc7437bd469e4d055cea9abf6
+      internalID: 214398864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_74
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f1bf95feafa657a4bb28afeb6be26232
+      internalID: -554313824
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_75
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10bb7b7d4c84e9940a1f8578933c01fc
+      internalID: -1779733464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_76
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9a959c35fcb539409d35f956ae0f34a
+      internalID: 719346039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_77
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa361798e529e11439f33427b609ab19
+      internalID: 264432696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_78
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 224187871aeecc44b8cc4d511b88fb66
+      internalID: -147727883
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_79
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 301c7da7ec4073849b739db81d5d3060
+      internalID: 2066861741
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_80
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cfb313bb4672b6b4298d1b19cd71de4e
+      internalID: 1613250958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_81
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bce60c654e952d47b5933913a6fd14a
+      internalID: -1699331347
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_82
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 27498bc0ccda20d418d9925443eb6548
+      internalID: -2003909065
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_83
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 79
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 48983bfd20db72a4f96b1012064ef127
+      internalID: 888663501
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_84
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8ba9a8f99f9c6c04e8cb0355a43bfdd1
+      internalID: 1343546893
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_85
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2fcf36f2adfa56a46bc1f0a720b91164
+      internalID: 874079404
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_86
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 83058b672db4e73418f96437e05578a9
+      internalID: 211569321
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_87
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e177736380615314da92b6808459e6bd
+      internalID: 308976407
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_88
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4b43143bd636af0419781ac5d02c4c25
+      internalID: 587781721
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_89
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6aaeb63035f92a3468abe4e8e9d0a449
+      internalID: 1652362637
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_90
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1bae6296b8eb7443984a112a5ae1ff2
+      internalID: 1319443805
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_91
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d968d5a90a7b9f2438f14f793b8b45a0
+      internalID: -474145027
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_92
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 45d3fe16353ec9141b04596f7568c0a6
+      internalID: -2047811323
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_93
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e6caa68cdc86164459374849b884aeed
+      internalID: 367201929
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_94
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0d46b43b73811354387fb480eeec5ca2
+      internalID: 1125266422
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_95
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 978e008a8b88c0445a2140de90d7aca1
+      internalID: 312958629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_96
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6b2438c893358f24d96557f1a22b7230
+      internalID: -705883740
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_97
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 630aa66a49d757644a97d58794e33f23
+      internalID: 1598897031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_98
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a6243ce32bcc06a4593f77c64d008de1
+      internalID: 1595521557
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_99
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e9d67ef6fb7d30141810293369e10067
+      internalID: -177620094
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_100
+      rect:
+        serializedVersion: 2
+        x: 384
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2de8443d12525d141b728aa5dc66a060
+      internalID: -79907605
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_101
+      rect:
+        serializedVersion: 2
+        x: 408
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c48e9087b3f28b4d8660619782855b5
+      internalID: -560029268
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_102
+      rect:
+        serializedVersion: 2
+        x: 432
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d2fd572da9d664840b0038d420e29dfd
+      internalID: -235410983
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_103
+      rect:
+        serializedVersion: 2
+        x: 456
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd90f98a47b6e7645a2aa520aa09ec73
+      internalID: 1996050028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_104
+      rect:
+        serializedVersion: 2
+        x: 480
+        y: 49
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 657b784ed1108b24e951735279bb22a6
+      internalID: -528768206
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_105
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 19
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6e6a441b29fc74a43adccef97b430631
+      internalID: -1499505964
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_106
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 19
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ea075f369e4a1242acbe748b6492c72
+      internalID: -1315364007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_107
+      rect:
+        serializedVersion: 2
+        x: 48
+        y: 19
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8b14e3c2b782c0d49ba07bf90d8e92f4
+      internalID: 1593127734
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_108
+      rect:
+        serializedVersion: 2
+        x: 72
+        y: 19
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5bb71e223a984764e92070b1a2f5c920
+      internalID: -368384562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_109
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 19
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 652329903e7c3314e9568696217ea6f4
+      internalID: 1853767241
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_110
+      rect:
+        serializedVersion: 2
+        x: 120
+        y: 19
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d3d3443307f3eb479338cccf630f012
+      internalID: 260286521
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_111
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 19
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b18effdf0c5fd484fa95930929febdc2
+      internalID: -14920930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_112
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 19
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: af42b5c1a0d8c2a4582f2f68eb1ab9ec
+      internalID: -1170035193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_113
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 19
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0c590d15b523a5044a9759ac5b1fd55a
+      internalID: 537084810
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_114
+      rect:
+        serializedVersion: 2
+        x: 216
+        y: 19
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63c0ecc952f91044d95a20821cb430a7
+      internalID: -1187600869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_115
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 19
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3a1cf0c5a1af6474388d54439f561055
+      internalID: 2104094475
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_116
+      rect:
+        serializedVersion: 2
+        x: 264
+        y: 19
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85ffeadeae53e394d8884b4672bd4a87
+      internalID: -166056676
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_117
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 19
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ca720f311233854aac4c44c3b463542
+      internalID: 1497317973
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_118
+      rect:
+        serializedVersion: 2
+        x: 312
+        y: 19
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56515291cdef8fd4ab8fc09298638af0
+      internalID: 249147150
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_119
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 19
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 382bd85a3382eb14da2f14ffc06464c4
+      internalID: -2027205095
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: IvySpritesheet_120
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 19
+        width: 24
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d458a0c71ea9b9949865a8ce48d2b029
+      internalID: -276593175
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: b4a43abd990a8bc4ebb358eb4f2d02b6
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      IvySpritesheet_73: 214398864
+      IvySpritesheet_38: -228177063
+      IvySpritesheet_33: -1991189537
+      IvySpritesheet_22: -1700694389
+      IvySpritesheet_0: -87558235
+      IvySpritesheet_97: 1598897031
+      IvySpritesheet_76: 719346039
+      IvySpritesheet_83: 888663501
+      IvySpritesheet_86: 211569321
+      IvySpritesheet_118: 249147150
+      IvySpritesheet_14: 1492615446
+      IvySpritesheet_1: -476352661
+      IvySpritesheet_94: 1125266422
+      IvySpritesheet_60: 566661834
+      IvySpritesheet_93: 367201929
+      IvySpritesheet_104: -528768206
+      IvySpritesheet_4: -272200565
+      IvySpritesheet_90: 1319443805
+      IvySpritesheet_91: -474145027
+      IvySpritesheet_17: -2134591867
+      IvySpritesheet_61: 752191590
+      IvySpritesheet_72: -1760979162
+      IvySpritesheet_9: 1866170626
+      IvySpritesheet_79: 2066861741
+      IvySpritesheet_99: -177620094
+      IvySpritesheet_21: 894105783
+      IvySpritesheet_89: 1652362637
+      IvySpritesheet_29: 1590955783
+      IvySpritesheet_107: 1593127734
+      IvySpritesheet_36: 963465216
+      IvySpritesheet_68: -390272618
+      IvySpritesheet_115: 2104094475
+      IvySpritesheet_119: -2027205095
+      IvySpritesheet_106: -1315364007
+      IvySpritesheet_96: -705883740
+      IvySpritesheet_55: 1862073236
+      IvySpritesheet_41: -1325071125
+      IvySpritesheet_28: 1662862387
+      IvySpritesheet_109: 1853767241
+      IvySpritesheet_100: -79907605
+      IvySpritesheet_46: 2009303503
+      IvySpritesheet_111: -14920930
+      IvySpritesheet_7: 1067979423
+      IvySpritesheet_27: 1764542017
+      IvySpritesheet_18: -1999040568
+      IvySpritesheet_49: 129265806
+      IvySpritesheet_114: -1187600869
+      IvySpritesheet_11: 1424914537
+      IvySpritesheet_88: 587781721
+      IvySpritesheet_58: 1180999447
+      IvySpritesheet_108: -368384562
+      IvySpritesheet_13: -221812127
+      IvySpritesheet_67: 1955209729
+      IvySpritesheet_85: 874079404
+      IvySpritesheet_37: 853553458
+      IvySpritesheet_39: 561206090
+      IvySpritesheet_117: 1497317973
+      IvySpritesheet_64: 1001886319
+      IvySpritesheet_25: 908921746
+      IvySpritesheet_95: 312958629
+      IvySpritesheet_66: -1707194258
+      IvySpritesheet_2: 1505148663
+      IvySpritesheet_80: 1613250958
+      IvySpritesheet_40: -1882510088
+      IvySpritesheet_24: -1974227433
+      IvySpritesheet_63: 969411663
+      IvySpritesheet_102: -235410983
+      IvySpritesheet_103: 1996050028
+      IvySpritesheet_105: -1499505964
+      IvySpritesheet_50: 897662015
+      IvySpritesheet_6: 1369685306
+      IvySpritesheet_12: -978619684
+      IvySpritesheet_10: -1811090725
+      IvySpritesheet_23: -1574259404
+      IvySpritesheet_110: 260286521
+      IvySpritesheet_47: -1336051489
+      IvySpritesheet_77: 264432696
+      IvySpritesheet_69: 1963688397
+      IvySpritesheet_15: -906121451
+      IvySpritesheet_71: 735986691
+      IvySpritesheet_30: 2029856855
+      IvySpritesheet_75: -1779733464
+      IvySpritesheet_62: 608363265
+      IvySpritesheet_87: 308976407
+      IvySpritesheet_19: 2121100394
+      IvySpritesheet_8: -688214964
+      IvySpritesheet_65: -1751360603
+      IvySpritesheet_74: -554313824
+      IvySpritesheet_34: 265663110
+      IvySpritesheet_43: -742364986
+      IvySpritesheet_112: -1170035193
+      IvySpritesheet_3: 740652716
+      IvySpritesheet_84: 1343546893
+      IvySpritesheet_42: 1911498221
+      IvySpritesheet_26: -1855409830
+      IvySpritesheet_101: -560029268
+      IvySpritesheet_44: 1317715597
+      IvySpritesheet_59: 40792286
+      IvySpritesheet_45: 1322463707
+      IvySpritesheet_57: 720111850
+      IvySpritesheet_78: -147727883
+      IvySpritesheet_51: 406933261
+      IvySpritesheet_20: -1515488716
+      IvySpritesheet_98: 1595521557
+      IvySpritesheet_56: 2133736254
+      IvySpritesheet_48: 1589031029
+      IvySpritesheet_54: -718049788
+      IvySpritesheet_92: -2047811323
+      IvySpritesheet_120: -276593175
+      IvySpritesheet_113: 537084810
+      IvySpritesheet_35: 1823701350
+      IvySpritesheet_32: 1299736094
+      IvySpritesheet_116: -166056676
+      IvySpritesheet_81: -1699331347
+      IvySpritesheet_82: -2003909065
+      IvySpritesheet_16: 636892444
+      IvySpritesheet_5: -158687267
+      IvySpritesheet_31: 844165764
+      IvySpritesheet_53: -114559314
+      IvySpritesheet_52: 1311254671
+      IvySpritesheet_70: -1177728919
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
