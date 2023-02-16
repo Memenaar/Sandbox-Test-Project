@@ -6,12 +6,16 @@ namespace SpriteController
 {
     public class CharController : MonoBehaviour
     {
+
+        private Camera _camera;
+
         // Sets character's movespeed.
         public float moveSpeed;
         public float maxSpeed;
         public float jumpSpeed;
         public float jumpForce;
-        private float momentum;
+        public float momentum;
+        private Vector2 moveInput;
         private Vector3 charDirection;
 
         // Sets variable for character's rigidbody
@@ -23,21 +27,21 @@ namespace SpriteController
         // Creates a Vector2 named charRotation
         public Vector2 charRotation;
 
-        // Creates 2 Vector 3s named Forward and Right respectively.
-        public Vector3 forward, right;
-
         // Character States
         public bool isOnGround;
+
+        void Awake()
+        {
+            _camera = Camera.main;
+            playerRb = GetComponent<Rigidbody>();
+        }
 
         // Start is called before the first frame update
         void Start()
         {
             _t = transform;
-            forward = Camera.main.transform.forward;
-            forward.y = 0;
-            forward = Vector3.Normalize(forward);
-            right = Quaternion.Euler(new Vector3(0, 90, 0)) * forward;
-            playerRb = GetComponent<Rigidbody>();
+            Vector3 camF = _camera.transform.forward;   
+            Vector3 camR = _camera.transform.right;
             isOnGround = true;
         }
 
@@ -49,85 +53,46 @@ namespace SpriteController
                 charDirection = Move();
             }
 
-            if (isOnGround == true && Input.GetKeyDown(KeyCode.Space)){
-                Vector3 direction = new Vector3(Input.GetAxis("HorizontalKey"), 0, Input.GetAxis("VerticalKey"));
-                Vector3 rightMovement = right * moveSpeed * Time.deltaTime * Input.GetAxis("HorizontalKey");
-                Vector3 upMovement = forward * moveSpeed * Time.deltaTime * Input.GetAxis("VerticalKey");
-
-                Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
-                momentum = playerRb.velocity.magnitude;
-
-                playerRb.AddForce((Vector3.up * jumpForce), ForceMode.Impulse);
-                playerRb.AddForce(charDirection * jumpSpeed, ForceMode.Impulse); // Find a way to replace the static jumpSpeed variable with the character's momentum at time of jump (currently momentum is reduced to 0 when the chara)
+            if (isOnGround == true && Input.GetKeyDown(KeyCode.Space))
+            {
+                // This code needs replacing.
+                // Goals for new jump should be:
+                // 1. Only usable on ground
+                // 2. Jumps straight up if char is not moving
+                // 3. if char IS moving, maintains horizontal momentum during jump
+                // 4. Locked out of new horizontal movement in the air (this should already be covered by the move function)
+                Vector3 jumpVector = (charDirection + Vector3.up);
+                playerRb.AddForce(jumpVector * jumpForce, ForceMode.Impulse);
                 isOnGround = false;
-                Debug.Log(isOnGround);
             }
-
-        
-        /* 
-        This code is from the Jump in the ball-island game, from the Junior Programmer course.
-        See if the jump code is useful for our purposes here.
-        IEnumerator Smash()
-        {
-            var enemies = FindObjectsOfType<Enemy>();
-
-            // Store the Y position before taking off
-            floorY = transform.position.y;
-
-            // Calculate the amount of time we will go up for
-            float jumpTime = Time.time + hangTime;
-
-            while(Time.time < jumpTime)
-            {
-                // Move the player up while still keeping their X velocity
-                playerRb.velocity = new Vector2(playerRb.velocity.x, smashSpeed);
-                yield return null;
-            }
-
-            playerUp = true;
-
-            // Now move the Player down
-            while(transform.position.y > floorY)
-            {
-                playerRb.velocity = new Vector2(playerRb.velocity.x, -smashSpeed * 2);
-                yield return null;
-            }
-
-            // Cycle through all enemies
-            for (int i = 0; i < enemies.Length; i++)
-            {
-                // Apply an expl;osion force that originates from our position.
-                if(enemies[i] != null)
-                    enemies[i].GetComponent<Rigidbody>().AddExplosionForce(explosionForce, transform.position, explosionRadius, 0.0f, ForceMode.Impulse);
-            }
-
-            // Smash is over, set boolean to false
-            smashing = false;
-        } */
-            
+    
             
         }
 
         private Vector3 Move()
         {
-            Vector3 direction = new Vector3(Input.GetAxis("HorizontalKey"), 0, Input.GetAxis("VerticalKey"));
-            Vector3 rightMovement = right * moveSpeed * Time.deltaTime * Input.GetAxis("HorizontalKey");
-            Vector3 upMovement = forward * moveSpeed * Time.deltaTime * Input.GetAxis("VerticalKey");
-
-            Vector3 heading = Vector3.Normalize(rightMovement + upMovement);
-
-            //momentum = playerRb.velocity.magnitude;
+            Vector3 camF = _camera.transform.forward;   
+            Vector3 camR = _camera.transform.right;
+            camF = new Vector3(camF.x, 0, camF.z).normalized;
+            camR = new Vector3(camR.x, 0, camR.z).normalized;
+            
 
             if (isOnGround == true)
             {
-                transform.forward = heading;
-                transform.position += rightMovement;
-                transform.position += upMovement;
-                charRotation = _t.eulerAngles;
-            } else {
-
+                moveInput = new Vector2(Input.GetAxis("HorizontalKey"), Input.GetAxis("VerticalKey"));
             }
-            return heading;
+
+            Vector3 heading = new Vector3(moveInput.x, 0.0f, moveInput.y);
+            Vector3 headingRotated = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * heading;
+
+            if (isOnGround == true && heading != Vector3.zero)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(headingRotated.normalized), 0.2f);
+                transform.position += (camF*moveInput.y + camR*moveInput.x) * Time.deltaTime * moveSpeed;
+            } else {
+                
+            }
+            return headingRotated;
         }
 
         private void OnCollisionEnter(Collision collision)

@@ -13,7 +13,7 @@ public class NPCInteract : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E) && playerProximity)
         {
             // Insert dialogue call here
-            Debug.Log("Sup fucker.");
+            PlayerInteract();
         }
     }
 
@@ -31,5 +31,14 @@ public class NPCInteract : MonoBehaviour
         {
             playerProximity = false;
         }
+    }
+    
+    private void PlayerInteract()
+    {
+        // 1. Determine whether a. dialogue w/ char or b. other interaction
+        //      if a, then 1b. Tween camera pos to refocus on other Char.
+        // 3. Call Dialogue box UI
+        // 4. Call and display Dialogue
+        Debug.Log("Sup fucker.");
     }
 }
