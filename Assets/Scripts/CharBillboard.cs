@@ -3,47 +3,37 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace SpriteController {
-    public class CharacterBillboard : SpriteBillboard
+    public class CharBillboard : SpriteBillboard
     {
     	[Header("Rotation Variables")]
 		// Stores the CameraController script.
 		protected CameraController _cameraController;
-        private Transform _billboard;
-        private Facing _relFacing = Facing.Up;
-        private Facing _bbFacing = Facing.Down;
+
+		// Store the transform of the character's billboard game object
+        protected Transform _billboard;
+		// Store the Transform of the character's Navigator game object.
+        protected Transform _navigator;
+
         // Store the sprite renderer.
-		private SpriteRenderer _sprite;
-        
-        private Transform _objTransform;
+		protected SpriteRenderer _renderer;
 
 		// List of basic directional sprites.
 		// Original Author's note: I don't recommend using a list like this, it's just for example
 		public List<Sprite> directionSprites = new List<Sprite>();
 
-        // Start is called before the first frame update
+		// Sets the initial facing direction of the character sprite, relative to the camera.
+        protected Facing _spriteFacing = Facing.Up;
+		// Sets the facing direction of the billboard itself.
+        protected Facing _bbFacing = Facing.Down;
+
         void Awake()
         {
-        	// Gets the component CameraController from the Main Camera object.
-			_camera = GameObject.Find("Main Camera");
-            /* Initializes the variables for billboarding */
-			// Sets _t to equal the transform values of the attached game object (in this case, Player)
-			_objTransform = transform.parent.transform;
-
-			// Gets the transform value of _sprite and stores it in _billboard
-			_billboard = gameObject.transform;
-
-			/* Initializes variables for sprite angling */
-			// Gets the SpriteRenderer component attached to this object and stores it in _sprite
-			_sprite = GetComponentInChildren<SpriteRenderer>();
-
-			// Gets the component CameraController from the Main Camera object.
-			_cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
+			GetCamera();
+			InitializeBillboard();
         }
 
         void Update()
-		{
-			//BillboardSprite();
-			FixRotation();		
+		{	
 		}
 
         void LateUpdate()
@@ -52,18 +42,29 @@ namespace SpriteController {
 			AngleSprite();
         }
 
-		void FixRotation()
+		// Initializes all the variables used for a standard Character Billboard
+		protected void InitializeBillboard()
 		{
-			// Sets the billboard's rotation to 0,0,0 so that it doesn't follow the rotation of the rigidbody and parent object, and make itself invisible.
-			transform.rotation = Quaternion.Euler(0,0,0);	
+			// Sets _t to equal the transform values of the attached game object (in this case, Player)
+			_navigator = transform.parent.Find("Navigator").transform;
+
+			// Gets the transform value of the game object and stores it in _billboard
+			_billboard = gameObject.transform;
+
+			/* Initializes variables for sprite angling */
+			// Gets the SpriteRenderer component attached to this object and stores it in _sprite
+			_renderer = GetComponent<SpriteRenderer>();
+			// Gets the component CameraController from the Main Camera object.
+			_cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
 		}
 
-        // Determines the direction of the game object relative to the camera in x and z space.
-		void DetermineDirection()
+        // Determines the direction the character's Navigator is facing relative to the camera in x and z space.
+		protected void DetermineDirection()
 		{
-			Vector2 _objRotation = _objTransform.eulerAngles;
-			// Defines a float named rX and sets it to equal the X component of the camera's current rotation.
-			float rX = _cameraController.CurrentRotation.x - _objRotation.y;
+			Vector2 _navRotation = _navigator.eulerAngles;
+
+			// Defines a float named rX and sets it to equal the X component of the camera's current rotation minus the rotation of the navigator.
+			float rX = _cameraController.CurrentRotation.x - _navRotation.y;
 
 			// Ensure that the product of the previous equation does not exceed -180 or 180 in either direction
 			// If the value of rX is less than -180, change the value of rX to rX+360
@@ -79,40 +80,40 @@ namespace SpriteController {
 			if(x < 22.5f)
 			{
 				// ...then set the value of _relFacing to Down
-				_relFacing = Facing.Down;
+				_spriteFacing = Facing.Down;
 			}
 			// else if the value of x is less than 67.5f...
 			else if(x < 67.5f)
 			{
 				// if rX is less than 0, set the value of _facing to DownRight. Else set the value of _facing to DownLeft. 
-				_relFacing = rX < 0 ? Facing.DownRight : Facing.DownLeft;
+				_spriteFacing = rX < 0 ? Facing.DownRight : Facing.DownLeft;
 			}
 			else if(x < 112.5f)
 			{
 				// if rX is less than 0, set the value of _facing to Right. Else set the value of _facing to Left.
-				_relFacing = rX < 0 ? Facing.Right : Facing.Left;
+				_spriteFacing = rX < 0 ? Facing.Right : Facing.Left;
 			}
 			else if(x < 157.5f)
 			{
 				// if rX is less than 0, set the value of _facing to UpRight. Else set the value of _facing to UpLeft.
-				_relFacing = rX < 0 ? Facing.UpRight : Facing.UpLeft;
+				_spriteFacing = rX < 0 ? Facing.UpRight : Facing.UpLeft;
 			}
 			else
 			{
 				// set the value of _facing to Up.
-				_relFacing = Facing.Up;
+				_spriteFacing = Facing.Up;
 			}
 		}
 
 		// Sets the active sprite displayed by the sprite renderer to the appropriate angle, based on the game object's direction relative to the camera. 
-		void AngleSprite()
+		protected void AngleSprite()
 		{
 			// Reset the flipX value of _sprite to false.
-			_sprite.flipX = false;
+			_renderer.flipX = false;
 
 			// Creates and sets the offset integer to equal the value of _facing minus the value of Facing as defined in _cameraDirection.
 			// Essentially set offset to the value of billboard direction minus camera direction.
-			int offset = _bbFacing - _relFacing;
+			int offset = _bbFacing - _spriteFacing;
 
 			// If offset less than 0...
 			if(offset < 0)
@@ -132,24 +133,24 @@ namespace SpriteController {
 				// If direction = Facing.DownRight, set direction = Facing.DownLeft and flip the sprite along its X axis
 				case Facing.DownRight:
 					direction = Facing.DownLeft;
-					_sprite.flipX = true;
+					_renderer.flipX = true;
 					break;
 				// If direction = Facing.Right, set direction = Facing.Left and flip the sprite along its X axis
 				case Facing.Right:
 					direction = Facing.Left;
-					_sprite.flipX = true;
+					_renderer.flipX = true;
 					break;
 				// If direction = Facing.UpRight, set direction = Facing.UpLeft and flip the sprite along its X axis
 				case Facing.UpRight:
 					direction = Facing.UpLeft;
-					_sprite.flipX = true;
+					_renderer.flipX = true;
 					break;
 			}
 
             // Original author's note: "Change this with your own sprite animation stuff"
 			// Not sure how this works yet but I'll figure it out or replace it.
 			// NOTE: does not effect billboarding. Controls direction of sprite/sprite update.
-			_sprite.sprite = directionSprites[(int)direction];
+			_renderer.sprite = directionSprites[(int)direction];
         }
     }
 }

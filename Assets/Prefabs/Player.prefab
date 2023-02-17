@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   charBody: {fileID: 0}
-  spriteRenderer: {fileID: 5351182424304933947}
+  spriteRenderer: {fileID: 0}
   nWalkSprites:
   - {fileID: -435710797, guid: f012b6ecacb62f84eb4ef2c58e99d8ea, type: 3}
   - {fileID: -1724588953, guid: f012b6ecacb62f84eb4ef2c58e99d8ea, type: 3}
@@ -140,7 +140,7 @@ MonoBehaviour:
   - {fileID: -1207434296, guid: 4f9e49d95a1c6ab499cd1a6f380ca29b, type: 3}
   sJumpSprites:
   - {fileID: -1380864309, guid: 4f9e49d95a1c6ab499cd1a6f380ca29b, type: 3}
-  charControllerScript: {fileID: 0}
+  charController: {fileID: 0}
   frameRate: 8
 --- !u!114 &5351182424304933944
 MonoBehaviour:
@@ -154,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d9cc9a39d1851ae4eb87ee4560725740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _navTransform: {fileID: 0}
   directionSprites:
   - {fileID: 1617242727, guid: d91d09239627372488438f3b26288d4f, type: 3}
   - {fileID: 1402414405, guid: d91d09239627372488438f3b26288d4f, type: 3}
@@ -180,7 +181,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5351182424421134178
 Transform:
   m_ObjectHideFlags: 0
@@ -294,14 +295,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e60b89e42dd3c7b4bac2f9f6ebedebcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 6
-  maxSpeed: 0
-  jumpSpeed: 200
-  jumpForce: 400
-  charRotation: {x: 0, y: 0}
-  forward: {x: 0, y: 0, z: 0}
-  right: {x: 0, y: 0, z: 0}
+  walkSpeed: 4
+  maxSpeed: 8
+  jumpSpeed: 100
+  jumpForce: 200
+  momentum: 0
   isOnGround: 0
+  isRunning: 0
+  runTime: 2
 --- !u!65 &5351182425333699586
 BoxCollider:
   m_ObjectHideFlags: 0

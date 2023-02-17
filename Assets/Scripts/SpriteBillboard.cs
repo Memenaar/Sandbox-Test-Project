@@ -11,28 +11,22 @@ namespace SpriteController
 
 		void Awake()
 		{
-			// Gets the component CameraController from the Main Camera object.
-			_camera = GameObject.Find("Main Camera");
-
+			GetCamera();
 		}
 
 		void Update()
 		{
-			BillboardSprite();
 		}
 
 		void LateUpdate()
 		{
-			BillboardSprite();
 		}
 
-		// Ensures that the billboard is always pointed at camera in x and z space.
-		protected void BillboardSprite()
+		// Gets the main camera and initializes the _camera variable for all Sprite Billboards.
+		protected void GetCamera()
 		{
-            Vector3 newRotation = _camera.transform.eulerAngles;
-            newRotation = new Vector3(newRotation.x, newRotation.y, 0);
-            transform.eulerAngles = newRotation;
-        
+			_camera = GameObject.Find("Main Camera");
 		}
+
     }
 }
