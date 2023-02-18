@@ -25,7 +25,7 @@ namespace SpriteController
             public List<Sprite> swJumpSprites;
             public List<Sprite> sJumpSprites;
         
-            public CharController charController; // Take the CharController script and store it in a variable.
+            public CharacterController charController; // Take the CharController script and store it in a variable.
             public float frameRate; // Animation frame rate.
             float idleTime; // 
 
@@ -35,7 +35,7 @@ namespace SpriteController
         // Start is called before the first frame update
         void Awake()
         {
-            charController = transform.parent.GetComponentInParent<CharController>();
+            charController = transform.parent.GetComponentInParent<CharacterController>();
             charBody = transform.parent.GetComponentInParent<Rigidbody>();
             spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         }
@@ -70,7 +70,7 @@ namespace SpriteController
         List<Sprite> setAnimation()
         {
             
-            if (charController.isOnGround == true && (Input.GetAxis("HorizontalKey") != 0) | (Input.GetAxis("VerticalKey") != 0)) // Check whether input is being received by the Horizontal or Vertical movement keys.
+            if (charController.isGrounded == true && (Input.GetAxis("HorizontalKey") != 0) | (Input.GetAxis("VerticalKey") != 0)) // Check whether input is being received by the Horizontal or Vertical movement keys.
             {
                 // If the above is true, check spriteDirection and set the animation accordingly.
                 if(spriteDirection == Facing.Down){
@@ -93,7 +93,7 @@ namespace SpriteController
                     selectedAnimation = swWalkSprites;
                     spriteRenderer.flipX = true;    
                 }
-            } else if (charController.isOnGround == false) {
+            } else if (charController.isGrounded == false) {
                 if(spriteDirection == Facing.Down){
                     selectedAnimation = sJumpSprites;
                 } else if (spriteDirection == Facing.DownLeft) {

@@ -8,8 +8,6 @@ namespace SpriteController
     {
 
         private Camera _camera;
-        Vector3 camF;   
-        Vector3 camR;
 
         // Sets character's movespeed.
         public float walkSpeed;
@@ -19,19 +17,19 @@ namespace SpriteController
         public float momentum;
         private Vector2 moveInput;
         private Vector3 charDirection;
+        private Vector3 velocity;
         private float ySpeed;
-        private float tempStepOffset;
+        private float originalStepOffset;
+        private Vector3 heading;
 
         // Sets variable for character's rigidbody
         private Rigidbody _playerRb;
         private CharacterController _charController;
         private Transform _navigator;
 
-        // Creates a transform named _t
-        private Transform _t;
 
         // Character States
-        public bool isOnGround;
+        public bool canJump;
         public bool isRunning;
         public float runTime = 2.0f;
 
@@ -41,99 +39,106 @@ namespace SpriteController
             _playerRb = GetComponent<Rigidbody>();
             _navigator = gameObject.transform.Find("Navigator").GetComponent<Transform>();
             _charController = GetComponent<CharacterController>();
-        }
-
-        // Start is called before the first frame update
-        void Start()
-        {
-            _t = transform;
-            camF = _camera.transform.forward;   
-            camR = _camera.transform.right;
-            isOnGround = true;
+            originalStepOffset = _charController.stepOffset;
         }
 
         // Update is called once per frame
         void Update()
         {
-            moveInput = new Vector2(Input.GetAxis("HorizontalKey"), Input.GetAxis("VerticalKey")).normalized;
-
-            CameraUpdate();
-            if (isOnGround == true)
+            if (_charController.isGrounded)
             {
+                ResetCoyote();
+                moveInput = new Vector2(Input.GetAxis("HorizontalKey"), Input.GetAxis("VerticalKey")).normalized;
+                heading = new Vector3(moveInput.x, 0.0f, moveInput.y);
+            } 
+            else 
+            {
+                if(canJump)
+                {
+                    StartCoroutine(CoyoteTime());
+                }
+                DetectHeadbumps();
+            }
+
+            Vector3 headingRotated = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * heading;
+            float magnitude;
+            // Crude Run functionality below, replace later. Probably by having a single speed variable updated in the run method.
+            if (isRunning == true)
+            {
+                magnitude = Mathf.Clamp01(headingRotated.magnitude) * maxSpeed;
+            }
+            else
+            {
+                magnitude = Mathf.Clamp01(headingRotated.magnitude) * walkSpeed; 
+            }
+            headingRotated.Normalize();
+
+            ySpeed += Physics.gravity.y * Time.deltaTime;
+
+            if (_charController.isGrounded == true)
+            {
+                _charController.stepOffset = originalStepOffset;
                 ySpeed = -0.5f;
                 playerRun();
+
+                if (Input.GetButtonDown("Jump"))
+                {
+                    ySpeed = jumpSpeed;
+                    canJump = false;
+                }
+
             }
-            if ((Input.GetAxis("HorizontalKey") != 0 || Input.GetAxis("VerticalKey") != 0))
+            else
             {
-                charDirection = Move();
+                _charController.stepOffset = 0;
             }
 
-            Jump();
-    
+            velocity = headingRotated * magnitude;
+            velocity = AdjustVelocityToSlope(velocity);
+            velocity.y += ySpeed;
+
+
+                _charController.Move(velocity * Time.deltaTime);
+        
+
+            if (headingRotated != Vector3.zero)
+            {
+                _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(headingRotated.normalized), 0.2f);
+
+            }
+            
             
         }
-        private void CameraUpdate()
+
+        // Resets Coyote Time. Called when player is on the ground.
+        private void ResetCoyote()
         {
-            camF = _camera.transform.forward;   
-            camR = _camera.transform.right;
-            camF = new Vector3(camF.x, 0, camF.z).normalized;
-            camR = new Vector3(camR.x, 0, camR.z).normalized;
+        
+            canJump = true;
+    
         }
 
-        private Vector3 Move()
+        // Count x seconds before disabling ability to jump. To be called when jumping, or when the player is not colliding with anything below them.
+        private IEnumerator CoyoteTime()
         {
-            Vector3 heading = new Vector3(moveInput.x, 0.0f, moveInput.y);
-            //float magnitude = Mathf.Clamp01(heading.magnitude) * walkSpeed;
-            heading.Normalize();
-            Vector3 headingRotated = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * heading;    
-
-            //ySpeed += Physics.gravity.y * Time.deltaTime;   
-            //Vector3 velocity = heading * magnitude;
-            //velocity.y = ySpeed;
-
-            if (isOnGround == true && heading != Vector3.zero)
-            {
-                if (isRunning)
-                {
-                    _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(headingRotated.normalized), 0.2f);
-                    //_playerRb.MovePosition(velocity * Time.deltaTime);
-                    transform.position += (camF*moveInput.y + camR*moveInput.x) * Time.deltaTime * maxSpeed;
-                } else {
-                    _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(headingRotated.normalized), 0.2f);
-                    //_playerRb.MovePosition(velocity * Time.deltaTime);
-                    transform.position += (camF*moveInput.y + camR*moveInput.x) * Time.deltaTime * walkSpeed;
-                }
-            }
-            return headingRotated;
+            float duration = 1f;
+            // Insert code here that will disable canJump after duration.
+            yield return null;
         }
 
-        private void OnCollisionEnter(Collision collision)
+        // Ensures if you hit your head on something while jumping you don't hang under it until gravity takes effect.
+        private void DetectHeadbumps()
         {
-            if(collision.gameObject.CompareTag("Ground"))
+            if ((_charController.collisionFlags & CollisionFlags.Above) != 0 && (velocity.y > 0)) 
             {
-                isOnGround = true;
-            }
-        }
-
-        private void Jump()
-        {
-            if (isOnGround == true && Input.GetKeyDown(KeyCode.Space))
-            {
-                // This code needs replacing.
-                // Goals for new jump should be:
-                // 1. Only usable on ground
-                // 2. Jumps straight up if char is not moving
-                // 3. if char IS moving, maintains horizontal momentum during jump
-                // 4. Locked out of new horizontal movement in the air (this should already be covered by the move function)
-                Vector3 jumpVector = (charDirection + Vector3.up);
-                _playerRb.AddForce(jumpVector * jumpForce, ForceMode.Impulse);
-                isOnGround = false;
+                Debug.Log("Headbump");
+                ySpeed += -5;
             }
         }
         
         private void playerRun()
         {
-            // Changes player's running state based on Left, but only if they are on the ground
+            // Changes player's running state based on Left Shift, but only if they are on the ground
             if(Input.GetAxis("RunToggle") == 1)
             {
                 isRunning = true;
@@ -142,10 +147,7 @@ namespace SpriteController
             }
         }
 
-        // This is meant to fix our slope bounce.
-        // Currently commented lines are related to this solution as shown here: https://www.youtube.com/watch?v=PEHtceu7FBw&ab_channel=KetraGames
-        // May want to consider changing to a Character Controller, or copying some of the character controller's functionality.
-        // More info here: https://medium.com/ironequal/unity-character-controller-vs-rigidbody-a1e243591483
+        // Fixes slope bounce
         private Vector3 AdjustVelocityToSlope(Vector3 velocity)
         {
             var ray = new Ray(transform.position, Vector3.down);
