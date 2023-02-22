@@ -7,31 +7,41 @@ namespace SpriteController
     public class CharController : MonoBehaviour
     {
 
+        [Header("Objects & Components")] // Variables containing objects and components
         private Camera _camera;
-
-        // Sets character's movespeed.
-        public float walkSpeed;
-        public float maxSpeed;
-        public float jumpSpeed;
-        public float jumpForce;
-        public float momentum;
-        private Vector2 moveInput;
-        private Vector3 charDirection;
-        private Vector3 velocity;
-        private float ySpeed;
-        private float originalStepOffset;
-        private Vector3 heading;
-
-        // Sets variable for character's rigidbody
         private Rigidbody _playerRb;
         private CharacterController _charController;
         private Transform _navigator;
 
+        [Header("Movement Variables")] // Variables governing character movement and orientation
+        public float walkSpeed;
+        public float maxSpeed;
+        public float momentum;
+        public float ySpeed;
+        private float originalStepOffset;
+        public float magnitude;
+        private Vector2 moveInput;
+        private Vector3 charDirection;
+        public Vector3 velocity;
+        public Vector3 heading;
+        public Vector3 headingRotated;
 
-        // Character States
-        public bool canJump;
-        public bool isRunning;
-        public float runTime = 2.0f;
+        [Header("Jump Variables")] // Variables governing jump motion.
+        public float jumpSpeed;
+
+        [Header("Jump Queueing")]
+        private const float _jumpBuffer = 20f; // How long prior to landing can the jump input be triggered?
+        public float _jumpPressedMidAir_Buffer; // The time the last mid-air jump input was pressed.
+        public bool jumpQueued; // Is a jump currently queued for landing?
+
+        [Header("Coyote Time")]
+        private const float _coyoteTime = 10f; // The player can still jump as if they are on the edge.
+        private float _coyoteTracker; // The last time the player became airborne (without jumping)
+        public bool _coyoteAvailable = true;
+
+        [Header("States")] // Variables governing character states
+        public bool playerRunning;
+        public bool playerGrounded;
 
         void Awake()
         {
@@ -45,25 +55,49 @@ namespace SpriteController
         // Update is called once per frame
         void Update()
         {
+            // if player's character controller is grounded
             if (_charController.isGrounded)
             {
-                ResetCoyote();
+                // and boolean playerGrounded is set to False
+                if (!playerGrounded)
+                {
+                    // Use the BecomeGrounded method
+                    BecomeGrounded();
+
+                } else {
                 moveInput = new Vector2(Input.GetAxis("HorizontalKey"), Input.GetAxis("VerticalKey")).normalized;
                 heading = new Vector3(moveInput.x, 0.0f, moveInput.y);
-            } 
-            else 
-            {
-                if(canJump)
-                {
-                    StartCoroutine(CoyoteTime());
                 }
-                DetectHeadbumps();
+                
+                _charController.stepOffset = originalStepOffset;
+                ySpeed = -0.5f;
+                playerRun();
+
+                if (Input.GetButtonDown("Jump"))
+                {
+                    Jump();  
+                }
+            } 
+            else // if player's character controller is NOT grounded
+            {
+                if (_coyoteAvailable && (_coyoteTracker + _coyoteTime >= Time.time)) // If Coyote Time is available, and the time since the player left ground + the grace period is less than the current time
+                {
+                    if (Input.GetButtonDown("Jump"))
+                    {
+                        Jump();  
+                    }
+                } else if (playerGrounded)
+                {
+                    BecomeAirborne(); // Use the BecomeAirborne method.
+                }
+                AirborneBehaviour();
+
             }
 
-            Vector3 headingRotated = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * heading;
-            float magnitude;
+            headingRotated = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * heading;
+            
             // Crude Run functionality below, replace later. Probably by having a single speed variable updated in the run method.
-            if (isRunning == true)
+            if (playerRunning == true)
             {
                 magnitude = Mathf.Clamp01(headingRotated.magnitude) * maxSpeed;
             }
@@ -75,55 +109,8 @@ namespace SpriteController
 
             ySpeed += Physics.gravity.y * Time.deltaTime;
 
-            if (_charController.isGrounded == true)
-            {
-                _charController.stepOffset = originalStepOffset;
-                ySpeed = -0.5f;
-                playerRun();
-
-                if (Input.GetButtonDown("Jump"))
-                {
-                    ySpeed = jumpSpeed;
-                    canJump = false;
-                }
-
-            }
-            else
-            {
-                _charController.stepOffset = 0;
-            }
-
-            velocity = headingRotated * magnitude;
-            velocity = AdjustVelocityToSlope(velocity);
-            velocity.y += ySpeed;
-
-
-                _charController.Move(velocity * Time.deltaTime);
-        
-
-            if (headingRotated != Vector3.zero)
-            {
-                _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(headingRotated.normalized), 0.2f);
-
-            }
+            MoveChar();
             
-            
-        }
-
-        // Resets Coyote Time. Called when player is on the ground.
-        private void ResetCoyote()
-        {
-        
-            canJump = true;
-    
-        }
-
-        // Count x seconds before disabling ability to jump. To be called when jumping, or when the player is not colliding with anything below them.
-        private IEnumerator CoyoteTime()
-        {
-            float duration = 1f;
-            // Insert code here that will disable canJump after duration.
-            yield return null;
         }
 
         // Ensures if you hit your head on something while jumping you don't hang under it until gravity takes effect.
@@ -132,7 +119,7 @@ namespace SpriteController
             if ((_charController.collisionFlags & CollisionFlags.Above) != 0 && (velocity.y > 0)) 
             {
                 Debug.Log("Headbump");
-                ySpeed += -5;
+                ySpeed += -velocity.y;
             }
         }
         
@@ -141,9 +128,9 @@ namespace SpriteController
             // Changes player's running state based on Left Shift, but only if they are on the ground
             if(Input.GetAxis("RunToggle") == 1)
             {
-                isRunning = true;
+                playerRunning = true;
             } else {
-                isRunning = false;
+                playerRunning = false;
             }
         }
 
@@ -164,6 +151,70 @@ namespace SpriteController
             }
 
             return velocity;
+        }
+
+        private void AirborneBehaviour()
+        {
+            DetectHeadbumps();
+            if (!jumpQueued && Input.GetButtonDown("Jump"))
+            {
+                Debug.Log("Jump queued");
+                jumpQueued = true;
+                _jumpPressedMidAir_Buffer = Time.time;
+            }
+        }
+
+        private void BecomeGrounded()
+        {
+            // Check whether a jump is buffered.
+            if (jumpQueued && (_jumpPressedMidAir_Buffer + _jumpBuffer > Time.time))
+            {
+                Debug.Log("Queue Check Succeeded");
+                Jump();
+            } else {
+                playerGrounded = true;
+                _coyoteAvailable = true;
+                jumpQueued = false;
+            }
+        }
+
+        private void BecomeAirborne()
+        {
+            playerGrounded = false;
+            _coyoteTracker = Time.time; // Set the last "leftGround" time to the current time.
+            _charController.stepOffset = 0; // Set the character controller's step offset to 0. Prevents characters mantling mid-air.
+        }
+
+        private void Jump()
+        {
+            playerGrounded = false;
+            _coyoteAvailable = false;   
+            if(!jumpQueued){ // If the jump is NOT a queued jump
+                ySpeed += jumpSpeed;
+            } 
+            else // If the jump IS a queued jump
+            {
+                ySpeed = -0.5f + jumpSpeed;
+                jumpQueued = false;
+                Debug.Log("Queued Jump Executed");
+            }
+        }
+
+        private void MoveChar()
+        {
+            velocity = headingRotated * magnitude;
+            velocity = AdjustVelocityToSlope(velocity);
+            velocity.y += ySpeed;
+
+
+                _charController.Move(velocity * Time.deltaTime);
+        
+
+            if (headingRotated != Vector3.zero)
+            {
+                _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(headingRotated.normalized), 0.2f);
+
+            }
         }
     }
 }
