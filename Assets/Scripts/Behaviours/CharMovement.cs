@@ -14,17 +14,25 @@ namespace SpriteController
         private Transform _navigator;
 
         [Header("Movement Variables")] // Variables governing character movement and orientation
-        public float walkSpeed;
-        public float maxSpeed;
-        public float momentum;
+        public float walkMax;
+        public float runMax;
+        public Vector3 momentum;
+        public Vector3 momentumCheck;
+        public float inertia;
         public float ySpeed;
         private float originalStepOffset;
         public float magnitude;
         private Vector2 moveInput;
         private Vector3 charDirection;
         public Vector3 velocity;
+        public Vector3 priorVelocity;
         public Vector3 heading;
         public Vector3 headingRotated;
+        public Vector3 _currentMovement;
+        public float movementLerpSpeed;
+        public float acceleration;
+        public float groundDrag;
+        public float currentSpeed;
 
         [Header("Jump Variables")] // Variables governing jump motion.
         public float jumpSpeed;
@@ -45,6 +53,7 @@ namespace SpriteController
 
         void Awake()
         {
+            momentum = new Vector3(0,0,0);
             InitializeMovement();
         }
 
@@ -81,22 +90,10 @@ namespace SpriteController
                 AirborneBehaviour();
                 
             }
-
-            headingRotated = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * heading;
-            
-            // Crude Run functionality below, replace later. Probably by having a single speed variable updated in the run method.
-            if (playerRunning == true)
-            {
-                magnitude = Mathf.Clamp01(headingRotated.magnitude) * maxSpeed;
-            }
-            else
-            {
-                magnitude = Mathf.Clamp01(headingRotated.magnitude) * walkSpeed; 
-            }
-            headingRotated.Normalize();
-
+            SpeedHandler();
             ySpeed += Physics.gravity.y * Time.deltaTime;
 
+            //newMove();
             MoveChar();
             
         }
@@ -183,17 +180,20 @@ namespace SpriteController
         // Converts player input into a heading for the player character
         private void InputToHeading(bool clampInput = false) // Uses a default value of false for clampInput if one is not provided.
         {
-            moveInput = new Vector2(Input.GetAxis("HorizontalKey"), Input.GetAxis("VerticalKey")).normalized; // Gets movement input
+            moveInput = new Vector2(Input.GetAxis("HorizontalKey"), Input.GetAxis("VerticalKey")); // Gets movement input
             if (clampInput)
             {
                 // If clampInput is true, the player's input only counts for 1/6 of its usual value
                 // This is used if the player jumps from a standing position, allowing them just enough movement to get onto nearby ledges, etc.
-                heading = new Vector3(moveInput.x/6, 0.0f, moveInput.y/6);
+                heading = new Vector3(moveInput.x, 0.0f, moveInput.y);
+                //currentSpeed = 1;
             } 
             else
             {
                 heading = new Vector3(moveInput.x, 0.0f, moveInput.y);
             }
+            headingRotated = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * heading;            
+            headingRotated.Normalize();
         }
 
         private void Jump()
@@ -208,12 +208,16 @@ namespace SpriteController
 
         private void MoveChar()
         {
-            velocity = headingRotated * magnitude;
-            velocity = AdjustVelocityToSlope(velocity);
-            velocity.y += ySpeed;
+            velocity = headingRotated * currentSpeed;
+            Vector3 move = momentum + velocity;
+            //move = Vector3.ClampMagnitude(move, currentSpeed); // Need an alternative to this function. It's meant to 
+            Debug.Log(move);
+            if (velocity != Vector3.zero) { momentum = velocity; }
+            move = AdjustVelocityToSlope(move);
+            move.y += ySpeed;
 
 
-                _charController.Move(velocity * Time.deltaTime);
+            _charController.Move(move * Time.deltaTime);
         
 
             if (headingRotated != Vector3.zero)
@@ -233,5 +237,35 @@ namespace SpriteController
                 playerRunning = false;
             }
         }
+
+        private void SpeedHandler()
+        {
+            float angleDelta = Vector3.Angle(headingRotated, momentum.normalized);
+            if (moveInput != Vector2.zero)
+            {
+                float speedLimit = playerRunning ? runMax : walkMax;
+                if (currentSpeed <= speedLimit) {currentSpeed += acceleration * Time.deltaTime;}
+                else {currentSpeed -= groundDrag * Time.deltaTime;}
+
+                if (angleDelta >= 45 &&  angleDelta <= 135)
+                {
+                    currentSpeed = (currentSpeed / 2);
+                }
+                else if (angleDelta >= 135) 
+                {
+                    currentSpeed = 0.0f;
+                }
+            }
+            else
+            {
+                if (currentSpeed > 0)
+                {
+                    currentSpeed -= groundDrag * Time.deltaTime;
+                    if (currentSpeed < 0) { currentSpeed = 0; }
+                }
+            }
+            momentum = Vector3.MoveTowards(momentum, Vector3.zero, groundDrag * Time.deltaTime);
+        }
+
     }
 }

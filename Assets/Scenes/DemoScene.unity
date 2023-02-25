@@ -312,7 +312,7 @@ Transform:
   m_GameObject: {fileID: 17929698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 1, z: 4}
+  m_LocalScale: {x: 200, y: 1, z: 200}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -1545,14 +1545,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711449ffcde19014aa7991417e5179cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 4
-  maxSpeed: 8
-  momentum: 0
+  walkMax: 10
+  runMax: 15
+  momentum: {x: 0, y: 0, z: 0}
+  momentumCheck: {x: 0, y: 0, z: 0}
+  inertia: 0
   ySpeed: 0
   magnitude: 0
   velocity: {x: 0, y: 0, z: 0}
+  priorVelocity: {x: 0, y: 0, z: 0}
   heading: {x: 0, y: 0, z: 0}
   headingRotated: {x: 0, y: 0, z: 0}
+  _currentMovement: {x: 0, y: 0, z: 0}
+  movementLerpSpeed: 1.5
+  acceleration: 10
+  groundDrag: 15
+  currentSpeed: 0
   jumpSpeed: 7.5
   playerRunning: 0
   playerGrounded: 0
