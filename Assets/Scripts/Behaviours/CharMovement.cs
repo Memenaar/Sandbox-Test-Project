@@ -29,10 +29,12 @@ namespace SpriteController
         public Vector3 heading;
         public Vector3 headingRotated;
         public Vector3 _currentMovement;
-        public float movementLerpSpeed;
+        public float charTurnLerp;
         public float acceleration;
         public float groundDrag;
         public float currentSpeed;
+        public float wallTracker = 0f;
+        public float speedDial;
 
         [Header("Jump Variables")] // Variables governing jump motion.
         public float jumpSpeed;
@@ -50,6 +52,7 @@ namespace SpriteController
         [Header("Movement States")] // Variables governing character states
         public bool playerRunning;
         public bool playerGrounded;
+        public bool heelTurn;
 
         void Awake()
         {
@@ -60,6 +63,7 @@ namespace SpriteController
         // Update is called once per frame
         void Update()
         {
+            //DetectWalls();
             if (_charController.isGrounded) // Executed if player's character controller is grounded.
             {
                 ySpeed = -0.5f; // ySpeed must be reset every frame the character is on the ground in order to allow them to move under simulated gravity.
@@ -90,11 +94,11 @@ namespace SpriteController
                 AirborneBehaviour();
                 
             }
-            SpeedHandler();
+            //SpeedHandler();
             ySpeed += Physics.gravity.y * Time.deltaTime;
 
-            //newMove();
-            MoveChar();
+            NewMoveTest();
+            //MoveChar();
             
         }
 
@@ -123,6 +127,7 @@ namespace SpriteController
         private void AirborneBehaviour()
         {
             DetectHeadbumps();
+            //DetectWalls();
             if (_coyoteAvailable && (_coyoteTracker + _coyoteTime >= Time.time)) // If Coyote Time is available, and the time since the player left ground + the grace period is less than the current time
             {
                     Jump();  
@@ -164,9 +169,28 @@ namespace SpriteController
             if ((_charController.collisionFlags & CollisionFlags.Above) != 0 && (velocity.y > 0)) 
             {
                 Debug.Log("Headbump");
-                ySpeed += -velocity.y;
+                ySpeed -=(velocity.y * 4);
             }
         }
+
+        // Prevents the player from accumulating velocity and momentum while running against a wall.
+        /* private void DetectWalls()
+        {
+            float speedLimit = playerRunning ? runMax : walkMax;
+            if ((_charController.collisionFlags & CollisionFlags.Sides) != 0)
+            {
+                if (currentSpeed > (speedLimit / 2))
+                {
+                    currentSpeed = currentSpeed / 2;
+                }
+                else
+                {
+                    currentSpeed -= acceleration * 2 * Time.deltaTime;  
+                }
+               
+            }
+
+        } */
         
         protected void InitializeMovement()
         {
@@ -196,6 +220,43 @@ namespace SpriteController
             headingRotated.Normalize();
         }
 
+        public void NewMoveTest()
+        {
+            float speedLimit = playerRunning ? runMax : walkMax;
+            if (headingRotated.x != 0f)
+            {
+                velocity.x = Mathf.MoveTowards(velocity.x, speedLimit * headingRotated.x, acceleration * Time.deltaTime);
+            }
+            else
+            {
+                velocity.x = Mathf.MoveTowards(velocity.x, 0f, groundDrag * Time.deltaTime);
+            }
+            if (headingRotated.z != 0f)
+            {
+                velocity.z = Mathf.MoveTowards(velocity.z, speedLimit * headingRotated.z, acceleration * Time.deltaTime);
+            }
+            else
+            {
+                velocity.z = Mathf.MoveTowards(velocity.z, 0f, groundDrag * Time.deltaTime);
+            }
+            
+            Vector3 move = velocity * speedDial * Time.deltaTime;
+
+            Debug.Log("Velocity: " + velocity + ", Move: " + move);
+
+            move = AdjustVelocityToSlope(move);
+            move.y += ySpeed;
+
+            _charController.Move(move * Time.deltaTime);
+            
+            if (headingRotated != Vector3.zero)
+            {
+                _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(headingRotated.normalized), charTurnLerp);
+
+            }
+
+        }
+
         private void Jump()
         {
             if (Input.GetButtonDown("Jump"))
@@ -206,13 +267,15 @@ namespace SpriteController
             }
         }
 
-        private void MoveChar()
+        /* private void MoveChar()
         {
             velocity = headingRotated * currentSpeed;
             Vector3 move = momentum + velocity;
-            //move = Vector3.ClampMagnitude(move, currentSpeed); // Need an alternative to this function. It's meant to 
-            Debug.Log(move);
-            if (velocity != Vector3.zero) { momentum = velocity; }
+            float speedLimit = playerRunning ? runMax : walkMax;
+            move = move.normalized * speedLimit;
+            Debug.Log("Momentum: " + momentum + ", Velocity: " + velocity + ", Move: " + move);
+            InertiaHandler(move);
+            //if (velocity != Vector3.zero) { momentum = velocity; }
             move = AdjustVelocityToSlope(move);
             move.y += ySpeed;
 
@@ -225,7 +288,7 @@ namespace SpriteController
                 _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(headingRotated.normalized), 0.2f);
 
             }
-        }
+        } */
 
         private void PlayerRun()
         {
@@ -233,12 +296,14 @@ namespace SpriteController
             if(Input.GetAxis("RunToggle") == 1)
             {
                 playerRunning = true;
+                charTurnLerp = 0.2f;
             } else {
                 playerRunning = false;
+                charTurnLerp = 0.06f;
             }
         }
 
-        private void SpeedHandler()
+        /* private void SpeedHandler()
         {
             float angleDelta = Vector3.Angle(headingRotated, momentum.normalized);
             if (moveInput != Vector2.zero)
@@ -247,13 +312,15 @@ namespace SpriteController
                 if (currentSpeed <= speedLimit) {currentSpeed += acceleration * Time.deltaTime;}
                 else {currentSpeed -= groundDrag * Time.deltaTime;}
 
-                if (angleDelta >= 45 &&  angleDelta <= 135)
+                if (angleDelta >= 90 &&  angleDelta <= 135)
                 {
-                    currentSpeed = (currentSpeed / 2);
+                    currentSpeed -= (currentSpeed / 2);
                 }
                 else if (angleDelta >= 135) 
                 {
                     currentSpeed = 0.0f;
+                    heelTurn = true;
+                    //Debug.Log("bunt");
                 }
             }
             else
@@ -264,8 +331,42 @@ namespace SpriteController
                     if (currentSpeed < 0) { currentSpeed = 0; }
                 }
             }
-            momentum = Vector3.MoveTowards(momentum, Vector3.zero, groundDrag * Time.deltaTime);
-        }
+            ApplyFriction(); 
+        } */
+
+        /* protected void ApplyFriction()
+        {
+            float xMomentumMultiplier = Mathf.Sign(momentum.x) == 1 ? -1 : 1;
+            float zMomentumMultiplier = Mathf.Sign(momentum.z) == 1 ? -1 : 1;
+            float dragMultiplier = heelTurn ? groundDrag * 2 : groundDrag;
+            float xTemp;
+            float zTemp;  
+
+            if (xMomentumMultiplier == -1) xTemp = Mathf.Clamp(momentum.x + (dragMultiplier * xMomentumMultiplier * Time.deltaTime), 0, momentum.x);
+            else xTemp = Mathf.Clamp(momentum.x + (dragMultiplier * xMomentumMultiplier * Time.deltaTime), momentum.x, 0);
+
+            if (zMomentumMultiplier == -1) zTemp = Mathf.Clamp(momentum.z + (dragMultiplier * zMomentumMultiplier * Time.deltaTime), 0, momentum.z);
+            else zTemp = Mathf.Clamp(momentum.z + (dragMultiplier * zMomentumMultiplier * Time.deltaTime), momentum.z, 0);
+            momentum = Vector3.MoveTowards(momentum, new Vector3(xTemp, 0.0f, zTemp), dragMultiplier * Time.deltaTime);
+
+            if (momentum.x == 0 && momentum.z == 0) heelTurn = false;
+        } */
+
+        /* protected Vector3 InertiaHandler(Vector3 move)
+        {
+            //float speedLimit = playerRunning ? runMax : walkMax;
+            if ((Mathf.Sign(velocity.x) == Mathf.Sign(momentum.x) || momentum.x == 0.0f) && velocity.x != 0.0f)
+            {
+                //Debug.Log("Velocity X: " + Mathf.Sign(velocity.x) + ", Momentum X: " + Mathf.Sign(momentum.x));
+                momentum.x = velocity.x;
+            } else {}
+            
+            if ((Mathf.Sign(velocity.z) == Mathf.Sign(momentum.z) || momentum.z == 0.0f) && velocity.z != 0.0f)
+            {
+                momentum.z = velocity.z;
+            }
+            return move;
+        } */
 
     }
 }
