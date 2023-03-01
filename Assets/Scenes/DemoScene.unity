@@ -259,7 +259,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3622c55e384f12e4e8d503a5932188ab, type: 2}
+  - {fileID: 2100000, guid: 059cceb0ba6e50741bfe6ec2c755d5f4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1545,28 +1545,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711449ffcde19014aa7991417e5179cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkMax: 45
-  runMax: 80
-  momentum: {x: 0, y: 0, z: 0}
-  momentumCheck: {x: 0, y: 0, z: 0}
-  inertia: 0
+  walkMax: 8
+  runMax: 15
   ySpeed: 0
-  magnitude: 0
   velocity: {x: 0, y: 0, z: 0}
   priorVelocity: {x: 0, y: 0, z: 0}
   heading: {x: 0, y: 0, z: 0}
   headingRotated: {x: 0, y: 0, z: 0}
   _currentMovement: {x: 0, y: 0, z: 0}
-  charTurnLerp: 0.05
-  acceleration: 250
-  groundDrag: 150
-  currentSpeed: 0
-  wallTracker: 0
+  turnLerp: 0
+  walkLerp: 0.1
+  runLerp: 0.06
+  acceleration: 15
+  groundDrag: 20
   speedDial: 25
+  walkAccel: 150
+  runAccel: 30
+  walkDrag: 500
+  runDrag: 20
   jumpSpeed: 7.5
   playerRunning: 0
   playerGrounded: 0
-  heelTurn: 0
+  moveLocked: 0
 --- !u!1 &596251795
 GameObject:
   m_ObjectHideFlags: 0
