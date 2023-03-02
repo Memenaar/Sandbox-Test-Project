@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace SpriteController
 {
@@ -12,10 +13,9 @@ namespace SpriteController
         private Rigidbody _playerRb;
         private CharacterController _charController;
         private Transform _navigator;
+        private PlayerActions _playerActions;
 
         [Header("Movement Variables")] // Variables governing character movement and orientation
-        public float walkMax;
-        public float runMax;
         public float ySpeed;
         private float originalStepOffset;
         private Vector2 moveInput;
@@ -26,25 +26,27 @@ namespace SpriteController
         public Vector3 headingRotated;
         public Vector3 _currentMovement;
         public float turnLerp;
-        public float walkLerp = 0.2f;
-        public float runLerp = 0.06f;
         public float acceleration;
         public float groundDrag;
         public float speedDial;
 
-        [Header("Accel / Deccel")]
+        [Header("Movement Constants")]
+        public float walkMax;
+        public float runMax;
         public float walkAccel;
         public float runAccel;
         public float walkDrag;
         public float runDrag;
+        protected const float walkLerp = 0.2f;
+        protected const float runLerp = 0.06f;
 
         [Header("Jump Variables")] // Variables governing jump motion.
         public float jumpSpeed;
 
         [Header("Jump Queueing")]
-        private const float _jumpBuffer = .15f; // How long prior to landing can the jump input be triggered?
+        private const float _jumpBuffer = 0.15f; // How long prior to landing can the jump input be triggered?
         private float _jumpTracker; // The time the last mid-air jump input was pressed.
-        private bool _jumpQueued; // Is a jump currently queued for landing?
+        public bool _jumpQueued; // Is a jump currently queued for landing?
 
         [Header("Coyote Time")]
         private const float _coyoteTime = .12f; // The player can still jump as if they are on the edge.
@@ -55,21 +57,38 @@ namespace SpriteController
         public bool playerRunning;
         public bool playerGrounded;
         public bool moveLocked;
+        public bool playerSliding;
 
         void Awake()
         {
             InitializeMovement();
+
+            // Value Initialization
             groundDrag = walkDrag;
             acceleration = walkAccel;
             turnLerp = walkLerp;
             moveLocked = false;
+
+
+            // Player Action initialization
+            _playerActions = new PlayerActions();
+            _playerActions.WorldGameplay.RunStart.performed += x => RunPressed();
+            _playerActions.WorldGameplay.RunFinish.performed += x => RunReleased();
+        }
+        void OnEnable()
+        {
+                _playerActions.WorldGameplay.Enable();
+        }
+        void OnDisable()
+        {
+                _playerActions.WorldGameplay.Disable();
         }
 
         // Update is called once per frame
         void Update()
         {
             if (!moveLocked) {
-                moveInput = new Vector2(Input.GetAxis("HorizontalKey"), Input.GetAxis("VerticalKey"));
+                moveInput = _playerActions.WorldGameplay.Movement.ReadValue<Vector2>();
             } // Gets movement input
             DetectWalls();
             if (_charController.isGrounded) // Executed if player's character controller is grounded.
@@ -82,17 +101,15 @@ namespace SpriteController
                     BecomeGrounded();
                 }
 
+                if (Mathf.Sign(velocity.x) != Mathf.Sign(headingRotated.x) || Mathf.Sign(velocity.z) != Mathf.Sign(headingRotated.z)) { playerSliding = true;}
+                else { playerSliding = false; if (_jumpQueued) Jump(); _jumpQueued = false;}
+
                 InputToHeading(); // Converts player input into a heading for the player character.
                 PlayerRun(); // Checks whether the player is running 
                 Jump();  
             } 
             else // Executed if player's character controller is airborne.
             {
-                if (playerGrounded)
-                {
-                    BecomeAirborne(); // Use the BecomeAirborne method.
-                }
-
                 AirborneBehaviour();
 
                 if (heading.x == 0 && heading.z == 0) // The following if statement checks whether the player is moving horizontally at time of jump
@@ -133,17 +150,11 @@ namespace SpriteController
         // Governs player movement in the air.
         private void AirborneBehaviour()
         {
-            if (_coyoteAvailable && (_coyoteTracker + _coyoteTime >= Time.time)) // If Coyote Time is available, and the time since the player left ground + the grace period is less than the current time
+            if (playerGrounded)
             {
-                Jump();  
-            } else if (!_jumpQueued)
-            {
-                if (Input.GetButtonDown("Jump"))
-                {
-                    _jumpQueued = true;
-                    _jumpTracker = Time.time;
-                }
+                BecomeAirborne(); // Use the BecomeAirborne method.
             }
+            Jump();
         }
 
         private void BecomeAirborne()
@@ -188,7 +199,7 @@ namespace SpriteController
             float speedLimit = playerRunning ? runMax : walkMax;
             if ((_charController.collisionFlags & CollisionFlags.Sides) != 0)
             {
-                velocity = Vector3.zero;
+                velocity = velocity / 2;
                 if (!playerGrounded & (ySpeed > 0))
                 {
                     ySpeed -= ySpeed;            
@@ -219,11 +230,14 @@ namespace SpriteController
 
         private void Jump()
         {
-            if (Input.GetButtonDown("Jump"))
+            if (_jumpQueued && _charController.isGrounded){playerGrounded = false; _coyoteAvailable = false; ySpeed += jumpSpeed;}
+            
+            if (_playerActions.WorldGameplay.Jump.triggered)
             {
-                playerGrounded = false;
-                _coyoteAvailable = false;   
-                ySpeed += jumpSpeed;
+                if (!_charController.isGrounded && !_coyoteAvailable && !_jumpQueued) { _jumpQueued = true; _jumpTracker = Time.time; }
+                else if (_coyoteAvailable && (_coyoteTracker + _coyoteTime >= Time.time)) { playerGrounded = false; _coyoteAvailable = false; ySpeed += jumpSpeed;}
+                else if (playerSliding == true) {_jumpQueued = true;}
+                else { playerGrounded = false; _coyoteAvailable = false; ySpeed += jumpSpeed;}
             }
         }
 
@@ -236,7 +250,14 @@ namespace SpriteController
             float accelFactor = playerRunning ? runAccel : walkAccel;
             if (headingRotated != Vector3.zero)
             {
-                velocity = Vector3.MoveTowards(velocity, new Vector3(speedLimit * headingRotated.x, 0.0f, speedLimit * headingRotated.z), acceleration * Time.deltaTime);
+                if(_charController.isGrounded)
+                {
+                    velocity = Vector3.MoveTowards(velocity, new Vector3(speedLimit * headingRotated.x, 0.0f, speedLimit * headingRotated.z), acceleration * Time.deltaTime);
+                }
+                else
+                {
+                    velocity = Vector3.MoveTowards(velocity, new Vector3(velocity.x, velocity.y, velocity.z), acceleration * Time.deltaTime);
+                }
             }
             else
             {
@@ -248,6 +269,7 @@ namespace SpriteController
             move = AdjustVelocityToSlope(move);
             move.y += ySpeed;
 
+            //Debug.Log(move);
 
             _charController.Move(move * Time.deltaTime);
         
@@ -262,19 +284,23 @@ namespace SpriteController
         private void PlayerRun()
         {
             // Changes player's running state based on Left Shift
-            if(Input.GetAxis("RunToggle") == 1)
+            if(playerRunning == true)
             {
-                playerRunning = true;
                 turnLerp = Mathf.Lerp(turnLerp, runLerp, Time.deltaTime);
                 acceleration = Mathf.Lerp(acceleration, runAccel, Time.deltaTime);
                 groundDrag = Mathf.Lerp(groundDrag, runDrag, Time.deltaTime);
             } else {
-                playerRunning = false;
-                turnLerp = Mathf.Lerp(turnLerp, walkLerp, Time.deltaTime);
-                acceleration = Mathf.Lerp(acceleration, walkAccel, 0.5f * Time.deltaTime);
-                groundDrag = Mathf.Lerp(groundDrag, walkDrag, 0.5f * Time.deltaTime);
+                if (_charController.isGrounded)
+                {
+                    turnLerp = Mathf.Lerp(turnLerp, walkLerp, Time.deltaTime);
+                    acceleration = Mathf.Lerp(acceleration, walkAccel, 0.5f * Time.deltaTime);
+                    groundDrag = Mathf.Lerp(groundDrag, walkDrag, 0.5f * Time.deltaTime);
+                }
             }
         }
+
+        private void RunPressed() {playerRunning = true;}
+        private void RunReleased() {playerRunning = false;}
 
     }
 }

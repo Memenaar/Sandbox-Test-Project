@@ -5,6 +5,9 @@ namespace SpriteController
 {
 	public class CameraController : MonoBehaviour
 	{
+
+		private PlayerActions _playerActions;
+
 		// Defines various parameters for the controller, starting with Target, AKA the central object the camera rotates around
 		public Transform target;
 		// ...the X rotation of the camera...
@@ -31,6 +34,12 @@ namespace SpriteController
 		// Defines a Vector2 named CurrentRotation using the values of _angle
 		public Vector2 CurrentRotation { get { return _angle; } }
 
+		void Awake()
+		{
+			// Player Action initialization
+            _playerActions = new PlayerActions();
+		}
+
 		// At startup
 		void Start()
 		{
@@ -51,6 +60,16 @@ namespace SpriteController
 			CamZoom();
 		}
 
+		private void OnEnable()
+		{
+			_playerActions.CameraActions.Enable();
+		}
+
+		private void OnDisable()
+		{
+			_playerActions.CameraActions.Disable();
+		}
+
 		// After all Update methods are processed
 		void LateUpdate()
 		{
@@ -60,10 +79,11 @@ namespace SpriteController
 		void CamRotation()
 		{
 			// If target has a value AND RMB is held down
-			if(target && Input.GetMouseButton(1))
+			float cameraInput = _playerActions.CameraActions.CameraRotation.ReadValue<float>();
+			if(target && cameraInput != 0)
 			{
 				// Then set _angle's x value to = current value + (Mouse input on the X axis multiplied by rotationSensitivity); ie: add mouse input to current position to calculate a new angle.
-				_angle.x += Input.GetAxis("Mouse X") * rotationSensitivity;
+				_angle.x += cameraInput * rotationSensitivity * Time.deltaTime;
 				// Apply the ClampAngle Method to the updated angle to ensure it falls within -180 - 180 degree range.
 				SpriteTools.ClampAngle(ref _angle);
 			}
@@ -71,9 +91,10 @@ namespace SpriteController
 
 		void CamZoom()
 		{
-			if(target && (Input.GetAxis("Mouse ScrollWheel") != 0))
+			float cameraZoom = _playerActions.CameraActions.CameraZoom.ReadValue<float>();
+			if(target && cameraZoom != 0)
 			{
-				distance += Input.GetAxis("Mouse ScrollWheel") * rotationSensitivity;
+				distance += cameraZoom * (rotationSensitivity * 0.5f) * Time.deltaTime;
 				distance = Mathf.Clamp(distance, 10.0f, 30.0f);
 			}
 		}

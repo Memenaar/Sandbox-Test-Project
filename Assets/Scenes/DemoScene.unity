@@ -1545,8 +1545,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 711449ffcde19014aa7991417e5179cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkMax: 8
-  runMax: 15
   ySpeed: 0
   velocity: {x: 0, y: 0, z: 0}
   priorVelocity: {x: 0, y: 0, z: 0}
@@ -1554,11 +1552,11 @@ MonoBehaviour:
   headingRotated: {x: 0, y: 0, z: 0}
   _currentMovement: {x: 0, y: 0, z: 0}
   turnLerp: 0
-  walkLerp: 0.1
-  runLerp: 0.06
   acceleration: 15
   groundDrag: 20
   speedDial: 25
+  walkMax: 8
+  runMax: 15
   walkAccel: 150
   runAccel: 30
   walkDrag: 500
@@ -3851,7 +3849,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1330052017329617371, guid: dfde41e41ef541145add04ab438bface, type: 3}
       propertyPath: rotationSensitivity
-      value: 4
+      value: 50
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dfde41e41ef541145add04ab438bface, type: 3}
