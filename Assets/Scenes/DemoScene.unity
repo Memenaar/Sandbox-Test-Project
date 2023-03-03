@@ -1561,10 +1561,15 @@ MonoBehaviour:
   runAccel: 30
   walkDrag: 500
   runDrag: 20
+  walkJump: 7.5
+  runJump: 10
   jumpSpeed: 7.5
+  _jumpQueued: 0
   playerRunning: 0
   playerGrounded: 0
   moveLocked: 0
+  playerSliding: 0
+  wallJump: 0
 --- !u!1 &596251795
 GameObject:
   m_ObjectHideFlags: 0

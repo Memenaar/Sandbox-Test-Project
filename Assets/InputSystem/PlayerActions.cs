@@ -62,6 +62,15 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""c199d5c7-372c-43ce-9249-51419107da70"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -240,6 +249,28 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                     ""action"": ""RunFinish"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6cbdc66f-1b33-4244-9efa-6ac24899a1bc"",
+                    ""path"": ""<Keyboard>/c"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e37a972b-c914-44b1-a7d2-ce7937ca8968"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -410,6 +441,7 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
         m_WorldGameplay_Movement = m_WorldGameplay.FindAction("Movement", throwIfNotFound: true);
         m_WorldGameplay_RunStart = m_WorldGameplay.FindAction("RunStart", throwIfNotFound: true);
         m_WorldGameplay_RunFinish = m_WorldGameplay.FindAction("RunFinish", throwIfNotFound: true);
+        m_WorldGameplay_Interact = m_WorldGameplay.FindAction("Interact", throwIfNotFound: true);
         // CameraActions
         m_CameraActions = asset.FindActionMap("CameraActions", throwIfNotFound: true);
         m_CameraActions_CameraRotation = m_CameraActions.FindAction("CameraRotation", throwIfNotFound: true);
@@ -477,6 +509,7 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
     private readonly InputAction m_WorldGameplay_Movement;
     private readonly InputAction m_WorldGameplay_RunStart;
     private readonly InputAction m_WorldGameplay_RunFinish;
+    private readonly InputAction m_WorldGameplay_Interact;
     public struct WorldGameplayActions
     {
         private @PlayerActions m_Wrapper;
@@ -485,6 +518,7 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
         public InputAction @Movement => m_Wrapper.m_WorldGameplay_Movement;
         public InputAction @RunStart => m_Wrapper.m_WorldGameplay_RunStart;
         public InputAction @RunFinish => m_Wrapper.m_WorldGameplay_RunFinish;
+        public InputAction @Interact => m_Wrapper.m_WorldGameplay_Interact;
         public InputActionMap Get() { return m_Wrapper.m_WorldGameplay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -506,6 +540,9 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                 @RunFinish.started -= m_Wrapper.m_WorldGameplayActionsCallbackInterface.OnRunFinish;
                 @RunFinish.performed -= m_Wrapper.m_WorldGameplayActionsCallbackInterface.OnRunFinish;
                 @RunFinish.canceled -= m_Wrapper.m_WorldGameplayActionsCallbackInterface.OnRunFinish;
+                @Interact.started -= m_Wrapper.m_WorldGameplayActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_WorldGameplayActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_WorldGameplayActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_WorldGameplayActionsCallbackInterface = instance;
             if (instance != null)
@@ -522,6 +559,9 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                 @RunFinish.started += instance.OnRunFinish;
                 @RunFinish.performed += instance.OnRunFinish;
                 @RunFinish.canceled += instance.OnRunFinish;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -573,6 +613,7 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnRunStart(InputAction.CallbackContext context);
         void OnRunFinish(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
     public interface ICameraActionsActions
     {

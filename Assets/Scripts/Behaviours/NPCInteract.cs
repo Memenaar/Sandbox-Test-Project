@@ -7,6 +7,7 @@ public class NPCInteract : MonoBehaviour
 {
 
     public bool playerProximity;
+    private PlayerActions _playerActions;
     private GameObject _player;
     public Transform _navTransform;
     
@@ -16,14 +17,26 @@ public class NPCInteract : MonoBehaviour
     void Awake()
     {
         _player = GameObject.Find("Player");
+        _playerActions = new PlayerActions();
         _navTransform = transform.parent.Find("Navigator").GetComponent<Transform>();
     }
+
+    void OnEnable()
+    {
+        _playerActions.WorldGameplay.Enable();
+    }
+    void OnDisable()
+    {
+        _playerActions.WorldGameplay.Disable();
+    }
+
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && playerProximity)
+        if (_playerActions.WorldGameplay.Interact.triggered && playerProximity)
         {
+            _player.transform.Find("Navigator").LookAt(_navTransform.transform);
             // Insert dialogue call here
             PlayerInteract();
         }

@@ -37,6 +37,8 @@ namespace SpriteController
         public float runAccel;
         public float walkDrag;
         public float runDrag;
+        public float walkJump;
+        public float runJump;
         protected const float walkLerp = 0.2f;
         protected const float runLerp = 0.06f;
 
@@ -58,6 +60,8 @@ namespace SpriteController
         public bool playerGrounded;
         public bool moveLocked;
         public bool playerSliding;
+        public bool wallJump;
+        public bool airWiggle;
 
         void Awake()
         {
@@ -75,6 +79,7 @@ namespace SpriteController
             _playerActions.WorldGameplay.RunStart.performed += x => RunPressed();
             _playerActions.WorldGameplay.RunFinish.performed += x => RunReleased();
         }
+        
         void OnEnable()
         {
                 _playerActions.WorldGameplay.Enable();
@@ -101,12 +106,11 @@ namespace SpriteController
                     BecomeGrounded();
                 }
 
-                if (Mathf.Sign(velocity.x) != Mathf.Sign(headingRotated.x) || Mathf.Sign(velocity.z) != Mathf.Sign(headingRotated.z)) { playerSliding = true;}
-                else { playerSliding = false; if (_jumpQueued) Jump(); _jumpQueued = false;}
+                SlideCheck();
 
                 InputToHeading(); // Converts player input into a heading for the player character.
                 PlayerRun(); // Checks whether the player is running 
-                Jump();  
+                JumpLogic();  
             } 
             else // Executed if player's character controller is airborne.
             {
@@ -154,7 +158,8 @@ namespace SpriteController
             {
                 BecomeAirborne(); // Use the BecomeAirborne method.
             }
-            Jump();
+            if(airWiggle) InputToHeading(true);
+            JumpLogic();
         }
 
         private void BecomeAirborne()
@@ -169,7 +174,7 @@ namespace SpriteController
             // Check whether a jump is buffered.
             if (_jumpQueued && (_jumpTracker + _jumpBuffer > Time.time))
             {
-                ySpeed += jumpSpeed;
+                Jump();
                 _jumpQueued = false;
             } else {
                 _charController.stepOffset = originalStepOffset;
@@ -177,6 +182,7 @@ namespace SpriteController
                 _coyoteAvailable = true;
                 _jumpQueued = false;
                 moveLocked = false;
+                airWiggle = false;
             }
         }
 
@@ -199,12 +205,17 @@ namespace SpriteController
             float speedLimit = playerRunning ? runMax : walkMax;
             if ((_charController.collisionFlags & CollisionFlags.Sides) != 0)
             {
-                velocity = velocity / 2;
-                if (!playerGrounded & (ySpeed > 0))
+                if (_charController.isGrounded) {velocity = Vector3.ClampMagnitude(velocity, walkMax);}
+                else if (!_charController.isGrounded & (ySpeed > 0))
                 {
-                    ySpeed -= ySpeed;            
+                    wallJump = true;
+                    JumpLogic();
                 }
                 InputToHeading();
+            }
+            else
+            {
+                wallJump = false;
             }
 
         }
@@ -224,22 +235,53 @@ namespace SpriteController
                 heading = new Vector3(moveInput.x, 0.0f, moveInput.y);
                 headingRotated = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * heading;            
                 headingRotated.Normalize();
-                if (clampInput) { headingRotated = headingRotated * 0.25f; }; // Reduces input's effect to 1/4 is clampInput is true.
+                if (clampInput) {headingRotated = headingRotated * 0.25f; }; // Reduces input's effect to 1/4 is clampInput is true.
 
         }
 
-        private void Jump()
-        {
-            if (_jumpQueued && _charController.isGrounded){playerGrounded = false; _coyoteAvailable = false; ySpeed += jumpSpeed;}
-            
+        private void JumpLogic()
+        { 
             if (_playerActions.WorldGameplay.Jump.triggered)
             {
-                if (!_charController.isGrounded && !_coyoteAvailable && !_jumpQueued) { _jumpQueued = true; _jumpTracker = Time.time; }
-                else if (_coyoteAvailable && (_coyoteTracker + _coyoteTime >= Time.time)) { playerGrounded = false; _coyoteAvailable = false; ySpeed += jumpSpeed;}
-                else if (playerSliding == true) {_jumpQueued = true;}
-                else { playerGrounded = false; _coyoteAvailable = false; ySpeed += jumpSpeed;}
+                if(_charController.isGrounded)
+                {
+                    if (playerSliding && !_jumpQueued) {_jumpQueued = true;}
+                    else {Jump();}
+                }
+                else
+                {
+                    if (!_coyoteAvailable && !_jumpQueued) { _jumpQueued = true; _jumpTracker = Time.time;}
+                    else if (_coyoteAvailable && (_coyoteTracker + _coyoteTime >= Time.time)) { Jump();}
+                    else if (wallJump) {Jump((headingRotated.normalized * -1) * jumpSpeed);}
+                }
+
             }
         }
+
+        private void Jump(Vector3 ? horizontalPower = null)
+        {
+            float jumpForce = wallJump ? (jumpSpeed * 0.5f) : jumpSpeed;
+            float speedLimit = playerRunning ? runMax : walkMax;
+            if (horizontalPower != null)
+            {
+                playerGrounded = false; _coyoteAvailable = false; ySpeed += jumpForce; velocity = Vector3.zero + horizontalPower.Value; Debug.Log(horizontalPower.Value);
+                RotateNavigator(velocity);
+                Debug.Log("Crap");
+            }
+            else
+            {
+                playerGrounded = false; _coyoteAvailable = false; ySpeed += jumpForce;
+                if (headingRotated == Vector3.zero) airWiggle = true;
+                if (velocity != Vector3.zero) 
+                {
+                    velocity = Vector3.ClampMagnitude(velocity = Vector3.zero + (headingRotated * velocity.magnitude * jumpForce), speedLimit);
+                    RotateNavigator(headingRotated.normalized);
+                }
+                Debug.Log("Piss");
+            }
+        }
+
+
 
         private void MoveChar()
         {
@@ -251,6 +293,10 @@ namespace SpriteController
             if (headingRotated != Vector3.zero)
             {
                 if(_charController.isGrounded)
+                {
+                    velocity = Vector3.MoveTowards(velocity, new Vector3(speedLimit * headingRotated.x, 0.0f, speedLimit * headingRotated.z), acceleration * Time.deltaTime);
+                }
+                else if(!_charController.isGrounded && airWiggle)
                 {
                     velocity = Vector3.MoveTowards(velocity, new Vector3(speedLimit * headingRotated.x, 0.0f, speedLimit * headingRotated.z), acceleration * Time.deltaTime);
                 }
@@ -273,12 +319,7 @@ namespace SpriteController
 
             _charController.Move(move * Time.deltaTime);
         
-
-            if (headingRotated != Vector3.zero)
-            {
-                _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(headingRotated.normalized), turnLerp);
-
-            }
+            RotateNavigator();
         }
 
         private void PlayerRun()
@@ -289,18 +330,65 @@ namespace SpriteController
                 turnLerp = Mathf.Lerp(turnLerp, runLerp, Time.deltaTime);
                 acceleration = Mathf.Lerp(acceleration, runAccel, Time.deltaTime);
                 groundDrag = Mathf.Lerp(groundDrag, runDrag, Time.deltaTime);
+                jumpSpeed = Mathf.Lerp(jumpSpeed, runJump, Time.deltaTime);
             } else {
                 if (_charController.isGrounded)
                 {
                     turnLerp = Mathf.Lerp(turnLerp, walkLerp, Time.deltaTime);
                     acceleration = Mathf.Lerp(acceleration, walkAccel, 0.5f * Time.deltaTime);
                     groundDrag = Mathf.Lerp(groundDrag, walkDrag, 0.5f * Time.deltaTime);
+                    jumpSpeed = Mathf.Lerp(jumpSpeed, walkJump, Time.deltaTime);
                 }
             }
         }
 
         private void RunPressed() {playerRunning = true;}
         private void RunReleased() {playerRunning = false;}
+
+        private void RotateNavigator(Vector3 ? finalFacing = null)
+        {
+            if (!playerSliding)
+            {
+                if (finalFacing == null)
+                {
+                    if (_charController.isGrounded)
+                    {
+                        if (headingRotated != Vector3.zero)
+                        {
+                            _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(headingRotated.normalized), turnLerp);
+                        }
+                    }
+                    else
+                    {
+                        if (velocity != Vector3.zero)
+                        {
+                            _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(velocity.normalized), turnLerp);
+                        }
+                    }
+                }
+                else
+                {
+                    _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(finalFacing.Value), turnLerp);
+                    Debug.Log("Oink " + finalFacing.Value);
+                }
+            }
+            else {_navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(headingRotated.normalized), turnLerp);}
+        }
+
+        private void SlideCheck()
+        {
+            if (!playerSliding)
+            {
+                if (Vector3.Angle(velocity, headingRotated) >= 90) { playerSliding = true;}
+            }
+            else
+            {
+                if (Mathf.Sign(velocity.x) == Mathf.Sign(headingRotated.x) && Mathf.Sign(velocity.z) == Mathf.Sign(headingRotated.z))
+                {
+                    {playerSliding = false; if(_jumpQueued) {Jump((headingRotated.normalized * jumpSpeed)); _jumpQueued = false; Debug.Log("lmao");}}
+                }
+            }
+        }
 
     }
 }
