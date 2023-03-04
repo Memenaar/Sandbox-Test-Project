@@ -44,6 +44,7 @@ namespace SpriteController
 
         [Header("Jump Variables")] // Variables governing jump motion.
         public float jumpSpeed;
+        public Vector3 _wallNormal;
 
         [Header("Jump Queueing")]
         private const float _jumpBuffer = 0.15f; // How long prior to landing can the jump input be triggered?
@@ -60,8 +61,9 @@ namespace SpriteController
         public bool playerGrounded;
         public bool moveLocked;
         public bool playerSliding;
-        public bool wallJump;
+        public bool canWallJump;
         public bool airWiggle;
+        public bool wallJumped;
 
         void Awake()
         {
@@ -116,18 +118,25 @@ namespace SpriteController
             {
                 AirborneBehaviour();
 
-                if (heading.x == 0 && heading.z == 0) // The following if statement checks whether the player is moving horizontally at time of jump
+                if ((heading.x == 0 && heading.z == 0) && !wallJumped) // The following if statement checks whether the player is moving horizontally at time of jump
                 {
-                    bool clampInput = true;
-                    InputToHeading(clampInput);
+                    InputToHeading(true);
                 }
-                DetectHeadbumps();
+                //DetectHeadbumps();
                
             }
 
             ySpeed += Physics.gravity.y * Time.deltaTime;
             MoveChar();
             
+        }
+
+        private void OnControllerColliderHit(ControllerColliderHit hit)
+        {
+            if (!_charController.isGrounded)
+            {
+                _wallNormal = hit.normal;
+            }
         }
 
         /* METHODS BELOW THIS POINT */
@@ -183,6 +192,7 @@ namespace SpriteController
                 _jumpQueued = false;
                 moveLocked = false;
                 airWiggle = false;
+                wallJumped = false;
             }
         }
 
@@ -208,14 +218,13 @@ namespace SpriteController
                 if (_charController.isGrounded) {velocity = Vector3.ClampMagnitude(velocity, walkMax);}
                 else if (!_charController.isGrounded & (ySpeed > 0))
                 {
-                    wallJump = true;
+                    canWallJump = true;
                     JumpLogic();
                 }
-                InputToHeading();
             }
             else
             {
-                wallJump = false;
+                canWallJump = false;
             }
 
         }
@@ -235,7 +244,7 @@ namespace SpriteController
                 heading = new Vector3(moveInput.x, 0.0f, moveInput.y);
                 headingRotated = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * heading;            
                 headingRotated.Normalize();
-                if (clampInput) {headingRotated = headingRotated * 0.25f; }; // Reduces input's effect to 1/4 is clampInput is true.
+                if (clampInput) {headingRotated = headingRotated * 0.25f;Debug.Log("Fuck off"); }; // Reduces input's effect to 1/4 is clampInput is true.
 
         }
 
@@ -252,7 +261,7 @@ namespace SpriteController
                 {
                     if (!_coyoteAvailable && !_jumpQueued) { _jumpQueued = true; _jumpTracker = Time.time;}
                     else if (_coyoteAvailable && (_coyoteTracker + _coyoteTime >= Time.time)) { Jump();}
-                    else if (wallJump) {Jump((headingRotated.normalized * -1) * jumpSpeed);}
+                    else if (canWallJump && ((Mathf.Abs(velocity.x) > walkMax) || (Mathf.Abs(velocity.z) > walkMax))) {wallJumped = true; Jump(_wallNormal);}
                 }
 
             }
@@ -260,11 +269,11 @@ namespace SpriteController
 
         private void Jump(Vector3 ? horizontalPower = null)
         {
-            float jumpForce = wallJump ? (jumpSpeed * 0.5f) : jumpSpeed;
+            float jumpForce = wallJumped ? (jumpSpeed * 0.5f) : jumpSpeed;
             float speedLimit = playerRunning ? runMax : walkMax;
             if (horizontalPower != null)
             {
-                playerGrounded = false; _coyoteAvailable = false; ySpeed += jumpForce; velocity = Vector3.zero + horizontalPower.Value; Debug.Log(horizontalPower.Value);
+                playerGrounded = false; _coyoteAvailable = false; ySpeed += jumpForce; velocity = Vector3.ClampMagnitude((horizontalPower.Value * velocity.magnitude), runJump); Debug.Log(velocity);
                 RotateNavigator(velocity);
                 Debug.Log("Crap");
             }
@@ -368,11 +377,11 @@ namespace SpriteController
                 }
                 else
                 {
-                    _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(finalFacing.Value), turnLerp);
+                    if (finalFacing.Value != null) _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(finalFacing.Value), turnLerp);
                     Debug.Log("Oink " + finalFacing.Value);
                 }
             }
-            else {_navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(headingRotated.normalized), turnLerp);}
+            else { if (headingRotated!= Vector3.zero) _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(headingRotated.normalized), turnLerp); }
         }
 
         private void SlideCheck()
@@ -385,7 +394,7 @@ namespace SpriteController
             {
                 if (Mathf.Sign(velocity.x) == Mathf.Sign(headingRotated.x) && Mathf.Sign(velocity.z) == Mathf.Sign(headingRotated.z))
                 {
-                    {playerSliding = false; if(_jumpQueued) {Jump((headingRotated.normalized * jumpSpeed)); _jumpQueued = false; Debug.Log("lmao");}}
+                    playerSliding = false; if(_jumpQueued) {Jump((headingRotated.normalized * jumpSpeed)); _jumpQueued = false; Debug.Log("lmao");}
                 }
             }
         }

@@ -11,13 +11,15 @@ namespace SpriteController
 		// Defines various parameters for the controller, starting with Target, AKA the central object the camera rotates around
 		public Transform target;
 		// ...the X rotation of the camera...
-		public float angleY = 35;
+		private const float _angleY = 40;
 		// ...the rotation smoothing
-		public float cameraSmoothing = 10;
+		private const float cameraSmoothing = 10;
 		// ... the rotation sensitivity...
-		public float rotationSensitivity = 4;
+		private const float rotationSensitivity = 50;
 		// ...and the Z-distance from the target.
-		public float distance = 20;
+		private float _distance = 20;
+		// Used to track how long the camera rotate action has been active, increasing speed over time.
+		private float _rotTimer = 0f;
 
 		// Defines a new Vector3 named _angle
 		private Vector3 _angle = new Vector3();
@@ -49,8 +51,8 @@ namespace SpriteController
 			// Sets _oldRotation to equal the current rotation of _t 
 			_oldRotation = _t.rotation;
 			_oldPosition = _t.position;
-			// Sets the Y value of the _angle Vector3 to equal the value of the angleY float
-			_angle.y = angleY;
+			// Sets the Y value of the _angle Vector3 to equal the value of the _angleY float
+			_angle.y = _angleY;
 		}
 
 		// Every frame
@@ -82,10 +84,16 @@ namespace SpriteController
 			float cameraInput = _playerActions.CameraActions.CameraRotation.ReadValue<float>();
 			if(target && cameraInput != 0)
 			{
+				_rotTimer += Time.deltaTime;
+				_rotTimer = Mathf.Clamp(_rotTimer, 0f, 3.0f);
 				// Then set _angle's x value to = current value + (Mouse input on the X axis multiplied by rotationSensitivity); ie: add mouse input to current position to calculate a new angle.
-				_angle.x += cameraInput * rotationSensitivity * Time.deltaTime;
+				_angle.x += cameraInput * _rotTimer * rotationSensitivity * Time.deltaTime;
 				// Apply the ClampAngle Method to the updated angle to ensure it falls within -180 - 180 degree range.
 				SpriteTools.ClampAngle(ref _angle);
+			}
+			else 
+			{
+				_rotTimer = 0f;
 			}
 		}
 
@@ -94,8 +102,8 @@ namespace SpriteController
 			float cameraZoom = _playerActions.CameraActions.CameraZoom.ReadValue<float>();
 			if(target && cameraZoom != 0)
 			{
-				distance += cameraZoom * (rotationSensitivity * 0.5f) * Time.deltaTime;
-				distance = Mathf.Clamp(distance, 10.0f, 30.0f);
+				_distance += cameraZoom * (rotationSensitivity * 0.5f) * Time.deltaTime;
+				_distance = Mathf.Clamp(_distance, 10.0f, 30.0f);
 			}
 		}
 
@@ -113,7 +121,7 @@ namespace SpriteController
 				_oldRotation = currentRotation;
 
 				// Sets current position of the camera
-				_currentPosition = (target.position - currentRotation * Vector3.forward * distance);
+				_currentPosition = (target.position - currentRotation * Vector3.forward * _distance);
 				// Changes _t's positon coordinates, thereby changing the position of the camera
 				_t.position = Vector3.Lerp(_oldPosition, _currentPosition, Time.deltaTime * cameraSmoothing);
 				// Replaces the previous value of oldPosition with the newly calculated current rotation.

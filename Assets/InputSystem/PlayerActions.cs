@@ -345,7 +345,7 @@ public partial class @PlayerActions : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""negative"",
                     ""id"": ""06973fd6-6355-40e9-a5c1-75e5b0609c25"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""path"": ""<Mouse>/rightButton"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
