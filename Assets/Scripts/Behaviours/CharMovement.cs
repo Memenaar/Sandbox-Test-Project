@@ -57,13 +57,10 @@ namespace SpriteController
         private bool _coyoteAvailable = true;
 
         [Header("Movement States")] // Variables governing character states
-        public bool playerRunning;
         public bool playerGrounded;
-        public bool moveLocked;
-        public bool playerSliding;
-        public bool canWallJump;
-        public bool airWiggle;
-        public bool wallJumped;
+        public JumpState _jumpState = JumpState.None;
+        public SlideState _slideState = SlideState.None;
+        public MoveState _moveState = MoveState.Walk;
 
         void Awake()
         {
@@ -73,73 +70,112 @@ namespace SpriteController
             groundDrag = walkDrag;
             acceleration = walkAccel;
             turnLerp = walkLerp;
-            moveLocked = false;
 
 
             // Player Action initialization
             _playerActions = new PlayerActions();
             _playerActions.WorldGameplay.RunStart.performed += x => RunPressed();
             _playerActions.WorldGameplay.RunFinish.performed += x => RunReleased();
+            _playerActions.WorldGameplay.Jump.performed += x => JumpLogic();
         }
         
         void OnEnable()
         {
-                _playerActions.WorldGameplay.Enable();
+            _playerActions.WorldGameplay.Enable();
         }
         void OnDisable()
         {
-                _playerActions.WorldGameplay.Disable();
+            _playerActions.WorldGameplay.Disable();
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (!moveLocked) {
-                moveInput = _playerActions.WorldGameplay.Movement.ReadValue<Vector2>();
-            } // Gets movement input
-            DetectWalls();
-            if (_charController.isGrounded) // Executed if player's character controller is grounded.
+            if (_playerActions.WorldGameplay.Jump.WasPressedThisFrame())
             {
-                ySpeed = -0.5f; // ySpeed must be reset every frame the character is on the ground in order to allow them to move under simulated gravity.
-
-                if (!playerGrounded) // If boolean playerGrounded is set to False
+                // Skip ahead to movement if Jump was pressed this frame.
+                if (_charController.isGrounded) 
                 {
-                    // Use the BecomeGrounded method
-                    BecomeGrounded();
+                    if (!playerGrounded) BecomeGrounded();
                 }
-
-                SlideCheck();
-
-                InputToHeading(); // Converts player input into a heading for the player character.
-                PlayerRun(); // Checks whether the player is running 
-                JumpLogic();  
-            } 
-            else // Executed if player's character controller is airborne.
-            {
-                AirborneBehaviour();
-
-                if ((heading.x == 0 && heading.z == 0) && !wallJumped) // The following if statement checks whether the player is moving horizontally at time of jump
+                else
                 {
-                    InputToHeading(true);
+                    if (playerGrounded) BecomeAirborne(); // Use the BecomeAirborne method.
                 }
-                //DetectHeadbumps();
-               
             }
+            else
+            {
+                moveInput = _playerActions.WorldGameplay.Movement.ReadValue<Vector2>();
+               // Gets movement input
+                if (_charController.isGrounded) // Executed if player's character controller is grounded.
+                {
+                    ySpeed = -0.5f; // ySpeed must be reset every frame the character is on the ground in order to allow them to move under simulated gravity.
 
-            ySpeed += Physics.gravity.y * Time.deltaTime;
+                    if (!playerGrounded) // If boolean playerGrounded is set to False
+                    {
+                        // Use the BecomeGrounded method
+                        BecomeGrounded();
+                    }
+
+                    SlideCheck();
+                    InputToHeading(); // Converts player input into a heading for the player character.
+                    PlayerRun(); // Checks whether the player is running 
+                } 
+                else // Executed if player's character controller is airborne.
+                {
+                    if (playerGrounded) BecomeAirborne(); // Use the BecomeAirborne method.
+                    AirborneBehaviour();
+                    if (_jumpState == JumpState.StandingJump && _moveState != MoveState.Locked) InputToHeading(true);
+                
+                }  
+            }
+            
             MoveChar();
             
         }
 
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
-            if (!_charController.isGrounded)
+            _wallNormal = new Vector3(hit.normal.x, 0.0f, hit.normal.z);
+            if (_charController.isGrounded) // If Char is grounded 
             {
-                _wallNormal = hit.normal;
+                if (_charController.collisionFlags == CollisionFlags.Below) // If character is ONLY touching ground
+                {
+
+                }
+                else if ((_charController.collisionFlags & CollisionFlags.Sides) != 0) // If character is touching sides
+                {
+                    velocity = Vector3.ClampMagnitude(velocity, 1); // Clamp magnitude of the character's velocity to walkMax
+                    Debug.Log("Wall collision");
+                }
+
+            }
+            else // If Char is not grounded
+            {
+                if ((_charController.collisionFlags & CollisionFlags.Above) != 0) // If character is touching the ceiling
+                {
+                    HeadBump();
+                }
+                else if ((_charController.collisionFlags & CollisionFlags.Sides) != 0) // If character is touching sides
+                {
+
+                    if (velocity.magnitude > walkMax && ySpeed > 0 && hit.gameObject.CompareTag("WallJump") && _jumpState != (JumpState.StandingJump | JumpState.None))
+                    {
+                        _wallNormal.y = 0.0f;
+                        ySpeed = 0;
+                        _jumpState = JumpState.None;
+                        _slideState = SlideState.WallSlide;
+                    }
+                    else if (_jumpState != JumpState.None)
+                    {
+                        _jumpState = JumpState.StandingJump;
+                    }
+                }
             }
         }
 
         /* METHODS BELOW THIS POINT */
+        
 
         // Fixes slope bounce
         private Vector3 AdjustVelocityToSlope(Vector3 velocity)
@@ -163,26 +199,38 @@ namespace SpriteController
         // Governs player movement in the air.
         private void AirborneBehaviour()
         {
-            if (playerGrounded)
+            if (_slideState == SlideState.WallSlide) // If player is in the wall slide state
             {
-                BecomeAirborne(); // Use the BecomeAirborne method.
+                if ((_charController.collisionFlags & CollisionFlags.Sides) != 0) // As long as the player is still in collision with a wall
+                {
+                    ySpeed += (Physics.gravity.y * Time.deltaTime) * 0.25f; // Apply gravity at half the regular rate
+                    velocity = _wallNormal * -0.5f; // And set the player's velocity to = 0.5f in the direction of wall contact.
+                }
+                else // If wall collision ceases
+                {
+                    _slideState = SlideState.None; // Remove Wall Slide state
+                    ySpeed += Physics.gravity.y * Time.deltaTime; // Fall at normal rate
+                }
             }
-            if(airWiggle) InputToHeading(true);
-            JumpLogic();
+            else // If player is not in the wall slide state
+            {
+                ySpeed += Physics.gravity.y * Time.deltaTime; // Apply gravity at the regular rate
+            }
         }
 
-        private void BecomeAirborne()
+        private void BecomeAirborne() // Applies changes that need to occur once the character leaves ground
         {
-            playerGrounded = false;
             _coyoteTracker = Time.time; // Set the last "leftGround" time to the current time.
-            _charController.stepOffset = 0; // Set the character controller's step offset to 0. Prevents characters mantling mid-air.
+            _charController.stepOffset = 0.0f; // Set the character controller's step offset to 0. Prevents characters mantling mid-air.
+            playerGrounded = false;
         }
 
-        private void BecomeGrounded()
+        private void BecomeGrounded() // Applies changes that need to occur when the player becomes grounded.
         {
             // Check whether a jump is buffered.
             if (_jumpQueued && (_jumpTracker + _jumpBuffer > Time.time))
             {
+                _jumpState = JumpState.NormalJump;
                 Jump();
                 _jumpQueued = false;
             } else {
@@ -190,43 +238,18 @@ namespace SpriteController
                 playerGrounded = true;
                 _coyoteAvailable = true;
                 _jumpQueued = false;
-                moveLocked = false;
-                airWiggle = false;
-                wallJumped = false;
+                _jumpState = JumpState.None;
+                if (_slideState != SlideState.None) _slideState = SlideState.None;
+
             }
         }
 
         // Ensures if you hit your head on something while jumping you don't hang under it until gravity takes effect.
-        private void DetectHeadbumps()
+        private void HeadBump()
         {
-            if ((_charController.collisionFlags == CollisionFlags.Above)) 
-            {
-                Debug.Log("Headbump");
-                velocity.x = 0.0f;
-                velocity.z = 0.0f;
-                ySpeed -= ySpeed * 1.5f;
-                moveLocked = true;
-            }
-        }
-
-        // Prevents the player from accumulating velocity and momentum while running against a wall.
-        private void DetectWalls()
-        {
-            float speedLimit = playerRunning ? runMax : walkMax;
-            if ((_charController.collisionFlags & CollisionFlags.Sides) != 0)
-            {
-                if (_charController.isGrounded) {velocity = Vector3.ClampMagnitude(velocity, walkMax);}
-                else if (!_charController.isGrounded & (ySpeed > 0))
-                {
-                    canWallJump = true;
-                    JumpLogic();
-                }
-            }
-            else
-            {
-                canWallJump = false;
-            }
-
+                velocity.x += velocity.x * -10 * Time.deltaTime;
+                velocity.z += velocity.z * -10 * Time.deltaTime;
+                ySpeed += ySpeed * -2f;
         }
         
         protected void InitializeMovement()
@@ -244,68 +267,71 @@ namespace SpriteController
                 heading = new Vector3(moveInput.x, 0.0f, moveInput.y);
                 headingRotated = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * heading;            
                 headingRotated.Normalize();
-                if (clampInput) {headingRotated = headingRotated * 0.25f;Debug.Log("Fuck off"); }; // Reduces input's effect to 1/4 is clampInput is true.
+                if (clampInput) {headingRotated = headingRotated * 0.25f;} // Reduces input's effect to 1/4 is clampInput is true.
 
         }
 
-        private void JumpLogic()
+        private void JumpLogic() //Determines which kind of jump to use.
         { 
-            if (_playerActions.WorldGameplay.Jump.triggered)
+            if (_jumpState == JumpState.None)
             {
                 if(_charController.isGrounded)
                 {
-                    if (playerSliding && !_jumpQueued) {_jumpQueued = true;}
-                    else {Jump();}
+                    if (_slideState == SlideState.Slide && !_jumpQueued) {_jumpQueued = true;} // Queues a jump for end of slide
+                    else if (headingRotated == Vector3.zero) {_jumpState = JumpState.StandingJump; Jump();}
+                    else if ((_charController.collisionFlags & CollisionFlags.Sides) != 0) {velocity = Vector3.zero; _jumpState = JumpState.StandingJump; Jump();}
+                    else { _jumpState = JumpState.NormalJump; Jump();} // Regular jump
                 }
                 else
                 {
-                    if (!_coyoteAvailable && !_jumpQueued) { _jumpQueued = true; _jumpTracker = Time.time;}
-                    else if (_coyoteAvailable && (_coyoteTracker + _coyoteTime >= Time.time)) { Jump();}
-                    else if (canWallJump && ((Mathf.Abs(velocity.x) > walkMax) || (Mathf.Abs(velocity.z) > walkMax))) {wallJumped = true; Jump(_wallNormal);}
+                    if (_coyoteAvailable && (_coyoteTracker + _coyoteTime >= Time.time)) { _jumpState = JumpState.NormalJump; Jump();} // Coyote Time jump                    
+                    else if (!_jumpQueued) { _jumpQueued = true; Debug.Log("Pebis."); _jumpTracker = Time.time;} // Queues a jump for landing
+                    else if (_slideState == SlideState.WallSlide) {_jumpState = JumpState.WallJump; _slideState = SlideState.None; Jump(_wallNormal); Debug.Log(_wallNormal);} // Wall Jump
                 }
-
             }
+            else if (!_coyoteAvailable && !_jumpQueued) { _jumpQueued = true; _jumpTracker = Time.time;} // Queues a jump for landing
+            
         }
 
         private void Jump(Vector3 ? horizontalPower = null)
         {
-            float jumpForce = wallJumped ? (jumpSpeed * 0.5f) : jumpSpeed;
-            float speedLimit = playerRunning ? runMax : walkMax;
-            if (horizontalPower != null)
+
+            float jumpForce = _jumpState == JumpState.WallJump ? (jumpSpeed * 0.75f) : jumpSpeed;
+            float speedLimit = _moveState == MoveState.Run ? runMax : walkMax;
+            velocity = Vector3.ClampMagnitude((headingRotated * velocity.magnitude), runJump);
+            if (horizontalPower == null) // If no override is provided
             {
-                playerGrounded = false; _coyoteAvailable = false; ySpeed += jumpForce; velocity = Vector3.ClampMagnitude((horizontalPower.Value * velocity.magnitude), runJump); Debug.Log(velocity);
-                RotateNavigator(velocity);
-                Debug.Log("Crap");
-            }
-            else
-            {
-                playerGrounded = false; _coyoteAvailable = false; ySpeed += jumpForce;
-                if (headingRotated == Vector3.zero) airWiggle = true;
                 if (velocity != Vector3.zero) 
                 {
                     velocity = Vector3.ClampMagnitude(velocity = Vector3.zero + (headingRotated * velocity.magnitude * jumpForce), speedLimit);
                     RotateNavigator(headingRotated.normalized);
                 }
-                Debug.Log("Piss");
+                Debug.Log("Jump without horizontal override");
             }
+            else // If an override for horizontal jump power is provided 
+            {
+                velocity = Vector3.ClampMagnitude((horizontalPower.Value * speedLimit), runJump); Debug.Log(velocity);
+                RotateNavigator(velocity);
+                Debug.Log("Jump with horizontal override");
+            }
+            _coyoteAvailable = false; 
+            ySpeed += jumpForce;
         }
 
 
 
         private void MoveChar()
         {
-            if (!moveLocked)
-            {
-            float speedLimit = playerRunning ? runMax : walkMax;
-            float dragFactor = playerRunning ? runDrag : walkDrag;
-            float accelFactor = playerRunning ? runAccel : walkAccel;
+            float speedLimit = _moveState == MoveState.Run ? runMax : walkMax;
+            float dragFactor = _moveState == MoveState.Run ? runDrag : walkDrag;
+            float accelFactor = _moveState == MoveState.Run ? runAccel : walkAccel;
             if (headingRotated != Vector3.zero)
             {
                 if(_charController.isGrounded)
                 {
                     velocity = Vector3.MoveTowards(velocity, new Vector3(speedLimit * headingRotated.x, 0.0f, speedLimit * headingRotated.z), acceleration * Time.deltaTime);
                 }
-                else if(!_charController.isGrounded && airWiggle)
+                else if(!_charController.isGrounded && _jumpState == JumpState.StandingJump)
                 {
                     velocity = Vector3.MoveTowards(velocity, new Vector3(speedLimit * headingRotated.x, 0.0f, speedLimit * headingRotated.z), acceleration * Time.deltaTime);
                 }
@@ -318,7 +344,7 @@ namespace SpriteController
             {
                 velocity = Vector3.MoveTowards(velocity, Vector3.zero, groundDrag * Time.deltaTime);
             }
-            }
+            
            
             Vector3 move = velocity;
             move = AdjustVelocityToSlope(move);
@@ -334,7 +360,7 @@ namespace SpriteController
         private void PlayerRun()
         {
             // Changes player's running state based on Left Shift
-            if(playerRunning == true)
+            if(_moveState == MoveState.Run && velocity != Vector3.zero && _charController.isGrounded)
             {
                 turnLerp = Mathf.Lerp(turnLerp, runLerp, Time.deltaTime);
                 acceleration = Mathf.Lerp(acceleration, runAccel, Time.deltaTime);
@@ -351,12 +377,12 @@ namespace SpriteController
             }
         }
 
-        private void RunPressed() {playerRunning = true;}
-        private void RunReleased() {playerRunning = false;}
+        private void RunPressed() {_moveState = MoveState.Run;}
+        private void RunReleased() {_moveState = MoveState.Walk;}
 
         private void RotateNavigator(Vector3 ? finalFacing = null)
         {
-            if (!playerSliding)
+            if (_slideState == SlideState.None)
             {
                 if (finalFacing == null)
                 {
@@ -378,7 +404,7 @@ namespace SpriteController
                 else
                 {
                     if (finalFacing.Value != null) _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(finalFacing.Value), turnLerp);
-                    Debug.Log("Oink " + finalFacing.Value);
+                    Debug.Log("Final Facing: " + finalFacing.Value);
                 }
             }
             else { if (headingRotated!= Vector3.zero) _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(headingRotated.normalized), turnLerp); }
@@ -386,15 +412,15 @@ namespace SpriteController
 
         private void SlideCheck()
         {
-            if (!playerSliding)
+            if (_slideState == SlideState.None)
             {
-                if (Vector3.Angle(velocity, headingRotated) >= 90) { playerSliding = true;}
+                if (Vector3.Angle(velocity, headingRotated) >= 90) { _slideState = SlideState.Slide;}
             }
-            else
+            else if (_slideState == SlideState.Slide)
             {
-                if (Mathf.Sign(velocity.x) == Mathf.Sign(headingRotated.x) && Mathf.Sign(velocity.z) == Mathf.Sign(headingRotated.z))
+                if (Mathf.Sign(velocity.x) == Mathf.Sign(headingRotated.x) && Mathf.Sign(velocity.z) == Mathf.Sign(headingRotated.z) || velocity.magnitude < walkMax)
                 {
-                    playerSliding = false; if(_jumpQueued) {Jump((headingRotated.normalized * jumpSpeed)); _jumpQueued = false; Debug.Log("lmao");}
+                    _slideState = SlideState.None; if(_jumpQueued) {_jumpState = JumpState.NormalJump; Jump(); _jumpQueued = false; Debug.Log("Slide Jump");}
                 }
             }
         }
