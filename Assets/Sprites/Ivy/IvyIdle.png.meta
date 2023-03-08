@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IvyIdle_0
+      name: Ivy_Idle_Up
       rect:
         serializedVersion: 2
         x: 15
@@ -138,7 +138,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyIdle_1
+      name: Ivy_Idle_UpLeft
       rect:
         serializedVersion: 2
         x: 61
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyIdle_2
+      name: Ivy_Idle_Left
       rect:
         serializedVersion: 2
         x: 107
@@ -180,7 +180,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyIdle_3
+      name: Ivy_Idle_DownLeft
       rect:
         serializedVersion: 2
         x: 153
@@ -201,7 +201,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyIdle_4
+      name: Ivy_Idle_Down
       rect:
         serializedVersion: 2
         x: 199
@@ -232,11 +232,11 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      IvyIdle_4: 2041588747
-      IvyIdle_2: 319224378
-      IvyIdle_0: 1617242727
-      IvyIdle_3: 1505245605
-      IvyIdle_1: 1402414405
+      Ivy_Idle_Up: 1617242727
+      Ivy_Idle_UpLeft: 1402414405
+      Ivy_Idle_DownLeft: 1505245605
+      Ivy_Idle_Down: 2041588747
+      Ivy_Idle_Left: 319224378
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

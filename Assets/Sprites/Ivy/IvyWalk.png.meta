@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IvyWalk_0
+      name: IvyWalk_Up_0
       rect:
         serializedVersion: 2
         x: 15
@@ -125,7 +125,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -138,7 +138,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_1
+      name: IvyWalk_Up_1
       rect:
         serializedVersion: 2
         x: 61
@@ -146,7 +146,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_2
+      name: IvyWalk_Up_2
       rect:
         serializedVersion: 2
         x: 107
@@ -167,7 +167,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -180,7 +180,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_3
+      name: IvyWalk_Up_3
       rect:
         serializedVersion: 2
         x: 153
@@ -188,7 +188,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -201,7 +201,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_4
+      name: IvyWalk_Up_4
       rect:
         serializedVersion: 2
         x: 199
@@ -209,7 +209,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -222,7 +222,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_5
+      name: IvyWalk_UpLeft_0
       rect:
         serializedVersion: 2
         x: 15
@@ -230,7 +230,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -243,7 +243,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_6
+      name: IvyWalk_UpLeft_1
       rect:
         serializedVersion: 2
         x: 61
@@ -251,7 +251,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -264,7 +264,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_7
+      name: IvyWalk_UpLeft_2
       rect:
         serializedVersion: 2
         x: 107
@@ -272,7 +272,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -285,7 +285,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_8
+      name: IvyWalk_UpLeft_3
       rect:
         serializedVersion: 2
         x: 153
@@ -293,7 +293,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -306,7 +306,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_9
+      name: IvyWalk_UpLeft_4
       rect:
         serializedVersion: 2
         x: 199
@@ -314,7 +314,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -327,7 +327,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_10
+      name: IvyWalk_Left_0
       rect:
         serializedVersion: 2
         x: 15
@@ -335,7 +335,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -348,15 +348,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_11
+      name: IvyWalk_Left_1
       rect:
         serializedVersion: 2
-        x: 61
+        x: 60
         y: 107
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -369,7 +369,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_12
+      name: IvyWalk_Left_2
       rect:
         serializedVersion: 2
         x: 107
@@ -377,7 +377,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -390,7 +390,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_13
+      name: IvyWalk_Left_3
       rect:
         serializedVersion: 2
         x: 153
@@ -398,7 +398,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -411,7 +411,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_14
+      name: IvyWalk_Left_4
       rect:
         serializedVersion: 2
         x: 199
@@ -419,7 +419,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -432,7 +432,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_15
+      name: IvyWalk_DownLeft_0
       rect:
         serializedVersion: 2
         x: 15
@@ -440,7 +440,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -453,7 +453,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_16
+      name: IvyWalk_DownLeft_1
       rect:
         serializedVersion: 2
         x: 61
@@ -461,7 +461,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -474,7 +474,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_17
+      name: IvyWalk_DownLeft_2
       rect:
         serializedVersion: 2
         x: 107
@@ -482,7 +482,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -495,7 +495,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_18
+      name: IvyWalk_DownLeft_3
       rect:
         serializedVersion: 2
         x: 153
@@ -503,7 +503,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -516,7 +516,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_19
+      name: IvyWalk_DownLeft_4
       rect:
         serializedVersion: 2
         x: 199
@@ -524,7 +524,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -537,7 +537,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_20
+      name: IvyWalk_Down_0
       rect:
         serializedVersion: 2
         x: 15
@@ -545,7 +545,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -558,7 +558,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_21
+      name: IvyWalk_Down_1
       rect:
         serializedVersion: 2
         x: 61
@@ -566,7 +566,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -579,7 +579,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_22
+      name: IvyWalk_Down_2
       rect:
         serializedVersion: 2
         x: 107
@@ -587,7 +587,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -600,7 +600,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_23
+      name: IvyWalk_Down_3
       rect:
         serializedVersion: 2
         x: 153
@@ -608,7 +608,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -621,7 +621,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvyWalk_24
+      name: IvyWalk_Down_4
       rect:
         serializedVersion: 2
         x: 199
@@ -629,7 +629,7 @@ TextureImporter:
         width: 42
         height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -652,31 +652,31 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      IvyWalk_6: -56969487
-      IvyWalk_12: -1300353678
-      IvyWalk_5: 69740180
-      IvyWalk_1: -1724588953
-      IvyWalk_15: -705573267
-      IvyWalk_7: -563466910
-      IvyWalk_23: 560763193
-      IvyWalk_14: -414502283
-      IvyWalk_19: 1027722279
-      IvyWalk_2: 1957369958
-      IvyWalk_11: 2116248914
-      IvyWalk_3: -2058081582
-      IvyWalk_17: -1622378812
-      IvyWalk_20: 590619735
-      IvyWalk_8: -1559089632
-      IvyWalk_21: 1329256192
-      IvyWalk_22: 380902505
-      IvyWalk_24: 478960401
-      IvyWalk_13: 169827594
-      IvyWalk_4: -408084778
-      IvyWalk_16: 2058542436
-      IvyWalk_18: -407473118
-      IvyWalk_9: -1583174232
-      IvyWalk_10: 1304261952
-      IvyWalk_0: -435710797
+      IvyWalk_Left_4: -414502283
+      IvyWalk_DownLeft_1: 2058542436
+      IvyWalk_Left_1: 2116248914
+      IvyWalk_Left_2: -1300353678
+      IvyWalk_DownLeft_2: -1622378812
+      IvyWalk_DownLeft_0: -705573267
+      IvyWalk_UpLeft_4: -1583174232
+      IvyWalk_Down_1: 1329256192
+      IvyWalk_Left_0: 1304261952
+      IvyWalk_UpLeft_0: 69740180
+      IvyWalk_Up_1: -1724588953
+      IvyWalk_Down_0: 590619735
+      IvyWalk_Up_4: -408084778
+      IvyWalk_Down_2: 380902505
+      IvyWalk_Down_4: 478960401
+      IvyWalk_Up_0: -1724588953
+      IvyWalk_UpLeft_2: -563466910
+      IvyWalk_Up_3: -2058081582
+      IvyWalk_UpLeft_1: -56969487
+      IvyWalk_DownLeft_4: 1027722279
+      IvyWalk_Down_3: 560763193
+      IvyWalk_DownLeft_3: -407473118
+      IvyWalk_Up_2: 1957369958
+      IvyWalk_UpLeft_3: -1559089632
+      IvyWalk_Left_3: 169827594
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

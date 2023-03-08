@@ -150,7 +150,7 @@ namespace SpriteController {
             // Original author's note: "Change this with your own sprite animation stuff"
 			// Not sure how this works yet but I'll figure it out or replace it.
 			// NOTE: does not effect billboarding. Controls direction of sprite/sprite update.
-			_renderer.sprite = directionSprites[(int)direction];
+			//_renderer.sprite = directionSprites[(int)direction];
         }
     }
 }

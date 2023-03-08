@@ -117,7 +117,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 9fu7td68_0
+      name: NekuWalk_DownLeft_0
       rect:
         serializedVersion: 2
         x: 39
@@ -125,7 +125,7 @@ TextureImporter:
         width: 21
         height: 59
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -138,7 +138,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_1
+      name: NekuWalk_DownLeft_1
       rect:
         serializedVersion: 2
         x: 133
@@ -146,7 +146,7 @@ TextureImporter:
         width: 31
         height: 50
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -159,7 +159,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_2
+      name: NekuWalk_DownLeft_2
       rect:
         serializedVersion: 2
         x: 231
@@ -167,7 +167,7 @@ TextureImporter:
         width: 33
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -180,7 +180,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_3
+      name: NekuWalk_DownLeft_3
       rect:
         serializedVersion: 2
         x: 330
@@ -188,7 +188,7 @@ TextureImporter:
         width: 33
         height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -201,7 +201,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_4
+      name: NekuWalk_DownLeft_4
       rect:
         serializedVersion: 2
         x: 431
@@ -209,7 +209,7 @@ TextureImporter:
         width: 33
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -222,7 +222,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_5
+      name: NekuWalk_DownLeft_5
       rect:
         serializedVersion: 2
         x: 519
@@ -230,7 +230,7 @@ TextureImporter:
         width: 47
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -243,7 +243,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_6
+      name: NekuWalk_DownLeft_6
       rect:
         serializedVersion: 2
         x: 629
@@ -251,7 +251,7 @@ TextureImporter:
         width: 36
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -264,7 +264,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_7
+      name: NekuWalk_DownLeft_7
       rect:
         serializedVersion: 2
         x: 729
@@ -272,7 +272,7 @@ TextureImporter:
         width: 26
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -285,7 +285,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_8
+      name: NekuWalk_DownLeft_8
       rect:
         serializedVersion: 2
         x: 828
@@ -293,7 +293,7 @@ TextureImporter:
         width: 38
         height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -306,7 +306,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_9
+      name: NekuWalk_Down_0
       rect:
         serializedVersion: 2
         x: 40
@@ -314,7 +314,7 @@ TextureImporter:
         width: 23
         height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -327,7 +327,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_10
+      name: NekuWalk_Down_1
       rect:
         serializedVersion: 2
         x: 142
@@ -335,7 +335,7 @@ TextureImporter:
         width: 22
         height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -348,7 +348,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_11
+      name: NekuWalk_Down_2
       rect:
         serializedVersion: 2
         x: 243
@@ -356,7 +356,7 @@ TextureImporter:
         width: 21
         height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -369,7 +369,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_12
+      name: NekuWalk_Down_3
       rect:
         serializedVersion: 2
         x: 342
@@ -377,7 +377,7 @@ TextureImporter:
         width: 21
         height: 57
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -390,7 +390,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_13
+      name: NekuWalk_Down_4
       rect:
         serializedVersion: 2
         x: 439
@@ -398,7 +398,7 @@ TextureImporter:
         width: 20
         height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -411,7 +411,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_14
+      name: NekuWalk_Down_5
       rect:
         serializedVersion: 2
         x: 535
@@ -419,7 +419,7 @@ TextureImporter:
         width: 22
         height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -432,7 +432,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_15
+      name: NekuWalk_Down_6
       rect:
         serializedVersion: 2
         x: 636
@@ -440,7 +440,7 @@ TextureImporter:
         width: 21
         height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -453,7 +453,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_16
+      name: NekuWalk_Down_7
       rect:
         serializedVersion: 2
         x: 738
@@ -461,7 +461,7 @@ TextureImporter:
         width: 21
         height: 57
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -474,7 +474,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_17
+      name: NekuWalk_Down_8
       rect:
         serializedVersion: 2
         x: 841
@@ -482,7 +482,7 @@ TextureImporter:
         width: 20
         height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -495,7 +495,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_18
+      name: NekuWalk_DownRight_0
       rect:
         serializedVersion: 2
         x: 42
@@ -503,7 +503,7 @@ TextureImporter:
         width: 21
         height: 59
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -516,7 +516,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_19
+      name: NekuWalk_DownRight_1
       rect:
         serializedVersion: 2
         x: 126
@@ -524,7 +524,7 @@ TextureImporter:
         width: 31
         height: 50
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -537,7 +537,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_20
+      name: NekuWalk_DownRight_2
       rect:
         serializedVersion: 2
         x: 234
@@ -545,7 +545,7 @@ TextureImporter:
         width: 33
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -558,7 +558,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_21
+      name: NekuWalk_DownRight_3
       rect:
         serializedVersion: 2
         x: 332
@@ -566,7 +566,7 @@ TextureImporter:
         width: 33
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -579,7 +579,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_22
+      name: NekuWalk_DownRight_4
       rect:
         serializedVersion: 2
         x: 427
@@ -587,7 +587,7 @@ TextureImporter:
         width: 33
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -600,7 +600,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_23
+      name: NekuWalk_DownRight_5
       rect:
         serializedVersion: 2
         x: 527
@@ -608,7 +608,7 @@ TextureImporter:
         width: 47
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -621,7 +621,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_24
+      name: NekuWalk_DownRight_6
       rect:
         serializedVersion: 2
         x: 626
@@ -629,7 +629,7 @@ TextureImporter:
         width: 36
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -642,7 +642,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_25
+      name: NekuWalk_DownRight_7
       rect:
         serializedVersion: 2
         x: 739
@@ -650,7 +650,7 @@ TextureImporter:
         width: 26
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -663,7 +663,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_26
+      name: NekuWalk_DownRight_8
       rect:
         serializedVersion: 2
         x: 827
@@ -671,7 +671,7 @@ TextureImporter:
         width: 38
         height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -684,7 +684,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_27
+      name: NekuWalk_Left_0
       rect:
         serializedVersion: 2
         x: 41
@@ -692,7 +692,7 @@ TextureImporter:
         width: 21
         height: 59
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -705,7 +705,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_28
+      name: NekuWalk_Left_1
       rect:
         serializedVersion: 2
         x: 124
@@ -713,7 +713,7 @@ TextureImporter:
         width: 52
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -726,7 +726,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_29
+      name: NekuWalk_Left_2
       rect:
         serializedVersion: 2
         x: 230
@@ -734,7 +734,7 @@ TextureImporter:
         width: 36
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -747,7 +747,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_30
+      name: NekuWalk_Left_3
       rect:
         serializedVersion: 2
         x: 323
@@ -755,7 +755,7 @@ TextureImporter:
         width: 43
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -768,7 +768,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_31
+      name: NekuWalk_Left_4
       rect:
         serializedVersion: 2
         x: 423
@@ -776,7 +776,7 @@ TextureImporter:
         width: 52
         height: 49
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -789,7 +789,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_32
+      name: NekuWalk_Left_5
       rect:
         serializedVersion: 2
         x: 524
@@ -797,7 +797,7 @@ TextureImporter:
         width: 52
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -810,7 +810,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_33
+      name: NekuWalk_Left_6
       rect:
         serializedVersion: 2
         x: 631
@@ -818,7 +818,7 @@ TextureImporter:
         width: 37
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -831,7 +831,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_34
+      name: NekuWalk_Left_7
       rect:
         serializedVersion: 2
         x: 724
@@ -839,7 +839,7 @@ TextureImporter:
         width: 42
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -852,7 +852,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_35
+      name: NekuWalk_Left_8
       rect:
         serializedVersion: 2
         x: 823
@@ -860,7 +860,7 @@ TextureImporter:
         width: 52
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -873,7 +873,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_36
+      name: NekuWalk_UpLeft_0
       rect:
         serializedVersion: 2
         x: 36
@@ -881,7 +881,7 @@ TextureImporter:
         width: 23
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -894,15 +894,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_37
+      name: NekuWalk_UpLeft_1
       rect:
         serializedVersion: 2
         x: 136
-        y: 304
+        y: 305
         width: 44
         height: 50
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -915,7 +915,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_38
+      name: NekuWalk_UpLeft_2
       rect:
         serializedVersion: 2
         x: 239
@@ -923,7 +923,7 @@ TextureImporter:
         width: 36
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -936,7 +936,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_39
+      name: NekuWalk_UpLeft_3
       rect:
         serializedVersion: 2
         x: 334
@@ -944,7 +944,7 @@ TextureImporter:
         width: 35
         height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -957,7 +957,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_40
+      name: NekuWalk_UpLeft_4
       rect:
         serializedVersion: 2
         x: 432
@@ -965,7 +965,7 @@ TextureImporter:
         width: 46
         height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -978,7 +978,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_41
+      name: NekuWalk_UpLeft_5
       rect:
         serializedVersion: 2
         x: 535
@@ -986,7 +986,7 @@ TextureImporter:
         width: 42
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -999,7 +999,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_42
+      name: NekuWalk_UpLeft_6
       rect:
         serializedVersion: 2
         x: 637
@@ -1007,7 +1007,7 @@ TextureImporter:
         width: 33
         height: 50
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1020,7 +1020,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_43
+      name: NekuWalk_UpLeft_7
       rect:
         serializedVersion: 2
         x: 738
@@ -1028,7 +1028,7 @@ TextureImporter:
         width: 34
         height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1041,7 +1041,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_44
+      name: NekuWalk_UpLeft_8
       rect:
         serializedVersion: 2
         x: 834
@@ -1049,7 +1049,7 @@ TextureImporter:
         width: 49
         height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1062,7 +1062,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_45
+      name: NekuWalk_Right_0
       rect:
         serializedVersion: 2
         x: 38
@@ -1070,7 +1070,7 @@ TextureImporter:
         width: 21
         height: 59
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1083,15 +1083,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_46
+      name: NekuWalk_Right_1
       rect:
         serializedVersion: 2
-        x: 120
-        y: 201
+        x: 122
+        y: 202
         width: 52
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1104,7 +1104,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_47
+      name: NekuWalk_Right_2
       rect:
         serializedVersion: 2
         x: 231
@@ -1112,7 +1112,7 @@ TextureImporter:
         width: 36
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1125,7 +1125,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_48
+      name: NekuWalk_Right_3
       rect:
         serializedVersion: 2
         x: 327
@@ -1133,7 +1133,7 @@ TextureImporter:
         width: 43
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1146,7 +1146,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_49
+      name: NekuWalk_Right_4
       rect:
         serializedVersion: 2
         x: 423
@@ -1154,7 +1154,7 @@ TextureImporter:
         width: 52
         height: 49
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1167,7 +1167,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_50
+      name: NekuWalk_Right_5
       rect:
         serializedVersion: 2
         x: 525
@@ -1175,7 +1175,7 @@ TextureImporter:
         width: 52
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1188,7 +1188,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_51
+      name: NekuWalk_Right_6
       rect:
         serializedVersion: 2
         x: 633
@@ -1196,7 +1196,7 @@ TextureImporter:
         width: 37
         height: 52
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1209,7 +1209,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_52
+      name: NekuWalk_Right_7
       rect:
         serializedVersion: 2
         x: 726
@@ -1217,7 +1217,7 @@ TextureImporter:
         width: 42
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1230,7 +1230,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_53
+      name: NekuWalk_Right_8
       rect:
         serializedVersion: 2
         x: 826
@@ -1238,7 +1238,7 @@ TextureImporter:
         width: 52
         height: 48
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1251,7 +1251,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_54
+      name: NekuWalk_UpRight_0
       rect:
         serializedVersion: 2
         x: 40
@@ -1259,7 +1259,7 @@ TextureImporter:
         width: 23
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1272,7 +1272,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_55
+      name: NekuWalk_UpRight_1
       rect:
         serializedVersion: 2
         x: 114
@@ -1280,7 +1280,7 @@ TextureImporter:
         width: 44
         height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1293,7 +1293,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_56
+      name: NekuWalk_UpRight_2
       rect:
         serializedVersion: 2
         x: 222
@@ -1301,7 +1301,7 @@ TextureImporter:
         width: 36
         height: 51
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1314,7 +1314,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_57
+      name: NekuWalk_UpRight_3
       rect:
         serializedVersion: 2
         x: 329
@@ -1322,7 +1322,7 @@ TextureImporter:
         width: 35
         height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1335,7 +1335,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_58
+      name: NekuWalk_UpRight_4
       rect:
         serializedVersion: 2
         x: 416
@@ -1343,7 +1343,7 @@ TextureImporter:
         width: 46
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1356,7 +1356,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_59
+      name: NekuWalk_UpRight_5
       rect:
         serializedVersion: 2
         x: 520
@@ -1364,7 +1364,7 @@ TextureImporter:
         width: 42
         height: 57
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1377,7 +1377,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_60
+      name: NekuWalk_UpRight_6
       rect:
         serializedVersion: 2
         x: 625
@@ -1385,7 +1385,7 @@ TextureImporter:
         width: 33
         height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1398,7 +1398,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_61
+      name: NekuWalk_UpRight_7
       rect:
         serializedVersion: 2
         x: 725
@@ -1406,7 +1406,7 @@ TextureImporter:
         width: 34
         height: 54
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1419,7 +1419,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_62
+      name: NekuWalk_UpRight_8
       rect:
         serializedVersion: 2
         x: 815
@@ -1427,7 +1427,7 @@ TextureImporter:
         width: 49
         height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1440,7 +1440,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_63
+      name: NekuWalk_Up_0
       rect:
         serializedVersion: 2
         x: 37
@@ -1448,7 +1448,7 @@ TextureImporter:
         width: 23
         height: 55
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1461,7 +1461,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_64
+      name: NekuWalk_Up_1
       rect:
         serializedVersion: 2
         x: 137
@@ -1469,7 +1469,7 @@ TextureImporter:
         width: 21
         height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1482,7 +1482,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_65
+      name: NekuWalk_Up_2
       rect:
         serializedVersion: 2
         x: 239
@@ -1490,7 +1490,7 @@ TextureImporter:
         width: 19
         height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1503,7 +1503,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_66
+      name: NekuWalk_Up_3
       rect:
         serializedVersion: 2
         x: 338
@@ -1511,7 +1511,7 @@ TextureImporter:
         width: 22
         height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1524,7 +1524,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_67
+      name: NekuWalk_Up_4
       rect:
         serializedVersion: 2
         x: 439
@@ -1532,7 +1532,7 @@ TextureImporter:
         width: 22
         height: 50
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1545,7 +1545,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_68
+      name: NekuWalk_Up_5
       rect:
         serializedVersion: 2
         x: 541
@@ -1553,7 +1553,7 @@ TextureImporter:
         width: 22
         height: 53
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1566,7 +1566,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_69
+      name: NekuWalk_Up_6
       rect:
         serializedVersion: 2
         x: 642
@@ -1574,7 +1574,7 @@ TextureImporter:
         width: 20
         height: 56
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1587,7 +1587,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_70
+      name: NekuWalk_Up_7
       rect:
         serializedVersion: 2
         x: 741
@@ -1595,7 +1595,7 @@ TextureImporter:
         width: 21
         height: 60
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1608,15 +1608,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: 9fu7td68_71
+      name: NekuWalk_Up_8
       rect:
         serializedVersion: 2
-        x: 838
+        x: 837
         y: 9
         width: 21
         height: 50
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1639,78 +1639,78 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      9fu7td68_40: -728255778
-      9fu7td68_14: 1474032110
-      9fu7td68_11: 788892613
-      9fu7td68_0: -508199599
-      9fu7td68_42: 2076081505
-      9fu7td68_44: -952515562
-      9fu7td68_15: 1374083472
-      9fu7td68_2: 756153937
-      9fu7td68_10: 1094981400
-      9fu7td68_68: 1185287750
-      9fu7td68_17: 657020684
-      9fu7td68_48: 803403134
-      9fu7td68_20: -2015702182
-      9fu7td68_32: 1010179437
-      9fu7td68_30: 162661590
-      9fu7td68_8: -1337136528
-      9fu7td68_19: 1947353195
-      9fu7td68_27: 944120352
-      9fu7td68_3: -179672614
-      9fu7td68_50: -1112686152
-      9fu7td68_55: -1340714961
-      9fu7td68_46: 654249127
-      9fu7td68_53: -1203388845
-      9fu7td68_23: -1896779123
-      9fu7td68_59: -41727338
-      9fu7td68_52: -367352819
-      9fu7td68_39: 1816590301
-      9fu7td68_21: -1211913343
-      9fu7td68_33: 433168689
-      9fu7td68_47: -1892584710
-      9fu7td68_18: 1203895065
-      9fu7td68_58: 740164553
-      9fu7td68_16: -139774327
-      9fu7td68_38: -1794950669
-      9fu7td68_36: 1866136856
-      9fu7td68_24: -846491555
-      9fu7td68_6: 1040782625
-      9fu7td68_45: -203755602
-      9fu7td68_61: -1569566389
-      9fu7td68_63: -1878828396
-      9fu7td68_67: 1975205291
-      9fu7td68_28: -743124945
-      9fu7td68_41: -1155501426
-      9fu7td68_56: 394415177
-      9fu7td68_1: 620377788
-      9fu7td68_26: 1346369744
-      9fu7td68_29: -714515539
-      9fu7td68_34: -1489504125
-      9fu7td68_43: -1228848714
-      9fu7td68_7: -2100833078
-      9fu7td68_25: 1371661061
-      9fu7td68_51: -1164942203
-      9fu7td68_64: -1776570771
-      9fu7td68_22: 1602443306
-      9fu7td68_65: -1840241343
-      9fu7td68_62: -96577951
-      9fu7td68_69: 947029342
-      9fu7td68_49: -1140241721
-      9fu7td68_35: -867036429
-      9fu7td68_71: -2039748121
-      9fu7td68_60: -1301111581
-      9fu7td68_12: -1656161432
-      9fu7td68_54: 1424338547
-      9fu7td68_57: 456598744
-      9fu7td68_70: 1288591849
-      9fu7td68_66: -649998488
-      9fu7td68_13: 317188358
-      9fu7td68_37: 1336159192
-      9fu7td68_5: -1307394163
-      9fu7td68_9: -1010654747
-      9fu7td68_4: 1891238102
-      9fu7td68_31: 302982955
+      NekuWalk_DownLeft_5: -1307394163
+      NekuWalk_Right_5: -1112686152
+      NekuWalk_Left_6: 433168689
+      NekuWalk_Down_3: -1656161432
+      NekuWalk_Down_4: 317188358
+      NekuWalk_Down_6: 1374083472
+      NekuWalk_Up_7: 1288591849
+      NekuWalk_Right_4: -1140241721
+      NekuWalk_DownLeft_3: -179672614
+      NekuWalk_Down_0: -1010654747
+      NekuWalk_DownLeft_0: -508199599
+      NekuWalk_Down_2: 788892613
+      NekuWalk_Up_3: -649998488
+      NekuWalk_UpRight_2: 394415177
+      NekuWalk_UpLeft_3: 1816590301
+      NekuWalk_Left_0: 944120352
+      NekuWalk_Down_5: 1474032110
+      NekuWalk_UpLeft_6: 2076081505
+      NekuWalk_Right_2: -1892584710
+      NekuWalk_Up_6: 947029342
+      NekuWalk_Left_3: 162661590
+      NekuWalk_Left_1: -743124945
+      NekuWalk_Down_8: 657020684
+      NekuWalk_UpRight_3: 456598744
+      NekuWalk_Up_8: -2039748121
+      NekuWalk_Right_1: 654249127
+      NekuWalk_UpLeft_7: -1228848714
+      NekuWalk_DownRight_3: -1211913343
+      NekuWalk_UpLeft_2: -1794950669
+      NekuWalk_DownLeft_6: 1040782625
+      NekuWalk_DownLeft_1: 620377788
+      NekuWalk_DownRight_4: 1602443306
+      NekuWalk_DownRight_1: 1947353195
+      NekuWalk_Left_2: -714515539
+      NekuWalk_DownRight_5: -1896779123
+      NekuWalk_UpRight_6: -1301111581
+      NekuWalk_UpLeft_5: -1155501426
+      NekuWalk_Down_7: -139774327
+      NekuWalk_DownRight_7: 1371661061
+      NekuWalk_DownLeft_2: 756153937
+      NekuWalk_DownRight_8: 1346369744
+      NekuWalk_Left_8: -867036429
+      NekuWalk_UpLeft_8: -952515562
+      NekuWalk_Left_5: 1010179437
+      NekuWalk_UpRight_7: -1569566389
+      NekuWalk_UpRight_0: 1424338547
+      NekuWalk_UpLeft_1: 1336159192
+      NekuWalk_Right_7: -367352819
+      NekuWalk_DownRight_0: 1203895065
+      NekuWalk_Right_3: 803403134
+      NekuWalk_Left_7: -1489504125
+      NekuWalk_Right_8: -1203388845
+      NekuWalk_UpRight_5: -41727338
+      NekuWalk_UpRight_4: 740164553
+      NekuWalk_Up_2: -1840241343
+      NekuWalk_Right_0: -203755602
+      NekuWalk_Left_4: 302982955
+      NekuWalk_Up_4: 1975205291
+      NekuWalk_DownRight_2: -2015702182
+      NekuWalk_Up_1: -1776570771
+      NekuWalk_Up_0: -1878828396
+      NekuWalk_DownRight_6: -846491555
+      NekuWalk_DownLeft_8: -1337136528
+      NekuWalk_Right_6: -1164942203
+      NekuWalk_DownLeft_7: -2100833078
+      NekuWalk_UpRight_8: -96577951
+      NekuWalk_DownLeft_4: 1891238102
+      NekuWalk_Up_5: 1185287750
+      NekuWalk_UpRight_1: -1340714961
+      NekuWalk_UpLeft_0: 1866136856
+      NekuWalk_Down_1: 1094981400
+      NekuWalk_UpLeft_4: -728255778
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

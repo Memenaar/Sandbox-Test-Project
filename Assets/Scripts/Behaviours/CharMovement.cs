@@ -15,6 +15,7 @@ namespace SpriteController
         private Transform _navigator;
         private PlayerActions _playerActions;
 
+
         [Header("Movement Variables")] // Variables governing character movement and orientation
         public float ySpeed;
         private float originalStepOffset;
@@ -83,6 +84,7 @@ namespace SpriteController
         {
             _playerActions.WorldGameplay.Enable();
         }
+        
         void OnDisable()
         {
             _playerActions.WorldGameplay.Disable();
@@ -105,8 +107,8 @@ namespace SpriteController
             }
             else
             {
-                moveInput = _playerActions.WorldGameplay.Movement.ReadValue<Vector2>();
-               // Gets movement input
+                moveInput = _playerActions.WorldGameplay.Movement.ReadValue<Vector2>(); // Gets movement input
+
                 if (_charController.isGrounded) // Executed if player's character controller is grounded.
                 {
                     ySpeed = -0.5f; // ySpeed must be reset every frame the character is on the ground in order to allow them to move under simulated gravity.
@@ -123,30 +125,33 @@ namespace SpriteController
                 } 
                 else // Executed if player's character controller is airborne.
                 {
-                    if (playerGrounded) BecomeAirborne(); // Use the BecomeAirborne method.
-                    AirborneBehaviour();
-                    if (_jumpState == JumpState.StandingJump && _moveState != MoveState.Locked) InputToHeading(true);
+                    if (playerGrounded) BecomeAirborne(); // Use the BecomeAirborne method if player is just entering air.
+                    AirborneBehaviour(); // Execute airborne behavior method
+                    if (_jumpState == JumpState.StandingJump && _moveState != MoveState.Locked) InputToHeading(true); // if Jump State is Standing Jump and move State is NOT locked, input to heading with InputClamped = true.
                 
                 }  
             }
             
-            MoveChar();
+            MoveChar(); // Move Character method
             
         }
 
+        // Called when the character controller detects a collision
         private void OnControllerColliderHit(ControllerColliderHit hit)
         {
-            _wallNormal = new Vector3(hit.normal.x, 0.0f, hit.normal.z);
+            _wallNormal = new Vector3(hit.normal.x, 0.0f, hit.normal.z); // Get the x and z axes of the collision's normal. Omission of y axis prevents undue up/downward momentum in wall jump.
+
             if (_charController.isGrounded) // If Char is grounded 
             {
                 if (_charController.collisionFlags == CollisionFlags.Below) // If character is ONLY touching ground
                 {
-
+                    // No further action
                 }
                 else if ((_charController.collisionFlags & CollisionFlags.Sides) != 0) // If character is touching sides
                 {
-                    velocity = Vector3.ClampMagnitude(velocity, 1); // Clamp magnitude of the character's velocity to walkMax
-                    Debug.Log("Wall collision");
+                    // Clamps player velocity in direction of impact, but only if they are fully moving in that direction.
+                    if (Mathf.Abs(_wallNormal.x) == 1) velocity.x = Mathf.Clamp(velocity.x, -1, 1);
+                    if (Mathf.Abs(_wallNormal.z) == 1) velocity.z = Mathf.Clamp(velocity.z, -1, 1);
                 }
 
             }
@@ -159,16 +164,16 @@ namespace SpriteController
                 else if ((_charController.collisionFlags & CollisionFlags.Sides) != 0) // If character is touching sides
                 {
 
+                    // If the player is moving faster than their walk speed, their jump is still in its upward stage, the surface they collide with is tagged for wall jumping, and their jump state is NOT standing jump or none...
                     if (velocity.magnitude > walkMax && ySpeed > 0 && hit.gameObject.CompareTag("WallJump") && _jumpState != (JumpState.StandingJump | JumpState.None))
                     {
-                        _wallNormal.y = 0.0f;
-                        ySpeed = 0;
-                        _jumpState = JumpState.None;
-                        _slideState = SlideState.WallSlide;
+                        ySpeed = 0; // Set player's ySpeed to 0
+                        _jumpState = JumpState.None; // Reset the Jump State
+                        _slideState = SlideState.WallSlide; // Enter the wall slide state
                     }
-                    else if (_jumpState != JumpState.None)
+                    else if (_jumpState != JumpState.None) // If the above conditions are not met, and the Jump State is NOT none
                     {
-                        _jumpState = JumpState.StandingJump;
+                        _jumpState = JumpState.StandingJump; // Set the jump state to Standing Jump so the player isn't stuck with their velocity driving them into the wall
                     }
                 }
             }
@@ -180,20 +185,20 @@ namespace SpriteController
         // Fixes slope bounce
         private Vector3 AdjustVelocityToSlope(Vector3 velocity)
         {
-            var ray = new Ray(transform.position, Vector3.down);
+            var ray = new Ray(transform.position, Vector3.down); // Cast a ray downward from the player's transform
 
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f))
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f)) // Generatese hitInfo if the raycast hits something at a max of 0.2f distance
             {
-                var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal);
-                var adjustedVelocity = slopeRotation * velocity;
+                var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal); // Get the rotation of any slope under the player from the raycast's normal
+                var adjustedVelocity = slopeRotation * velocity; // Adjust player velocity to match the rotation of the slope
 
-                if (adjustedVelocity.y < 0)
+                if (adjustedVelocity.y < 0) // if the adjust velocity is less than 0 (ie: the slope is downward)
                 {
-                    return adjustedVelocity;
+                    return adjustedVelocity; // then return the adjust velocity
                 }
             }
 
-            return velocity;
+            return velocity; // otherwise return the original velocity.
         }
 
         // Governs player movement in the air.
@@ -230,29 +235,26 @@ namespace SpriteController
             // Check whether a jump is buffered.
             if (_jumpQueued && (_jumpTracker + _jumpBuffer > Time.time))
             {
-                _jumpState = JumpState.NormalJump;
+                _jumpState = JumpState.NormalJump; 
                 Jump();
-                _jumpQueued = false;
+                _jumpQueued = false; // Reset Jump Queue
             } else {
-                _charController.stepOffset = originalStepOffset;
-                playerGrounded = true;
-                _coyoteAvailable = true;
-                _jumpQueued = false;
-                _jumpState = JumpState.None;
-                if (_slideState != SlideState.None) _slideState = SlideState.None;
-
+                _charController.stepOffset = originalStepOffset; // Return original Step Offset value so stairs can be used.
+                playerGrounded = true; // Mark the player as grounded if they are just touching down
+                _coyoteAvailable = true; // Reset Coyote Time.
+                _jumpQueued = false; // Reset Jump Queue
+                _jumpState = JumpState.None; // Reset Jump State
             }
         }
 
-        // Ensures if you hit your head on something while jumping you don't hang under it until gravity takes effect.
-        private void HeadBump()
+        private void HeadBump() // Ensures if you hit your head on something while jumping you don't hang under it until gravity takes effect.
         {
-                velocity.x += velocity.x * -10 * Time.deltaTime;
-                velocity.z += velocity.z * -10 * Time.deltaTime;
-                ySpeed += ySpeed * -2f;
+                velocity.x += velocity.x * -5 * Time.deltaTime; // Reduce x velocity
+                velocity.z += velocity.z * -5 * Time.deltaTime; // Reduce z velocity
+                ySpeed += ySpeed * -1.5f; // Multiply ySpeed by 1.5 and invert.
         }
         
-        protected void InitializeMovement()
+        protected void InitializeMovement() // Initialize needed game objects, components, and variables.
         {
             _camera = Camera.main;
             _playerRb = GetComponent<Rigidbody>();
@@ -264,11 +266,32 @@ namespace SpriteController
         // Converts player input into a heading for the player character
         private void InputToHeading(bool clampInput = false) // Uses a default value of false for clampInput if one is not provided.
         {
-                heading = new Vector3(moveInput.x, 0.0f, moveInput.y);
-                headingRotated = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * heading;            
-                headingRotated.Normalize();
-                if (clampInput) {headingRotated = headingRotated * 0.25f;} // Reduces input's effect to 1/4 is clampInput is true.
+                heading = new Vector3(moveInput.x, 0.0f, moveInput.y); // Create Heading vector from moveinput.
+                headingRotated = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * heading; // Rotate heading relative to camera direction       
+                headingRotated.Normalize(); // Normalize the rotated heading.
+                if (clampInput) {headingRotated = headingRotated * 0.25f;} // Reduces effect of input to 1/4 is clampInput is true.
 
+        }
+
+        private void Jump(Vector3 ? horizontalPower = null)
+        {
+
+            float jumpForce = _jumpState == JumpState.WallJump ? (jumpSpeed * 0.75f) : jumpSpeed;
+            float speedLimit = _moveState == MoveState.Run ? runMax : walkMax;
+            velocity = Vector3.ClampMagnitude((headingRotated * velocity.magnitude), runJump);
+            if (horizontalPower == null) // If no override is provided
+            {
+                if (velocity != Vector3.zero) 
+                {
+                    velocity = Vector3.ClampMagnitude(velocity = Vector3.zero + (headingRotated * jumpForce), speedLimit); // Reset velocity = the player's heading * the magnitude of the current velocity * current jump force
+                }
+            }
+            else // If an override for horizontal jump power is provided. Currently only used for wall jumps.
+            {
+                velocity = Vector3.ClampMagnitude((horizontalPower.Value * speedLimit), runJump); // Set velocity = the input horizontal power value, multiplied by the current SpeedLimit, with a max value = the character's running jump speed.
+            }
+            _coyoteAvailable = false; // Mark Coyote Time as unavailable.
+            ySpeed += jumpForce; // Add the current JumpForce to the player's vertical speed.
         }
 
         private void JumpLogic() //Determines which kind of jump to use.
@@ -285,40 +308,13 @@ namespace SpriteController
                 else
                 {
                     if (_coyoteAvailable && (_coyoteTracker + _coyoteTime >= Time.time)) { _jumpState = JumpState.NormalJump; Jump();} // Coyote Time jump                    
-                    else if (!_jumpQueued) { _jumpQueued = true; Debug.Log("Pebis."); _jumpTracker = Time.time;} // Queues a jump for landing
+                    else if (!_jumpQueued) { _jumpQueued = true; _jumpTracker = Time.time;} // Queues a jump for landing
                     else if (_slideState == SlideState.WallSlide) {_jumpState = JumpState.WallJump; _slideState = SlideState.None; Jump(_wallNormal); Debug.Log(_wallNormal);} // Wall Jump
                 }
             }
             else if (!_coyoteAvailable && !_jumpQueued) { _jumpQueued = true; _jumpTracker = Time.time;} // Queues a jump for landing
             
         }
-
-        private void Jump(Vector3 ? horizontalPower = null)
-        {
-
-            float jumpForce = _jumpState == JumpState.WallJump ? (jumpSpeed * 0.75f) : jumpSpeed;
-            float speedLimit = _moveState == MoveState.Run ? runMax : walkMax;
-            velocity = Vector3.ClampMagnitude((headingRotated * velocity.magnitude), runJump);
-            if (horizontalPower == null) // If no override is provided
-            {
-                if (velocity != Vector3.zero) 
-                {
-                    velocity = Vector3.ClampMagnitude(velocity = Vector3.zero + (headingRotated * velocity.magnitude * jumpForce), speedLimit);
-                    RotateNavigator(headingRotated.normalized);
-                }
-                Debug.Log("Jump without horizontal override");
-            }
-            else // If an override for horizontal jump power is provided 
-            {
-                velocity = Vector3.ClampMagnitude((horizontalPower.Value * speedLimit), runJump); Debug.Log(velocity);
-                RotateNavigator(velocity);
-                Debug.Log("Jump with horizontal override");
-            }
-            _coyoteAvailable = false; 
-            ySpeed += jumpForce;
-        }
-
-
 
         private void MoveChar()
         {
@@ -350,8 +346,6 @@ namespace SpriteController
             move = AdjustVelocityToSlope(move);
             move.y += ySpeed;
 
-            //Debug.Log(move);
-
             _charController.Move(move * Time.deltaTime);
         
             RotateNavigator();
@@ -377,15 +371,10 @@ namespace SpriteController
             }
         }
 
-        private void RunPressed() {_moveState = MoveState.Run;}
-        private void RunReleased() {_moveState = MoveState.Walk;}
-
-        private void RotateNavigator(Vector3 ? finalFacing = null)
+        private void RotateNavigator()
         {
             if (_slideState == SlideState.None)
             {
-                if (finalFacing == null)
-                {
                     if (_charController.isGrounded)
                     {
                         if (headingRotated != Vector3.zero)
@@ -400,15 +389,12 @@ namespace SpriteController
                             _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(velocity.normalized), turnLerp);
                         }
                     }
-                }
-                else
-                {
-                    if (finalFacing.Value != null) _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(finalFacing.Value), turnLerp);
-                    Debug.Log("Final Facing: " + finalFacing.Value);
-                }
             }
             else { if (headingRotated!= Vector3.zero) _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(headingRotated.normalized), turnLerp); }
         }
+
+        private void RunPressed() {_moveState = MoveState.Run;}
+        private void RunReleased() {_moveState = MoveState.Walk;}
 
         private void SlideCheck()
         {
