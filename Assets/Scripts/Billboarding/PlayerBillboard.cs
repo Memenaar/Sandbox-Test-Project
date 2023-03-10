@@ -20,7 +20,6 @@ namespace SpriteController {
         void LateUpdate()
         {
             DetermineDirection();
-			AngleSprite();
         }
 
     }

@@ -11,7 +11,7 @@ namespace SpriteController
         [Header("Objects & Components")] // Variables containing objects and components
         private Camera _camera;
         private Rigidbody _playerRb;
-        private CharacterController _charController;
+        public CharacterController _charController;
         private Transform _navigator;
         private PlayerActions _playerActions;
 
@@ -279,14 +279,7 @@ namespace SpriteController
             float jumpForce = _jumpState == JumpState.WallJump ? (jumpSpeed * 0.75f) : jumpSpeed;
             float speedLimit = _moveState == MoveState.Run ? runMax : walkMax;
             velocity = Vector3.ClampMagnitude((headingRotated * velocity.magnitude), runJump);
-            if (horizontalPower == null) // If no override is provided
-            {
-                if (velocity != Vector3.zero) 
-                {
-                    velocity = Vector3.ClampMagnitude(velocity = Vector3.zero + (headingRotated * jumpForce), speedLimit); // Reset velocity = the player's heading * the magnitude of the current velocity * current jump force
-                }
-            }
-            else // If an override for horizontal jump power is provided. Currently only used for wall jumps.
+            if (horizontalPower != null) // If an override is provided
             {
                 velocity = Vector3.ClampMagnitude((horizontalPower.Value * speedLimit), runJump); // Set velocity = the input horizontal power value, multiplied by the current SpeedLimit, with a max value = the character's running jump speed.
             }
@@ -307,9 +300,12 @@ namespace SpriteController
                 }
                 else
                 {
-                    if (_coyoteAvailable && (_coyoteTracker + _coyoteTime >= Time.time)) { _jumpState = JumpState.NormalJump; Jump();} // Coyote Time jump                    
-                    else if (!_jumpQueued) { _jumpQueued = true; _jumpTracker = Time.time;} // Queues a jump for landing
-                    else if (_slideState == SlideState.WallSlide) {_jumpState = JumpState.WallJump; _slideState = SlideState.None; Jump(_wallNormal); Debug.Log(_wallNormal);} // Wall Jump
+                    if (_slideState == SlideState.WallSlide) {_jumpState = JumpState.WallJump; _slideState = SlideState.None; Jump(_wallNormal); Debug.Log(_wallNormal);} // Wall Jump
+                    else 
+                    {
+                        if (_coyoteAvailable && (_coyoteTracker + _coyoteTime >= Time.time)) { _jumpState = JumpState.NormalJump; Jump();} // Coyote Time jump                    
+                        else if (!_jumpQueued) { _jumpQueued = true; _jumpTracker = Time.time;} // Queues a jump for landing
+                    }
                 }
             }
             else if (!_coyoteAvailable && !_jumpQueued) { _jumpQueued = true; _jumpTracker = Time.time;} // Queues a jump for landing
@@ -400,11 +396,11 @@ namespace SpriteController
         {
             if (_slideState == SlideState.None)
             {
-                if (Vector3.Angle(velocity, headingRotated) >= 90) { _slideState = SlideState.Slide;}
+                if (Vector3.Angle(velocity, headingRotated) >= 90 && velocity.magnitude >= walkMax) { _slideState = SlideState.Slide;}
             }
             else if (_slideState == SlideState.Slide)
             {
-                if (Mathf.Sign(velocity.x) == Mathf.Sign(headingRotated.x) && Mathf.Sign(velocity.z) == Mathf.Sign(headingRotated.z) || velocity.magnitude < walkMax)
+                if (Mathf.Sign(velocity.x) == Mathf.Sign(headingRotated.x) && Mathf.Sign(velocity.z) == Mathf.Sign(headingRotated.z))
                 {
                     _slideState = SlideState.None; if(_jumpQueued) {_jumpState = JumpState.NormalJump; Jump(); _jumpQueued = false; Debug.Log("Slide Jump");}
                 }

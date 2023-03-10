@@ -14,7 +14,7 @@ namespace SpriteController
 		protected GameObject _cameraDirection;
 		private Transform _billboard;
 		private Transform _objTransform;
-		public Vector3 targetPoint;
+		//public Vector3 targetPoint;
 
 		[Header("Rotation Variables")]
 		// Stores the CameraController script.
@@ -44,7 +44,7 @@ namespace SpriteController
 
 			/* Initializes variables for sprite angling */
 			// Gets the SpriteRenderer component attached to this object and stores it in _sprite
-			_sprite = GetComponentInChildren<SpriteRenderer>();
+			//_sprite = GetComponentInChildren<SpriteRenderer>();
 
 			// Gets the component CameraController from the Main Camera object.
 			_cameraController = GameObject.Find("Main Camera").GetComponent<CameraController>();
@@ -55,7 +55,7 @@ namespace SpriteController
 
 		void Update()
 		{
-			BillboardSprite();
+			//BillboardSprite();
 		}
 
 		void LateUpdate()
@@ -65,14 +65,14 @@ namespace SpriteController
 		}
 
 		// Ensures that the billboard is always pointed at camera in x and z space.
-		void BillboardSprite()
+		/* void BillboardSprite()
 		{
 			// Creates a new Vector3 using the Main Camera's x and z values, and the game object's y value, then subtracts the game object's transform from that Vector3 and stores the remaining values in targetPoint.
 			targetPoint = new Vector3(_cameraDirection.transform.position.x, _cameraDirection.transform.position.y, _cameraDirection.transform.position.z) - _objTransform.position;
 			// Sets billboard's y rotation so that x matches camera rotation (ie the billboard is always facing the camera)
 			_billboard.rotation = Quaternion.LookRotation(-targetPoint, Vector3.up);
 			//NOTE: may want to figure out how to clamp billboard X rotation @ camera angle (eg: 35 deg)
-		}
+		} */
 
 		// Determines the direction of the game object relative to the camera in x and z space.
 		void DetermineDirection()

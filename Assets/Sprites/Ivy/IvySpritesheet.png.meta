@@ -121,11 +121,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 169
+        y: 170
         width: 24
-        height: 30
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -141,12 +141,12 @@ TextureImporter:
       name: IvySpritesheet_1
       rect:
         serializedVersion: 2
-        x: 24
-        y: 169
-        width: 24
-        height: 30
+        x: 27
+        y: 170
+        width: 21
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -162,12 +162,12 @@ TextureImporter:
       name: IvySpritesheet_2
       rect:
         serializedVersion: 2
-        x: 48
+        x: 51
         y: 169
-        width: 24
+        width: 20
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -183,12 +183,12 @@ TextureImporter:
       name: IvySpritesheet_3
       rect:
         serializedVersion: 2
-        x: 72
+        x: 75
         y: 169
-        width: 24
+        width: 21
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -207,9 +207,9 @@ TextureImporter:
         x: 96
         y: 169
         width: 24
-        height: 30
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -225,12 +225,12 @@ TextureImporter:
       name: IvySpritesheet_5
       rect:
         serializedVersion: 2
-        x: 120
+        x: 141
         y: 169
-        width: 24
+        width: 23
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -246,12 +246,12 @@ TextureImporter:
       name: IvySpritesheet_6
       rect:
         serializedVersion: 2
-        x: 144
+        x: 172
         y: 169
         width: 24
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -267,12 +267,12 @@ TextureImporter:
       name: IvySpritesheet_7
       rect:
         serializedVersion: 2
-        x: 168
+        x: 204
         y: 169
         width: 24
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -288,12 +288,12 @@ TextureImporter:
       name: IvySpritesheet_8
       rect:
         serializedVersion: 2
-        x: 192
+        x: 235
         y: 169
-        width: 24
+        width: 20
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -309,12 +309,12 @@ TextureImporter:
       name: IvySpritesheet_9
       rect:
         serializedVersion: 2
-        x: 216
+        x: 259
         y: 169
-        width: 24
+        width: 20
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -330,12 +330,12 @@ TextureImporter:
       name: IvySpritesheet_10
       rect:
         serializedVersion: 2
-        x: 240
-        y: 169
-        width: 24
-        height: 30
+        x: 281
+        y: 170
+        width: 22
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -351,12 +351,12 @@ TextureImporter:
       name: IvySpritesheet_11
       rect:
         serializedVersion: 2
-        x: 264
-        y: 169
-        width: 24
-        height: 30
+        x: 305
+        y: 170
+        width: 22
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -372,12 +372,12 @@ TextureImporter:
       name: IvySpritesheet_12
       rect:
         serializedVersion: 2
-        x: 288
-        y: 169
-        width: 24
-        height: 30
+        x: 330
+        y: 170
+        width: 21
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -393,12 +393,12 @@ TextureImporter:
       name: IvySpritesheet_13
       rect:
         serializedVersion: 2
-        x: 312
-        y: 169
-        width: 24
-        height: 30
+        x: 353
+        y: 170
+        width: 22
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -411,15 +411,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvySpritesheet_14
+      name: Ivy_WallSlide_UpLeft
       rect:
         serializedVersion: 2
-        x: 336
+        x: 381
         y: 169
-        width: 24
-        height: 30
+        width: 23
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -435,12 +435,12 @@ TextureImporter:
       name: IvySpritesheet_15
       rect:
         serializedVersion: 2
-        x: 360
+        x: 411
         y: 169
-        width: 24
+        width: 20
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -456,12 +456,12 @@ TextureImporter:
       name: IvySpritesheet_16
       rect:
         serializedVersion: 2
-        x: 384
-        y: 169
-        width: 24
-        height: 30
+        x: 433
+        y: 170
+        width: 22
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -477,12 +477,12 @@ TextureImporter:
       name: IvySpritesheet_17
       rect:
         serializedVersion: 2
-        x: 408
-        y: 169
-        width: 24
-        height: 30
+        x: 461
+        y: 170
+        width: 23
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -498,12 +498,12 @@ TextureImporter:
       name: IvySpritesheet_18
       rect:
         serializedVersion: 2
-        x: 432
-        y: 169
-        width: 24
-        height: 30
+        x: 493
+        y: 170
+        width: 23
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -516,15 +516,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvySpritesheet_19
+      name: Ivy_Slide_DownLeft
       rect:
         serializedVersion: 2
-        x: 456
-        y: 169
-        width: 24
+        x: 1
+        y: 137
+        width: 22
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -540,12 +540,12 @@ TextureImporter:
       name: IvySpritesheet_20
       rect:
         serializedVersion: 2
-        x: 480
-        y: 169
-        width: 24
-        height: 30
+        x: 29
+        y: 138
+        width: 23
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -561,12 +561,12 @@ TextureImporter:
       name: IvySpritesheet_21
       rect:
         serializedVersion: 2
-        x: 0
-        y: 139
-        width: 24
+        x: 61
+        y: 136
+        width: 23
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -582,12 +582,12 @@ TextureImporter:
       name: IvySpritesheet_22
       rect:
         serializedVersion: 2
-        x: 24
-        y: 139
-        width: 24
+        x: 90
+        y: 137
+        width: 21
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -603,12 +603,12 @@ TextureImporter:
       name: IvySpritesheet_23
       rect:
         serializedVersion: 2
-        x: 48
+        x: 113
         y: 139
-        width: 24
-        height: 30
+        width: 22
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -624,12 +624,12 @@ TextureImporter:
       name: IvySpritesheet_24
       rect:
         serializedVersion: 2
-        x: 72
-        y: 139
-        width: 24
-        height: 30
+        x: 137
+        y: 138
+        width: 22
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -645,12 +645,12 @@ TextureImporter:
       name: IvySpritesheet_25
       rect:
         serializedVersion: 2
-        x: 96
-        y: 139
-        width: 24
-        height: 30
+        x: 161
+        y: 137
+        width: 22
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -666,12 +666,12 @@ TextureImporter:
       name: IvySpritesheet_26
       rect:
         serializedVersion: 2
-        x: 120
-        y: 139
-        width: 24
-        height: 30
+        x: 185
+        y: 137
+        width: 22
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -684,15 +684,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvySpritesheet_27
+      name: Ivy_Slide_Left
       rect:
         serializedVersion: 2
-        x: 144
-        y: 139
-        width: 24
+        x: 209
+        y: 137
+        width: 21
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -708,12 +708,12 @@ TextureImporter:
       name: IvySpritesheet_28
       rect:
         serializedVersion: 2
-        x: 168
-        y: 139
+        x: 236
+        y: 137
         width: 24
-        height: 30
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -726,15 +726,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvySpritesheet_29
+      name: Ivy_Slide_Down
       rect:
         serializedVersion: 2
-        x: 192
-        y: 139
+        x: 268
+        y: 137
         width: 24
-        height: 30
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -750,12 +750,12 @@ TextureImporter:
       name: IvySpritesheet_30
       rect:
         serializedVersion: 2
-        x: 216
-        y: 139
-        width: 24
-        height: 30
+        x: 297
+        y: 138
+        width: 22
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -768,15 +768,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvySpritesheet_31
+      name: Ivy_Slide_UpLeft
       rect:
         serializedVersion: 2
-        x: 240
-        y: 139
-        width: 24
-        height: 30
+        x: 321
+        y: 138
+        width: 22
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -792,12 +792,12 @@ TextureImporter:
       name: IvySpritesheet_32
       rect:
         serializedVersion: 2
-        x: 264
-        y: 139
+        x: 348
+        y: 137
         width: 24
-        height: 30
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -813,12 +813,12 @@ TextureImporter:
       name: IvySpritesheet_33
       rect:
         serializedVersion: 2
-        x: 288
-        y: 139
-        width: 24
-        height: 30
+        x: 377
+        y: 138
+        width: 22
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -834,12 +834,12 @@ TextureImporter:
       name: IvySpritesheet_34
       rect:
         serializedVersion: 2
-        x: 312
-        y: 139
-        width: 24
-        height: 30
+        x: 404
+        y: 141
+        width: 23
+        height: 26
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -855,12 +855,12 @@ TextureImporter:
       name: IvySpritesheet_35
       rect:
         serializedVersion: 2
-        x: 336
+        x: 436
         y: 139
         width: 24
-        height: 30
+        height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -876,12 +876,12 @@ TextureImporter:
       name: IvySpritesheet_36
       rect:
         serializedVersion: 2
-        x: 360
-        y: 139
+        x: 468
+        y: 136
         width: 24
-        height: 30
+        height: 23
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -897,12 +897,12 @@ TextureImporter:
       name: IvySpritesheet_37
       rect:
         serializedVersion: 2
-        x: 384
-        y: 139
+        x: 4
+        y: 105
         width: 24
-        height: 30
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -918,12 +918,12 @@ TextureImporter:
       name: IvySpritesheet_38
       rect:
         serializedVersion: 2
-        x: 408
-        y: 139
+        x: 36
+        y: 105
         width: 24
-        height: 30
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -939,12 +939,12 @@ TextureImporter:
       name: IvySpritesheet_39
       rect:
         serializedVersion: 2
-        x: 432
-        y: 139
-        width: 24
-        height: 30
+        x: 67
+        y: 105
+        width: 25
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -957,15 +957,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvySpritesheet_40
+      name: Ivy_WallSlide_Down
       rect:
         serializedVersion: 2
-        x: 456
-        y: 139
-        width: 24
-        height: 30
+        x: 100
+        y: 105
+        width: 25
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -981,12 +981,12 @@ TextureImporter:
       name: IvySpritesheet_41
       rect:
         serializedVersion: 2
-        x: 480
-        y: 139
-        width: 24
-        height: 30
+        x: 133
+        y: 106
+        width: 23
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1002,12 +1002,12 @@ TextureImporter:
       name: IvySpritesheet_42
       rect:
         serializedVersion: 2
-        x: 0
-        y: 109
-        width: 24
-        height: 30
+        x: 165
+        y: 106
+        width: 23
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1023,12 +1023,12 @@ TextureImporter:
       name: IvySpritesheet_43
       rect:
         serializedVersion: 2
-        x: 24
-        y: 109
-        width: 24
-        height: 30
+        x: 197
+        y: 106
+        width: 23
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1044,12 +1044,12 @@ TextureImporter:
       name: IvySpritesheet_44
       rect:
         serializedVersion: 2
-        x: 48
-        y: 109
-        width: 24
-        height: 30
+        x: 229
+        y: 106
+        width: 23
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1065,12 +1065,12 @@ TextureImporter:
       name: IvySpritesheet_45
       rect:
         serializedVersion: 2
-        x: 72
-        y: 109
-        width: 24
-        height: 30
+        x: 260
+        y: 105
+        width: 23
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1086,12 +1086,12 @@ TextureImporter:
       name: IvySpritesheet_46
       rect:
         serializedVersion: 2
-        x: 96
-        y: 109
-        width: 24
-        height: 30
+        x: 293
+        y: 105
+        width: 25
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1107,12 +1107,12 @@ TextureImporter:
       name: IvySpritesheet_47
       rect:
         serializedVersion: 2
-        x: 120
-        y: 109
-        width: 24
-        height: 30
+        x: 325
+        y: 105
+        width: 25
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1128,12 +1128,12 @@ TextureImporter:
       name: IvySpritesheet_48
       rect:
         serializedVersion: 2
-        x: 144
-        y: 109
+        x: 356
+        y: 105
         width: 24
-        height: 30
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1149,12 +1149,12 @@ TextureImporter:
       name: IvySpritesheet_49
       rect:
         serializedVersion: 2
-        x: 168
-        y: 109
-        width: 24
-        height: 30
+        x: 385
+        y: 106
+        width: 21
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1170,12 +1170,12 @@ TextureImporter:
       name: IvySpritesheet_50
       rect:
         serializedVersion: 2
-        x: 192
-        y: 109
-        width: 24
-        height: 30
+        x: 409
+        y: 106
+        width: 22
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1191,12 +1191,12 @@ TextureImporter:
       name: IvySpritesheet_51
       rect:
         serializedVersion: 2
-        x: 216
-        y: 109
-        width: 24
-        height: 30
+        x: 433
+        y: 106
+        width: 22
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1212,12 +1212,12 @@ TextureImporter:
       name: IvySpritesheet_52
       rect:
         serializedVersion: 2
-        x: 240
-        y: 109
-        width: 24
-        height: 30
+        x: 457
+        y: 106
+        width: 22
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1230,15 +1230,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvySpritesheet_53
+      name: Ivy_WallSlide_Left
       rect:
         serializedVersion: 2
-        x: 264
-        y: 109
-        width: 24
-        height: 30
+        x: 4
+        y: 73
+        width: 23
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1254,12 +1254,12 @@ TextureImporter:
       name: IvySpritesheet_54
       rect:
         serializedVersion: 2
-        x: 288
-        y: 109
-        width: 24
-        height: 30
+        x: 36
+        y: 73
+        width: 23
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1275,12 +1275,12 @@ TextureImporter:
       name: IvySpritesheet_55
       rect:
         serializedVersion: 2
-        x: 312
-        y: 109
+        x: 68
+        y: 73
         width: 24
-        height: 30
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1296,12 +1296,12 @@ TextureImporter:
       name: IvySpritesheet_56
       rect:
         serializedVersion: 2
-        x: 336
-        y: 109
+        x: 100
+        y: 74
         width: 24
-        height: 30
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1317,12 +1317,12 @@ TextureImporter:
       name: IvySpritesheet_57
       rect:
         serializedVersion: 2
-        x: 360
-        y: 109
+        x: 132
+        y: 73
         width: 24
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1338,12 +1338,12 @@ TextureImporter:
       name: IvySpritesheet_58
       rect:
         serializedVersion: 2
-        x: 384
-        y: 109
+        x: 164
+        y: 74
         width: 24
-        height: 30
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1359,12 +1359,12 @@ TextureImporter:
       name: IvySpritesheet_59
       rect:
         serializedVersion: 2
-        x: 408
-        y: 109
+        x: 196
+        y: 73
         width: 24
         height: 30
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1380,12 +1380,12 @@ TextureImporter:
       name: IvySpritesheet_60
       rect:
         serializedVersion: 2
-        x: 432
-        y: 109
+        x: 228
+        y: 74
         width: 24
-        height: 30
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1401,12 +1401,12 @@ TextureImporter:
       name: IvySpritesheet_61
       rect:
         serializedVersion: 2
-        x: 456
-        y: 109
+        x: 260
+        y: 73
         width: 24
-        height: 30
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1422,12 +1422,12 @@ TextureImporter:
       name: IvySpritesheet_62
       rect:
         serializedVersion: 2
-        x: 480
-        y: 109
+        x: 292
+        y: 73
         width: 24
-        height: 30
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1443,12 +1443,12 @@ TextureImporter:
       name: IvySpritesheet_63
       rect:
         serializedVersion: 2
-        x: 0
-        y: 79
+        x: 324
+        y: 73
         width: 24
-        height: 30
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1461,15 +1461,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvySpritesheet_64
+      name: Ivy_WallSlide_Up
       rect:
         serializedVersion: 2
-        x: 24
-        y: 79
+        x: 356
+        y: 73
         width: 24
-        height: 30
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1485,12 +1485,12 @@ TextureImporter:
       name: IvySpritesheet_65
       rect:
         serializedVersion: 2
-        x: 48
-        y: 79
-        width: 24
-        height: 30
+        x: 387
+        y: 74
+        width: 20
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1506,12 +1506,12 @@ TextureImporter:
       name: IvySpritesheet_66
       rect:
         serializedVersion: 2
-        x: 72
-        y: 79
-        width: 24
-        height: 30
+        x: 410
+        y: 74
+        width: 21
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1527,12 +1527,12 @@ TextureImporter:
       name: IvySpritesheet_67
       rect:
         serializedVersion: 2
-        x: 96
-        y: 79
-        width: 24
-        height: 30
+        x: 435
+        y: 74
+        width: 20
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1548,12 +1548,12 @@ TextureImporter:
       name: IvySpritesheet_68
       rect:
         serializedVersion: 2
-        x: 120
-        y: 79
-        width: 24
-        height: 30
+        x: 458
+        y: 74
+        width: 21
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1569,12 +1569,12 @@ TextureImporter:
       name: IvySpritesheet_69
       rect:
         serializedVersion: 2
-        x: 144
-        y: 79
-        width: 24
-        height: 30
+        x: 483
+        y: 74
+        width: 20
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1587,15 +1587,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvySpritesheet_70
+      name: Ivy_WallSlide_DownLeft
       rect:
         serializedVersion: 2
-        x: 168
-        y: 79
-        width: 24
-        height: 30
+        x: 5
+        y: 42
+        width: 23
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1611,12 +1611,12 @@ TextureImporter:
       name: IvySpritesheet_71
       rect:
         serializedVersion: 2
-        x: 192
-        y: 79
-        width: 24
-        height: 30
+        x: 37
+        y: 42
+        width: 23
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1632,12 +1632,12 @@ TextureImporter:
       name: IvySpritesheet_72
       rect:
         serializedVersion: 2
-        x: 216
-        y: 79
-        width: 24
-        height: 30
+        x: 65
+        y: 42
+        width: 22
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1653,12 +1653,12 @@ TextureImporter:
       name: IvySpritesheet_73
       rect:
         serializedVersion: 2
-        x: 240
-        y: 79
-        width: 24
-        height: 30
+        x: 89
+        y: 42
+        width: 22
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1674,12 +1674,12 @@ TextureImporter:
       name: IvySpritesheet_74
       rect:
         serializedVersion: 2
-        x: 264
-        y: 79
+        x: 116
+        y: 42
         width: 24
-        height: 30
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1692,15 +1692,15 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IvySpritesheet_75
+      name: Ivy_Slide_Up
       rect:
         serializedVersion: 2
-        x: 288
-        y: 79
+        x: 148
+        y: 42
         width: 24
-        height: 30
+        height: 27
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1716,12 +1716,12 @@ TextureImporter:
       name: IvySpritesheet_76
       rect:
         serializedVersion: 2
-        x: 312
-        y: 79
-        width: 24
-        height: 30
+        x: 177
+        y: 42
+        width: 21
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1737,12 +1737,12 @@ TextureImporter:
       name: IvySpritesheet_77
       rect:
         serializedVersion: 2
-        x: 336
-        y: 79
-        width: 24
-        height: 30
+        x: 201
+        y: 42
+        width: 21
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1758,12 +1758,12 @@ TextureImporter:
       name: IvySpritesheet_78
       rect:
         serializedVersion: 2
-        x: 360
-        y: 79
-        width: 24
-        height: 30
+        x: 225
+        y: 41
+        width: 20
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1779,12 +1779,12 @@ TextureImporter:
       name: IvySpritesheet_79
       rect:
         serializedVersion: 2
-        x: 384
-        y: 79
-        width: 24
-        height: 30
+        x: 249
+        y: 41
+        width: 20
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1800,12 +1800,12 @@ TextureImporter:
       name: IvySpritesheet_80
       rect:
         serializedVersion: 2
-        x: 408
-        y: 79
-        width: 24
-        height: 30
+        x: 273
+        y: 41
+        width: 21
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1821,12 +1821,12 @@ TextureImporter:
       name: IvySpritesheet_81
       rect:
         serializedVersion: 2
-        x: 432
-        y: 79
-        width: 24
-        height: 30
+        x: 297
+        y: 41
+        width: 21
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1842,12 +1842,12 @@ TextureImporter:
       name: IvySpritesheet_82
       rect:
         serializedVersion: 2
-        x: 456
-        y: 79
+        x: 324
+        y: 41
         width: 24
-        height: 30
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1863,12 +1863,12 @@ TextureImporter:
       name: IvySpritesheet_83
       rect:
         serializedVersion: 2
-        x: 480
-        y: 79
+        x: 356
+        y: 41
         width: 24
-        height: 30
+        height: 28
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1885,11 +1885,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 49
-        width: 24
-        height: 30
+        y: 0
+        width: 202
+        height: 36
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1897,762 +1897,6 @@ TextureImporter:
       bones: []
       spriteID: 8ba9a8f99f9c6c04e8cb0355a43bfdd1
       internalID: 1343546893
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_85
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2fcf36f2adfa56a46bc1f0a720b91164
-      internalID: 874079404
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_86
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 83058b672db4e73418f96437e05578a9
-      internalID: 211569321
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_87
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e177736380615314da92b6808459e6bd
-      internalID: 308976407
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_88
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4b43143bd636af0419781ac5d02c4c25
-      internalID: 587781721
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_89
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6aaeb63035f92a3468abe4e8e9d0a449
-      internalID: 1652362637
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_90
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e1bae6296b8eb7443984a112a5ae1ff2
-      internalID: 1319443805
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_91
-      rect:
-        serializedVersion: 2
-        x: 168
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d968d5a90a7b9f2438f14f793b8b45a0
-      internalID: -474145027
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_92
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 45d3fe16353ec9141b04596f7568c0a6
-      internalID: -2047811323
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_93
-      rect:
-        serializedVersion: 2
-        x: 216
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e6caa68cdc86164459374849b884aeed
-      internalID: 367201929
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_94
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0d46b43b73811354387fb480eeec5ca2
-      internalID: 1125266422
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_95
-      rect:
-        serializedVersion: 2
-        x: 264
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 978e008a8b88c0445a2140de90d7aca1
-      internalID: 312958629
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_96
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6b2438c893358f24d96557f1a22b7230
-      internalID: -705883740
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_97
-      rect:
-        serializedVersion: 2
-        x: 312
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 630aa66a49d757644a97d58794e33f23
-      internalID: 1598897031
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_98
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a6243ce32bcc06a4593f77c64d008de1
-      internalID: 1595521557
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_99
-      rect:
-        serializedVersion: 2
-        x: 360
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: e9d67ef6fb7d30141810293369e10067
-      internalID: -177620094
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_100
-      rect:
-        serializedVersion: 2
-        x: 384
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 2de8443d12525d141b728aa5dc66a060
-      internalID: -79907605
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_101
-      rect:
-        serializedVersion: 2
-        x: 408
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9c48e9087b3f28b4d8660619782855b5
-      internalID: -560029268
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_102
-      rect:
-        serializedVersion: 2
-        x: 432
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d2fd572da9d664840b0038d420e29dfd
-      internalID: -235410983
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_103
-      rect:
-        serializedVersion: 2
-        x: 456
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: fd90f98a47b6e7645a2aa520aa09ec73
-      internalID: 1996050028
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_104
-      rect:
-        serializedVersion: 2
-        x: 480
-        y: 49
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 657b784ed1108b24e951735279bb22a6
-      internalID: -528768206
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_105
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 19
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6e6a441b29fc74a43adccef97b430631
-      internalID: -1499505964
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_106
-      rect:
-        serializedVersion: 2
-        x: 24
-        y: 19
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6ea075f369e4a1242acbe748b6492c72
-      internalID: -1315364007
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_107
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 19
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8b14e3c2b782c0d49ba07bf90d8e92f4
-      internalID: 1593127734
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_108
-      rect:
-        serializedVersion: 2
-        x: 72
-        y: 19
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5bb71e223a984764e92070b1a2f5c920
-      internalID: -368384562
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_109
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 19
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 652329903e7c3314e9568696217ea6f4
-      internalID: 1853767241
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_110
-      rect:
-        serializedVersion: 2
-        x: 120
-        y: 19
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6d3d3443307f3eb479338cccf630f012
-      internalID: 260286521
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_111
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 19
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: b18effdf0c5fd484fa95930929febdc2
-      internalID: -14920930
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_112
-      rect:
-        serializedVersion: 2
-        x: 168
-        y: 19
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: af42b5c1a0d8c2a4582f2f68eb1ab9ec
-      internalID: -1170035193
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_113
-      rect:
-        serializedVersion: 2
-        x: 192
-        y: 19
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0c590d15b523a5044a9759ac5b1fd55a
-      internalID: 537084810
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_114
-      rect:
-        serializedVersion: 2
-        x: 216
-        y: 19
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 63c0ecc952f91044d95a20821cb430a7
-      internalID: -1187600869
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_115
-      rect:
-        serializedVersion: 2
-        x: 240
-        y: 19
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3a1cf0c5a1af6474388d54439f561055
-      internalID: 2104094475
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_116
-      rect:
-        serializedVersion: 2
-        x: 264
-        y: 19
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 85ffeadeae53e394d8884b4672bd4a87
-      internalID: -166056676
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_117
-      rect:
-        serializedVersion: 2
-        x: 288
-        y: 19
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9ca720f311233854aac4c44c3b463542
-      internalID: 1497317973
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_118
-      rect:
-        serializedVersion: 2
-        x: 312
-        y: 19
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 56515291cdef8fd4ab8fc09298638af0
-      internalID: 249147150
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_119
-      rect:
-        serializedVersion: 2
-        x: 336
-        y: 19
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 382bd85a3382eb14da2f14ffc06464c4
-      internalID: -2027205095
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: IvySpritesheet_120
-      rect:
-        serializedVersion: 2
-        x: 360
-        y: 19
-        width: 24
-        height: 30
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: d458a0c71ea9b9949865a8ce48d2b029
-      internalID: -276593175
       vertices: []
       indices: 
       edges: []
@@ -2668,127 +1912,91 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      IvySpritesheet_73: 214398864
-      IvySpritesheet_38: -228177063
-      IvySpritesheet_33: -1991189537
-      IvySpritesheet_22: -1700694389
       IvySpritesheet_0: -87558235
-      IvySpritesheet_97: 1598897031
-      IvySpritesheet_76: 719346039
-      IvySpritesheet_83: 888663501
-      IvySpritesheet_86: 211569321
-      IvySpritesheet_118: 249147150
-      IvySpritesheet_14: 1492615446
       IvySpritesheet_1: -476352661
-      IvySpritesheet_94: 1125266422
-      IvySpritesheet_60: 566661834
-      IvySpritesheet_93: 367201929
-      IvySpritesheet_104: -528768206
-      IvySpritesheet_4: -272200565
-      IvySpritesheet_90: 1319443805
-      IvySpritesheet_91: -474145027
-      IvySpritesheet_17: -2134591867
-      IvySpritesheet_61: 752191590
-      IvySpritesheet_72: -1760979162
-      IvySpritesheet_9: 1866170626
-      IvySpritesheet_79: 2066861741
-      IvySpritesheet_99: -177620094
-      IvySpritesheet_21: 894105783
-      IvySpritesheet_89: 1652362637
-      IvySpritesheet_29: 1590955783
-      IvySpritesheet_107: 1593127734
-      IvySpritesheet_36: 963465216
-      IvySpritesheet_68: -390272618
-      IvySpritesheet_115: 2104094475
-      IvySpritesheet_119: -2027205095
-      IvySpritesheet_106: -1315364007
-      IvySpritesheet_96: -705883740
-      IvySpritesheet_55: 1862073236
-      IvySpritesheet_41: -1325071125
-      IvySpritesheet_28: 1662862387
-      IvySpritesheet_109: 1853767241
-      IvySpritesheet_100: -79907605
-      IvySpritesheet_46: 2009303503
-      IvySpritesheet_111: -14920930
-      IvySpritesheet_7: 1067979423
-      IvySpritesheet_27: 1764542017
-      IvySpritesheet_18: -1999040568
-      IvySpritesheet_49: 129265806
-      IvySpritesheet_114: -1187600869
-      IvySpritesheet_11: 1424914537
-      IvySpritesheet_88: 587781721
-      IvySpritesheet_58: 1180999447
-      IvySpritesheet_108: -368384562
-      IvySpritesheet_13: -221812127
-      IvySpritesheet_67: 1955209729
-      IvySpritesheet_85: 874079404
-      IvySpritesheet_37: 853553458
-      IvySpritesheet_39: 561206090
-      IvySpritesheet_117: 1497317973
-      IvySpritesheet_64: 1001886319
-      IvySpritesheet_25: 908921746
-      IvySpritesheet_95: 312958629
-      IvySpritesheet_66: -1707194258
-      IvySpritesheet_2: 1505148663
-      IvySpritesheet_80: 1613250958
-      IvySpritesheet_40: -1882510088
-      IvySpritesheet_24: -1974227433
-      IvySpritesheet_63: 969411663
-      IvySpritesheet_102: -235410983
-      IvySpritesheet_103: 1996050028
-      IvySpritesheet_105: -1499505964
-      IvySpritesheet_50: 897662015
-      IvySpritesheet_6: 1369685306
-      IvySpritesheet_12: -978619684
       IvySpritesheet_10: -1811090725
-      IvySpritesheet_23: -1574259404
-      IvySpritesheet_110: 260286521
-      IvySpritesheet_47: -1336051489
-      IvySpritesheet_77: 264432696
-      IvySpritesheet_69: 1963688397
+      IvySpritesheet_11: 1424914537
+      IvySpritesheet_12: -978619684
+      IvySpritesheet_13: -221812127
       IvySpritesheet_15: -906121451
-      IvySpritesheet_71: 735986691
-      IvySpritesheet_30: 2029856855
-      IvySpritesheet_75: -1779733464
-      IvySpritesheet_62: 608363265
-      IvySpritesheet_87: 308976407
-      IvySpritesheet_19: 2121100394
-      IvySpritesheet_8: -688214964
-      IvySpritesheet_65: -1751360603
-      IvySpritesheet_74: -554313824
-      IvySpritesheet_34: 265663110
-      IvySpritesheet_43: -742364986
-      IvySpritesheet_112: -1170035193
-      IvySpritesheet_3: 740652716
-      IvySpritesheet_84: 1343546893
-      IvySpritesheet_42: 1911498221
-      IvySpritesheet_26: -1855409830
-      IvySpritesheet_101: -560029268
-      IvySpritesheet_44: 1317715597
-      IvySpritesheet_59: 40792286
-      IvySpritesheet_45: 1322463707
-      IvySpritesheet_57: 720111850
-      IvySpritesheet_78: -147727883
-      IvySpritesheet_51: 406933261
+      IvySpritesheet_16: 636892444
+      IvySpritesheet_17: -2134591867
+      IvySpritesheet_18: -1999040568
+      IvySpritesheet_2: 1505148663
       IvySpritesheet_20: -1515488716
-      IvySpritesheet_98: 1595521557
-      IvySpritesheet_56: 2133736254
-      IvySpritesheet_48: 1589031029
-      IvySpritesheet_54: -718049788
-      IvySpritesheet_92: -2047811323
-      IvySpritesheet_120: -276593175
-      IvySpritesheet_113: 537084810
-      IvySpritesheet_35: 1823701350
+      IvySpritesheet_21: 894105783
+      IvySpritesheet_22: -1700694389
+      IvySpritesheet_23: -1574259404
+      IvySpritesheet_24: -1974227433
+      IvySpritesheet_25: 908921746
+      IvySpritesheet_26: -1855409830
+      IvySpritesheet_28: 1662862387
+      IvySpritesheet_3: 740652716
+      IvySpritesheet_30: 2029856855
       IvySpritesheet_32: 1299736094
-      IvySpritesheet_116: -166056676
+      IvySpritesheet_33: -1991189537
+      IvySpritesheet_34: 265663110
+      IvySpritesheet_35: 1823701350
+      IvySpritesheet_36: 963465216
+      IvySpritesheet_37: 853553458
+      IvySpritesheet_38: -228177063
+      IvySpritesheet_39: 561206090
+      IvySpritesheet_4: -272200565
+      IvySpritesheet_41: -1325071125
+      IvySpritesheet_42: 1911498221
+      IvySpritesheet_43: -742364986
+      IvySpritesheet_44: 1317715597
+      IvySpritesheet_45: 1322463707
+      IvySpritesheet_46: 2009303503
+      IvySpritesheet_47: -1336051489
+      IvySpritesheet_48: 1589031029
+      IvySpritesheet_49: 129265806
+      IvySpritesheet_5: -158687267
+      IvySpritesheet_50: 897662015
+      IvySpritesheet_51: 406933261
+      IvySpritesheet_52: 1311254671
+      IvySpritesheet_54: -718049788
+      IvySpritesheet_55: 1862073236
+      IvySpritesheet_56: 2133736254
+      IvySpritesheet_57: 720111850
+      IvySpritesheet_58: 1180999447
+      IvySpritesheet_59: 40792286
+      IvySpritesheet_6: 1369685306
+      IvySpritesheet_60: 566661834
+      IvySpritesheet_61: 752191590
+      IvySpritesheet_62: 608363265
+      IvySpritesheet_63: 969411663
+      IvySpritesheet_65: -1751360603
+      IvySpritesheet_66: -1707194258
+      IvySpritesheet_67: 1955209729
+      IvySpritesheet_68: -390272618
+      IvySpritesheet_69: 1963688397
+      IvySpritesheet_7: 1067979423
+      IvySpritesheet_71: 735986691
+      IvySpritesheet_72: -1760979162
+      IvySpritesheet_73: 214398864
+      IvySpritesheet_74: -554313824
+      IvySpritesheet_76: 719346039
+      IvySpritesheet_77: 264432696
+      IvySpritesheet_78: -147727883
+      IvySpritesheet_79: 2066861741
+      IvySpritesheet_8: -688214964
+      IvySpritesheet_80: 1613250958
       IvySpritesheet_81: -1699331347
       IvySpritesheet_82: -2003909065
-      IvySpritesheet_16: 636892444
-      IvySpritesheet_5: -158687267
-      IvySpritesheet_31: 844165764
-      IvySpritesheet_53: -114559314
-      IvySpritesheet_52: 1311254671
-      IvySpritesheet_70: -1177728919
+      IvySpritesheet_83: 888663501
+      IvySpritesheet_84: 1343546893
+      IvySpritesheet_9: 1866170626
+      Ivy_Slide_Down: 1590955783
+      Ivy_Slide_DownLeft: 2121100394
+      Ivy_Slide_Left: 1764542017
+      Ivy_Slide_Up: -1779733464
+      Ivy_Slide_UpLeft: 844165764
+      Ivy_WallSlide_Down: -1882510088
+      Ivy_WallSlide_DownLeft: -1177728919
+      Ivy_WallSlide_Left: -114559314
+      Ivy_WallSlide_Up: 1001886319
+      Ivy_WallSlide_UpLeft: 1492615446
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

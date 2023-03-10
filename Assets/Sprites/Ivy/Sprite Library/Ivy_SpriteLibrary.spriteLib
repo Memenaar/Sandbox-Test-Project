@@ -168,4 +168,224 @@ MonoBehaviour:
       m_SpriteOverride: {fileID: 478960401, guid: f012b6ecacb62f84eb4ef2c58e99d8ea, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 5
+  - m_Name: Idle_Up
+    m_Hash: 1065979461
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Ivy_Idle_Up
+      m_Hash: 255239814
+      m_Sprite: {fileID: 1617242727, guid: d91d09239627372488438f3b26288d4f, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1617242727, guid: d91d09239627372488438f3b26288d4f, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: Idle_UpLeft
+    m_Hash: 936352124
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Ivy_Idle_UpLeft
+      m_Hash: 372313223
+      m_Sprite: {fileID: 1402414405, guid: d91d09239627372488438f3b26288d4f, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1402414405, guid: d91d09239627372488438f3b26288d4f, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: Idle_Left
+    m_Hash: 367294619
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Ivy_Idle_Left
+      m_Hash: 8791123
+      m_Sprite: {fileID: 319224378, guid: d91d09239627372488438f3b26288d4f, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 319224378, guid: d91d09239627372488438f3b26288d4f, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: Idle_DownLeft
+    m_Hash: 97410270
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Ivy_Idle_DownLeft
+      m_Hash: 853762717
+      m_Sprite: {fileID: 1505245605, guid: d91d09239627372488438f3b26288d4f, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1505245605, guid: d91d09239627372488438f3b26288d4f, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: Idle_Down
+    m_Hash: 863768520
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Ivy_Idle_Down
+      m_Hash: 639521536
+      m_Sprite: {fileID: 2041588747, guid: d91d09239627372488438f3b26288d4f, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2041588747, guid: d91d09239627372488438f3b26288d4f, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: Jump_Up
+    m_Hash: 474795003
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: IvyJump_0
+      m_Hash: 507632657
+      m_Sprite: {fileID: -683547099, guid: 4f9e49d95a1c6ab499cd1a6f380ca29b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -683547099, guid: 4f9e49d95a1c6ab499cd1a6f380ca29b, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: Jump_UpLeft
+    m_Hash: 90259111
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: IvyJump_1
+      m_Hash: 692513927
+      m_Sprite: {fileID: -1803419798, guid: 4f9e49d95a1c6ab499cd1a6f380ca29b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1803419798, guid: 4f9e49d95a1c6ab499cd1a6f380ca29b, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: Jump_Left
+    m_Hash: 689237367
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: IvyJump_2
+      m_Hash: 810532157
+      m_Sprite: {fileID: -148414136, guid: 4f9e49d95a1c6ab499cd1a6f380ca29b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -148414136, guid: 4f9e49d95a1c6ab499cd1a6f380ca29b, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: Jump_DownLeft
+    m_Hash: 800064751
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: IvyJump_3
+      m_Hash: 122195371
+      m_Sprite: {fileID: -1207434296, guid: 4f9e49d95a1c6ab499cd1a6f380ca29b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1207434296, guid: 4f9e49d95a1c6ab499cd1a6f380ca29b, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: Jump_Down
+    m_Hash: 260872740
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: IvyJump_4
+      m_Hash: 422320136
+      m_Sprite: {fileID: -1380864309, guid: 4f9e49d95a1c6ab499cd1a6f380ca29b, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1380864309, guid: 4f9e49d95a1c6ab499cd1a6f380ca29b, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: WallSlide_Up
+    m_Hash: 1002914144
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Ivy_WallSlide_Up
+      m_Hash: 298423393
+      m_Sprite: {fileID: 1001886319, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1001886319, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: WallSlide_UpLeft
+    m_Hash: 1056912063
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Ivy_WallSlide_UpLeft
+      m_Hash: 137971289
+      m_Sprite: {fileID: 1492615446, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1492615446, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: WallSlide_Left
+    m_Hash: 919401235
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Ivy_WallSlide_Left
+      m_Hash: 426692103
+      m_Sprite: {fileID: -114559314, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -114559314, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: WallSlide_DownLeft
+    m_Hash: 605891331
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Ivy_WallSlide_DownLeft
+      m_Hash: 995212426
+      m_Sprite: {fileID: -1177728919, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1177728919, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: WallSlide_Down
+    m_Hash: 273974336
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Ivy_WallSlide_Down
+      m_Hash: 1073133908
+      m_Sprite: {fileID: -1882510088, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1882510088, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: Slide_Up
+    m_Hash: 218444883
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Ivy_Slide_Up
+      m_Hash: 253237361
+      m_Sprite: {fileID: -1779733464, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: -1779733464, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: Slide_UpLeft
+    m_Hash: 362114110
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Ivy_Slide_UpLeft
+      m_Hash: 1067170111
+      m_Sprite: {fileID: 844165764, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 844165764, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: Slide_Left
+    m_Hash: 583574866
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Ivy_Slide_Left
+      m_Hash: 933399948
+      m_Sprite: {fileID: 1764542017, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1764542017, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: Slide_DownLeft
+    m_Hash: 173446544
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Ivy_Slide_DownLeft
+      m_Hash: 636790916
+      m_Sprite: {fileID: 2121100394, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 2121100394, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
+  - m_Name: Slide_Down
+    m_Hash: 72405505
+    m_CategoryList: []
+    m_OverrideEntries:
+    - m_Name: Ivy_Slide_Down
+      m_Hash: 289077983
+      m_Sprite: {fileID: 1590955783, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+      m_FromMain: 0
+      m_SpriteOverride: {fileID: 1590955783, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+    m_FromMain: 0
+    m_EntryOverrideCount: 1
   m_PrimaryLibraryGUID: 
