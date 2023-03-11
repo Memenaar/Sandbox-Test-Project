@@ -75,25 +75,25 @@ namespace SpriteController
 
             // Player Action initialization
             _playerActions = new PlayerActions();
-            _playerActions.WorldGameplay.RunStart.performed += x => RunPressed();
-            _playerActions.WorldGameplay.RunFinish.performed += x => RunReleased();
-            _playerActions.WorldGameplay.Jump.performed += x => JumpLogic();
+            _playerActions.TownState.RunStart.performed += x => RunPressed();
+            _playerActions.TownState.RunFinish.performed += x => RunReleased();
+            _playerActions.TownState.Jump.performed += x => JumpLogic();
         }
         
         void OnEnable()
         {
-            _playerActions.WorldGameplay.Enable();
+            _playerActions.TownState.Enable();
         }
         
         void OnDisable()
         {
-            _playerActions.WorldGameplay.Disable();
+            _playerActions.TownState.Disable();
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (_playerActions.WorldGameplay.Jump.WasPressedThisFrame())
+            if (_playerActions.TownState.Jump.WasPressedThisFrame())
             {
                 // Skip ahead to movement if Jump was pressed this frame.
                 if (_charController.isGrounded) 
@@ -107,7 +107,7 @@ namespace SpriteController
             }
             else
             {
-                moveInput = _playerActions.WorldGameplay.Movement.ReadValue<Vector2>(); // Gets movement input
+                moveInput = _playerActions.TownState.Movement.ReadValue<Vector2>(); // Gets movement input
 
                 if (_charController.isGrounded) // Executed if player's character controller is grounded.
                 {

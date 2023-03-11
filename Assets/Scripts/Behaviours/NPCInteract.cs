@@ -23,18 +23,18 @@ public class NPCInteract : MonoBehaviour
 
     void OnEnable()
     {
-        _playerActions.WorldGameplay.Enable();
+        _playerActions.TownState.Enable();
     }
     void OnDisable()
     {
-        _playerActions.WorldGameplay.Disable();
+        _playerActions.TownState.Disable();
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        if (_playerActions.WorldGameplay.Interact.triggered && playerProximity)
+        if (_playerActions.TownState.Interact.triggered && playerProximity)
         {
             _player.transform.Find("Navigator").LookAt(_navTransform.transform);
             // Insert dialogue call here

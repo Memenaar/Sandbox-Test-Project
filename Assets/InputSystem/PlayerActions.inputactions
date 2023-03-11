@@ -2,7 +2,7 @@
     "name": "PlayerActions",
     "maps": [
         {
-            "name": "WorldGameplay",
+            "name": "TownState",
             "id": "d56e2fd9-6ff5-42be-840b-b58014784987",
             "actions": [
                 {
@@ -166,7 +166,7 @@
                     "name": "",
                     "id": "6de6910e-eb8d-49fa-9dde-d20d5627a910",
                     "path": "<Keyboard>/space",
-                    "interactions": "Press",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Jump",
@@ -247,6 +247,34 @@
                     "processors": "",
                     "groups": "",
                     "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "DungeonState",
+            "id": "1b0a26c7-ce54-41e5-8dc1-47bdd477556c",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "c41eea77-7326-47a2-8c99-ad249cfac985",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "1815f922-233c-43d0-ae47-1892b230b5a7",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

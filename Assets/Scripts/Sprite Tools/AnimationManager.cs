@@ -14,7 +14,7 @@ namespace SpriteController {
             [Header("Components")]
             protected SpriteRenderer spriteRenderer;
             protected SpriteManager spriteManager;
-            protected CharMovement charMovement;
+            protected PlayerStateMachine charMovement;
             protected DirectionTracker directionTracker;
             public Animator animator;
 
@@ -24,7 +24,7 @@ namespace SpriteController {
             {
                 spriteManager = GetComponent<SpriteManager>();
                 spriteRenderer = GetComponent<SpriteRenderer>();
-                charMovement = GetComponentInParent<CharMovement>();
+                charMovement = GetComponentInParent<PlayerStateMachine>();
                 animator = GetComponent<Animator>();
                 directionTracker = transform.parent.Find("Navigator").GetComponent<DirectionTracker>();
             }

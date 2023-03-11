@@ -5474,6 +5474,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2104093549 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 234923351238863593, guid: 3301dcee8f928ec4dbc689e6581235cf, type: 3}
+  m_PrefabInstance: {fileID: 234923351819688109}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2104093552
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2104093549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 532f02206a7872649a02babe1816e9a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _charController: {fileID: 0}
+  ySpeed: 0
+  velocity: {x: 0, y: 0, z: 0}
+  priorVelocity: {x: 0, y: 0, z: 0}
+  heading: {x: 0, y: 0, z: 0}
+  headingRotated: {x: 0, y: 0, z: 0}
+  _currentMovement: {x: 0, y: 0, z: 0}
+  turnLerp: 0
+  acceleration: 15
+  groundDrag: 20
+  speedDial: 25
+  walkMax: 8
+  runMax: 12
+  walkAccel: 150
+  runAccel: 30
+  walkDrag: 500
+  runDrag: 20
+  walkJump: 7.5
+  runJump: 10
+  _isJumpPressed: 0
+  jumpSpeed: 7.5
+  _wallNormal: {x: 0, y: 0, z: 0}
+  _jumpQueued: 0
+  playerGrounded: 0
+  _jumpState: 0
+  _slideState: 0
+  _moveState: 0
+  _appliedMove: {x: 0, y: 0, z: 0}
 --- !u!1 &2139733727
 GameObject:
   m_ObjectHideFlags: 0
@@ -5582,6 +5627,14 @@ PrefabInstance:
     - target: {fileID: 234923351238863590, guid: 3301dcee8f928ec4dbc689e6581235cf, type: 3}
       propertyPath: runMax
       value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 234923351238863590, guid: 3301dcee8f928ec4dbc689e6581235cf, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 234923351238863591, guid: 3301dcee8f928ec4dbc689e6581235cf, type: 3}
+      propertyPath: m_SkinWidth
+      value: 0.04
       objectReference: {fileID: 0}
     - target: {fileID: 234923351238863593, guid: 3301dcee8f928ec4dbc689e6581235cf, type: 3}
       propertyPath: m_Name
