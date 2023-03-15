@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerHangState : PlayerWallState
 {
-    public PlayerHangState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
-        : base (currentContext, playerStateFactory) {}
+    public PlayerHangState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, PlayerBaseState _parentState)
+        : base (currentContext, playerStateFactory) 
+        {
+            _parent = _parentState;
+        }
 
     public override void EnterState(){}
 

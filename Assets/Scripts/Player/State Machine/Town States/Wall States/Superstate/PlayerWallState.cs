@@ -5,9 +5,15 @@ using UnityEngine;
 public class PlayerWallState : PlayerBaseState
 {
     public PlayerWallState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
-        : base (currentContext, playerStateFactory) {}
+        : base (currentContext, playerStateFactory) 
+        {
+            _isRootState = true;
+        }
 
-    public override void EnterState(){}
+    public override void EnterState()
+    {
+        InitializeSubState();
+    }
 
     public override void UpdateState(){}
 

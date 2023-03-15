@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerFallState : PlayerAirborneState
 {
-    public PlayerFallState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
-        : base (currentContext, playerStateFactory) {}
+    public PlayerFallState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, PlayerBaseState _parentState)
+        : base (currentContext, playerStateFactory)
+        {
+            _parent = _parentState;
+        }
 
     private const float HardLandingThreshold = 5f;
 
@@ -20,7 +23,10 @@ public class PlayerFallState : PlayerAirborneState
         CheckSwitchStates();
     }
 
-    public override void ExitState(){}
+    public override void ExitState()
+    {
+        Debug.Log("Exiting Fall State");
+    }
 
     public override void InitializeSubState(){}
 
@@ -30,10 +36,10 @@ public class PlayerFallState : PlayerAirborneState
         {
             if (_ctx.YSpeed > HardLandingThreshold) 
             {
-                SwitchState(_factory.HardLanding());
+                //SwitchState(_factory.HardLanding());
             } else
             {
-                SwitchState(_factory.Landing());
+                //SwitchState(_factory.Landing());
             }
 
         }

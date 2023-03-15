@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerWallJumpState : PlayerAirborneState
 {
-    public PlayerWallJumpState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
-        : base (currentContext, playerStateFactory) {}
+    public PlayerWallJumpState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, PlayerBaseState _parentState)
+        : base (currentContext, playerStateFactory)
+        {
+            _parent = _parentState;
+        }
 
     #region Method Overrides
     public override void EnterState()

@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerHardLandingState : PlayerGroundedState
 {
-public PlayerHardLandingState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
-        : base (currentContext, playerStateFactory) {}
+    public PlayerHardLandingState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, PlayerBaseState _parentState)
+        : base (currentContext, playerStateFactory)
+        {
+            _parent = _parentState;
+        }
 
     public override void EnterState()
     {
@@ -14,7 +17,10 @@ public PlayerHardLandingState(PlayerStateMachine currentContext, PlayerStateFact
 
     public override void UpdateState(){}
 
-    public override void ExitState(){}
+    public override void ExitState()
+    {
+        Debug.Log("Exiting Hard Landing State");
+    }
 
     public override void InitializeSubState(){}
 

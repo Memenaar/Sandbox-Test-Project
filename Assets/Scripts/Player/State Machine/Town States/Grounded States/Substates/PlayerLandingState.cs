@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerLandingState : PlayerGroundedState
 {
-public PlayerLandingState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
-        : base (currentContext, playerStateFactory) {}
+    public PlayerLandingState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, PlayerBaseState _parentState)
+        : base (currentContext, playerStateFactory)
+        {
+            _parent = _parentState;
+        }
 
     public override void EnterState()
     {
@@ -16,14 +19,17 @@ public PlayerLandingState(PlayerStateMachine currentContext, PlayerStateFactory 
 
     public override void UpdateState(){}
 
-    public override void ExitState(){}
+    public override void ExitState()
+    {
+        Debug.Log("Exiting Landing State");
+    }
 
     public override void InitializeSubState(){}
 
     public override void CheckSwitchStates(){
         if (_ctx.IsJumpQueued == true)
         {
-            SwitchState(_factory.Jump());
+            //SwitchState(_factory.Jump());
         } else
         {
             if (_ctx.Velocity == Vector3.zero)
@@ -31,10 +37,10 @@ public PlayerLandingState(PlayerStateMachine currentContext, PlayerStateFactory 
                 SwitchState(_factory.Idle());
             } else if (_ctx.Velocity.magnitude > _ctx.WalkMax)
             {
-                SwitchState(_factory.Run());
+                //SwitchState(_factory.Run());
             } else
             {
-                SwitchState(_factory.Walk());
+                //SwitchState(_factory.Walk());
             }
         }
     }

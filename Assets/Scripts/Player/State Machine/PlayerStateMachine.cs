@@ -19,12 +19,12 @@ public class PlayerStateMachine : MonoBehaviour
         [Header("Movement Variables")] // Variables governing character movement and orientation
         public float ySpeed;
         private float originalStepOffset;
-        private Vector2 moveInput;
+        public Vector2 _moveInput;
         private Vector3 charDirection;
         public Vector3 velocity;
         public Vector3 priorVelocity;
-        public Vector3 heading;
-        public Vector3 headingRotated;
+        public Vector3 _heading;
+        public Vector3 _headingRotated;
         public Vector3 _currentMovement;
         public float turnLerp;
         public float acceleration;
@@ -71,7 +71,8 @@ public class PlayerStateMachine : MonoBehaviour
         public Vector3 _appliedMove = Vector3.zero;
 
         // State Variables
-        PlayerBaseState _currentState;
+        PlayerBaseState _currentSuperState;
+        PlayerBaseState _currentSubState;
         PlayerStateFactory _states;
 
     #endregion
@@ -79,7 +80,8 @@ public class PlayerStateMachine : MonoBehaviour
     #region Getters & Setters
 
         // State
-        public PlayerBaseState CurrentState { get { return _currentState; } set { _currentState = value; }}
+        public PlayerBaseState CurrentSuperState { get { return _currentSuperState; } set { _currentSuperState = value; }}
+        public PlayerBaseState CurrentSubState { get { return _currentSubState; } set { _currentSubState = value; }}
 
         // Objects & Components
         public Camera Camera { get { return _camera; }}
@@ -94,8 +96,8 @@ public class PlayerStateMachine : MonoBehaviour
         // Movement
         public float YSpeed { get { return ySpeed; } set { ySpeed = value; }}
         private float OriginalStepOffset { get { return originalStepOffset; }}
-        private Vector2 MoveInput { get { return moveInput; }}
-        private Vector3 CharDirection { get { return charDirection; }}
+        public Vector2 MoveInput { get { return _moveInput; }}
+        public Vector3 CharDirection { get { return charDirection; }}
         public Vector3 Velocity { get { return velocity; } set { velocity = value; }}
         public float TurnLerp { get { return turnLerp; } set { turnLerp = value; }}
         public float Acceleration { get { return acceleration; }}
@@ -112,18 +114,16 @@ public class PlayerStateMachine : MonoBehaviour
         public bool IsJumpQueued { get { return _isJumpQueued; } set { _isJumpQueued = value; }}
         
         // Orientation
-        public Vector3 Heading { get { return heading;}}
-        public Vector3 HeadingRotated { get { return headingRotated; }}
+        public Vector3 Heading { get { return _heading;} set { _heading = value; }}
+        public Vector3 HeadingRotated { get { return _headingRotated; }}
 
 
     #endregion
 
     void Awake()
         {
-            // Setup State
-            _states = new PlayerStateFactory(this);
-            _currentState = _states.Grounded();
-            _currentState.EnterState();
+            InitializeMovement();
+            InitializeStates();
 
             // Player Action initialization
             _playerActions = new PlayerActions();
@@ -131,8 +131,8 @@ public class PlayerStateMachine : MonoBehaviour
             _playerActions.TownState.RunFinish.performed += x => RunReleased();
             _playerActions.TownState.Jump.started += onJump;
             _playerActions.TownState.Jump.canceled += onJump;
-
-            InitializeMovement();
+            _playerActions.TownState.Movement.performed += x => OnMove();
+            _playerActions.TownState.Movement.canceled += x => OnMove();
 
             // Value Initialization
             groundDrag = walkDrag;
@@ -153,13 +153,23 @@ public class PlayerStateMachine : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _currentState.UpdateState();
+        _currentSuperState.UpdateStates();
+        InputToHeading();
         MoveChar();
     }
 
     void FixedUpdate()
     {
 
+    }
+
+    protected void InitializeStates() // Initialize needed game objects, components, and variables.
+    {
+        // Set the player's superstate to Grounded to start for simplicity.
+        _currentSuperState = _states.Grounded();
+
+        // Enter the selected superstate
+        _currentSuperState.EnterStates();
     }
 
     protected void InitializeMovement() // Initialize needed game objects, components, and variables.
@@ -169,16 +179,19 @@ public class PlayerStateMachine : MonoBehaviour
         _navigator = gameObject.transform.Find("Navigator").GetComponent<Transform>();
         _charController = GetComponent<CharacterController>();
         originalStepOffset = _charController.stepOffset;
+        
+        // Initialize Player State Factory
+        _states = new PlayerStateFactory(this);
     }
 
     private void onJump(InputAction.CallbackContext context)
     { 
         _isJumpPressed = context.ReadValueAsButton();
-        Debug.Log("Is jump pressed? " + _isJumpPressed);
     }
     
     private void RunPressed() {_moveState = MoveState.Run;}
     private void RunReleased() {_moveState = MoveState.Walk;}
+    private void OnMove() {_moveInput = _playerActions.TownState.Movement.ReadValue<Vector2>();}
 
     private void RotateNavigator()
     {
@@ -186,9 +199,9 @@ public class PlayerStateMachine : MonoBehaviour
         {
             if (_charController.isGrounded)
             {
-                if (headingRotated != Vector3.zero)
+                if (_headingRotated != Vector3.zero)
                 {
-                    _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(headingRotated.normalized), turnLerp);
+                    _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(_headingRotated.normalized), turnLerp);
                 }
             } else
             {
@@ -199,42 +212,68 @@ public class PlayerStateMachine : MonoBehaviour
             }
         }else 
         { 
-            if (headingRotated!= Vector3.zero) _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(headingRotated.normalized), turnLerp); 
+            if (_headingRotated!= Vector3.zero) _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(_headingRotated.normalized), turnLerp); 
         }
     }
 
     private void MoveChar()
+    {
+        float speedLimit = _moveState == MoveState.Run ? runMax : walkMax;
+        float dragFactor = _moveState == MoveState.Run ? runDrag : walkDrag;
+        float accelFactor = _moveState == MoveState.Run ? runAccel : walkAccel;
+        if (_headingRotated != Vector3.zero)
         {
-            float speedLimit = _moveState == MoveState.Run ? runMax : walkMax;
-            float dragFactor = _moveState == MoveState.Run ? runDrag : walkDrag;
-            float accelFactor = _moveState == MoveState.Run ? runAccel : walkAccel;
-            if (headingRotated != Vector3.zero)
+            if(_charController.isGrounded)
             {
-                if(_charController.isGrounded)
-                {
-                    velocity = Vector3.MoveTowards(velocity, new Vector3(speedLimit * headingRotated.x, 0.0f, speedLimit * headingRotated.z), acceleration * Time.deltaTime);
-                }
-                else if(!_charController.isGrounded && _jumpState == JumpState.StandingJump)
-                {
-                    velocity = Vector3.MoveTowards(velocity, new Vector3(speedLimit * headingRotated.x, 0.0f, speedLimit * headingRotated.z), acceleration * Time.deltaTime);
-                }
-                else
-                {
-                    velocity = Vector3.MoveTowards(velocity, new Vector3(velocity.x, velocity.y, velocity.z), acceleration * Time.deltaTime);
-                }
+                velocity = Vector3.MoveTowards(velocity, new Vector3(speedLimit * _headingRotated.x, 0.0f, speedLimit * _headingRotated.z), acceleration * Time.deltaTime);
+            }
+            else if(!_charController.isGrounded && _jumpState == JumpState.StandingJump)
+            {
+                velocity = Vector3.MoveTowards(velocity, new Vector3(speedLimit * _headingRotated.x, 0.0f, speedLimit * _headingRotated.z), acceleration * Time.deltaTime);
             }
             else
             {
-                velocity = Vector3.MoveTowards(velocity, Vector3.zero, groundDrag * Time.deltaTime);
+                velocity = Vector3.MoveTowards(velocity, new Vector3(velocity.x, velocity.y, velocity.z), acceleration * Time.deltaTime);
             }
-            
-           
-            Vector3 _appliedMove = velocity;
-            //move = AdjustVelocityToSlope(move);
-            _appliedMove.y += ySpeed;
-
-            _charController.Move(_appliedMove * Time.deltaTime);
-        
-            RotateNavigator();
         }
+        else
+        {
+            velocity = Vector3.MoveTowards(velocity, Vector3.zero, groundDrag * Time.deltaTime);
+        }
+        
+        
+        Vector3 _appliedMove = velocity;
+        _appliedMove = AdjustVelocityToSlope(_appliedMove);
+        _appliedMove.y += ySpeed;
+
+        _charController.Move(_appliedMove * Time.deltaTime);
+    
+        RotateNavigator();
+    }
+
+    private void InputToHeading(bool clampInput = false) // Uses a default value of false for clampInput if one is not provided.
+    {
+        _headingRotated = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * _heading; // Rotate heading relative to camera direction       
+        _headingRotated.Normalize(); // Normalize the rotated heading.
+        if (clampInput) {_headingRotated = _headingRotated * 0.25f;} // Reduces effect of input to 1/4 is clampInput is true.
+    }
+
+    private Vector3 AdjustVelocityToSlope(Vector3 velocity)
+        {
+            var ray = new Ray(transform.position, Vector3.down); // Cast a ray downward from the player's transform
+
+            if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f)) // Generatese hitInfo if the raycast hits something at a max of 0.2f distance
+            {
+                var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal); // Get the rotation of any slope under the player from the raycast's normal
+                var adjustedVelocity = slopeRotation * velocity; // Adjust player velocity to match the rotation of the slope
+
+                if (adjustedVelocity.y < 0) // if the adjust velocity is less than 0 (ie: the slope is downward)
+                {
+                    return adjustedVelocity; // then return the adjust velocity
+                }
+            }
+
+            return velocity; // otherwise return the original velocity.
+        }
+
 }

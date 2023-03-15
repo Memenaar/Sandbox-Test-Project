@@ -5,19 +5,41 @@ using UnityEngine;
 public class PlayerAirborneState : PlayerBaseState
 {
     public PlayerAirborneState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
-        : base (currentContext, playerStateFactory) {}
+        : base (currentContext, playerStateFactory) 
+        {
+            _isRootState = true;
+        }
 
-    public override void EnterState(){}
+    public override void EnterState()
+    {
+        Debug.Log("Hello from the Grounded State!");
+        AirborneGravity();
+        InitializeSubState();
+
+        // If no Substate is set locally 
+        if(_localSubState == null) InitializeSubState();
+    }
 
     public override void UpdateState()
     {
+        CheckSwitchStates();
+        AirborneGravity();
     }
 
-    public override void ExitState(){}
+    public override void ExitState()
+    {
+        Debug.Log("Exiting Airborne State");
+    }
 
-    public override void InitializeSubState(){}
+    public override void InitializeSubState()
+    {
+        if (_ctx.YSpeed <= 0) SetSubState(_factory.Fall());
+    }
 
-    public override void CheckSwitchStates(){}
+    public override void CheckSwitchStates()
+    {
+
+    }
 
     void JumpInputHandler()
     {

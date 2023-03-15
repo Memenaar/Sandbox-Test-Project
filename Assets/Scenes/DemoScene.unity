@@ -312,7 +312,7 @@ Transform:
   m_GameObject: {fileID: 17929698}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 400, y: 1, z: 300}
+  m_LocalScale: {x: 20, y: 1, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -802,6 +802,10 @@ PrefabInstance:
     - target: {fileID: 1562119382739742, guid: c07f24e35f07ce74ba43afa35d48adf7, type: 3}
       propertyPath: m_Name
       value: Rock1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1562119382739742, guid: c07f24e35f07ce74ba43afa35d48adf7, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4243724423293762, guid: c07f24e35f07ce74ba43afa35d48adf7, type: 3}
       propertyPath: m_RootOrder
@@ -5493,10 +5497,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _charController: {fileID: 0}
   ySpeed: 0
+  _moveInput: {x: 0, y: 0}
   velocity: {x: 0, y: 0, z: 0}
   priorVelocity: {x: 0, y: 0, z: 0}
-  heading: {x: 0, y: 0, z: 0}
-  headingRotated: {x: 0, y: 0, z: 0}
+  _heading: {x: 0, y: 0, z: 0}
+  _headingRotated: {x: 0, y: 0, z: 0}
   _currentMovement: {x: 0, y: 0, z: 0}
   turnLerp: 0
   acceleration: 15
@@ -5513,7 +5518,7 @@ MonoBehaviour:
   _isJumpPressed: 0
   jumpSpeed: 7.5
   _wallNormal: {x: 0, y: 0, z: 0}
-  _jumpQueued: 0
+  _isJumpQueued: 0
   playerGrounded: 0
   _jumpState: 0
   _slideState: 0
@@ -5622,7 +5627,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1844918903, guid: 3301dcee8f928ec4dbc689e6581235cf, type: 3}
       propertyPath: m_SpriteKey
-      value: 9.541382e-13
+      value: 1.2054322e-23
       objectReference: {fileID: 0}
     - target: {fileID: 234923351238863590, guid: 3301dcee8f928ec4dbc689e6581235cf, type: 3}
       propertyPath: runMax
@@ -5650,7 +5655,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 234923351238863595, guid: 3301dcee8f928ec4dbc689e6581235cf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.29
+      value: 1.31
       objectReference: {fileID: 0}
     - target: {fileID: 234923351238863595, guid: 3301dcee8f928ec4dbc689e6581235cf, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5684,10 +5689,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 234923352435663580, guid: 3301dcee8f928ec4dbc689e6581235cf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 234923352435663581, guid: 3301dcee8f928ec4dbc689e6581235cf, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1590955783, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+      objectReference: {fileID: -435710797, guid: f012b6ecacb62f84eb4ef2c58e99d8ea, type: 3}
     - target: {fileID: 234923352474653061, guid: 3301dcee8f928ec4dbc689e6581235cf, type: 3}
       propertyPath: m_IsActive
       value: 0
@@ -5747,6 +5756,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1330052017329617348, guid: dfde41e41ef541145add04ab438bface, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330052017329617349, guid: dfde41e41ef541145add04ab438bface, type: 3}
+      propertyPath: m_HDR
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330052017329617349, guid: dfde41e41ef541145add04ab438bface, type: 3}
+      propertyPath: m_TargetDisplay
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330052017329617349, guid: dfde41e41ef541145add04ab438bface, type: 3}
+      propertyPath: m_OcclusionCulling
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1330052017329617349, guid: dfde41e41ef541145add04ab438bface, type: 3}
+      propertyPath: m_AllowDynamicResolution
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1330052017329617371, guid: dfde41e41ef541145add04ab438bface, type: 3}

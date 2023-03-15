@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerJumpState : PlayerAirborneState
 {
-    public PlayerJumpState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
-        : base (currentContext, playerStateFactory) {}
+    public PlayerJumpState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, PlayerBaseState _parentState)
+        : base (currentContext, playerStateFactory)
+        {
+            _parent = _parentState;
+        }
     
     #region Method Overrides
     public override void EnterState()
@@ -22,7 +25,7 @@ public class PlayerJumpState : PlayerAirborneState
 
     public override void ExitState()
     {
-
+        Debug.Log("Exiting Jump State");
     }
 
     public override void InitializeSubState(){}
@@ -31,7 +34,7 @@ public class PlayerJumpState : PlayerAirborneState
     {
         if (_ctx.YSpeed <= 0) 
         {
-            SwitchState(_factory.Fall());
+            //SwitchState(_factory.Fall());
         }
     }
     #endregion
