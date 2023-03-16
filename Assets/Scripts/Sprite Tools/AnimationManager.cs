@@ -17,7 +17,6 @@ namespace SpriteController {
             protected PlayerStateMachine charMovement;
             protected DirectionTracker directionTracker;
             public Animator animator;
-
             private string currentState;
 
             void Awake()
@@ -37,7 +36,8 @@ namespace SpriteController {
             // Update is called once per frame
             void Update()
             {
-                if (charMovement._charController.isGrounded)
+                // Change this script so that it reacts to the state machine rather than to pseudo-states like isGrounded.
+             /*   if (charMovement.CharController.isGrounded)
                 {
                     if (charMovement._slideState == SlideState.Slide)
                     {
@@ -47,7 +47,7 @@ namespace SpriteController {
 
                     } else if (charMovement.velocity != Vector3.zero)
                     {
-                        if (charMovement.velocity.magnitude <= charMovement.walkMax)
+                        if (charMovement.velocity.magnitude <= charMovement.WalkMax)
                         {
                             string animName = "Ivy_Walk_" + directionTracker.direction.ToString();
                             ChangeAnimationState(animName);
@@ -66,7 +66,7 @@ namespace SpriteController {
                 {
                         string animName = "Ivy_WallSlide_Left";
                         ChangeAnimationState(animName);
-                } else if (charMovement._jumpState != JumpState.None || charMovement.ySpeed <= -2f)
+                } else if (charMovement._jumpState != JumpState.None || (charMovement.CurrentSubState == charMovement.Factory.Fall() && charMovement.ySpeed <= -5f))
                 {
                         string animName = "Ivy_Jump_" + directionTracker.direction.ToString();
                         ChangeAnimationState(animName);
@@ -74,7 +74,7 @@ namespace SpriteController {
                 {
                         string animName = "Ivy_Idle_" + directionTracker.direction.ToString();
                         ChangeAnimationState(animName);
-                }
+                } */
             }
 
             void ChangeAnimationState(string newState)

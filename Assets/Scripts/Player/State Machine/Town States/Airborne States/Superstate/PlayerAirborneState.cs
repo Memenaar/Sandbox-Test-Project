@@ -13,11 +13,9 @@ public class PlayerAirborneState : PlayerBaseState
     public override void EnterState()
     {
         Debug.Log("Hello from the Grounded State!");
-        AirborneGravity();
-        InitializeSubState();
 
-        // If no Substate is set locally 
-        if(_localSubState == null) InitializeSubState();
+        // If no Substate is set locally
+        if(_localSubState == null) Debug.Log("Ding-dong."); InitializeSubState();
     }
 
     public override void UpdateState()
@@ -33,12 +31,13 @@ public class PlayerAirborneState : PlayerBaseState
 
     public override void InitializeSubState()
     {
-        if (_ctx.YSpeed <= 0) SetSubState(_factory.Fall());
+        if (_ctx.IsJumpPressed) SetSubState(_factory.Jump());
+        else if (_ctx.YSpeed <= 0 && !_ctx.IsJumpPressed) SetSubState(_factory.Fall());
     }
 
     public override void CheckSwitchStates()
     {
-
+        if (_ctx.CharController.isGrounded) SwitchState(_factory.Landing());
     }
 
     void JumpInputHandler()

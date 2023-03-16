@@ -10,113 +10,136 @@ public class PlayerStateMachine : MonoBehaviour
         [Header("Objects & Components")] // Variables containing objects and components
         private Camera _camera;
         private Rigidbody _playerRb;
-        public CharacterController _charController;
+        private CharacterController _charController;
         private Transform _navigator;
         private PlayerActions _playerActions;
         private InputHandler _inputHandler;
 
-
-        [Header("Movement Variables")] // Variables governing character movement and orientation
-        public float ySpeed;
-        private float originalStepOffset;
+        [Header("Input")] // Variables that read and govern player inputs
+        private bool _isJumpPressed = false;
+        private bool _isRunPressed = false;
         public Vector2 _moveInput;
-        private Vector3 charDirection;
-        public Vector3 velocity;
-        public Vector3 priorVelocity;
-        public Vector3 _heading;
-        public Vector3 _headingRotated;
-        public Vector3 _currentMovement;
-        public float turnLerp;
-        public float acceleration;
-        public float groundDrag;
-        public float speedDial;
+
+        [Header("Player State")] // Variables that interface with the Player State Machine.
+        private PlayerBaseState _currentSuperState;
+        private PlayerBaseState _currentSubState;
+        private PlayerStateFactory _states;
+
+        [Header("Gravity")]
+        private const float groundedgravity = -0.5f;
 
         [Header("Movement Constants")]
-        public float walkMax;
-        public float runMax;
-        public float walkAccel;
-        public float runAccel;
-        public float walkDrag;
-        public float runDrag;
-        public float walkJump;
-        public float runJump;
-        protected const float WalkLerp = 0.2f;
-        protected const float RunLerp = 0.06f;
+        public float walkmax;
+        public float walkaccel;
+        public float walkdrag;
+        public float walkjump;
+        public const float walklerp = 0.2f;
+        public float runmax;
+        public float runaccel;
+        public float rundrag;
+        public float runjump;
+        public const float runlerp = 0.06f;
+        public float speedtuner;
 
-        [Header("Gravity Variables")]
-        private const float _groundedGravity = -0.5f;
-
-        [Header("Jump Variables")] // Variables governing jump motion.
-        public bool _isJumpPressed = false;
+        [Header("Movement Variables")] // Variables governing character movement and orientation
+        public float acceleration;
+        public float drag;
+        public float turnLerp;
         public float jumpSpeed;
+        public float ySpeed;
+        private float originalStepOffset;
+        public Vector3 _appliedMove = Vector3.zero;
+        public Vector3 velocity;
+        public Vector3 priorVelocity;
+
+        [Header("Orientation")] // Variables governing player orientation
+        private Vector3 charDirection;
+        public Vector3 _heading;
+        public Vector3 _headingRotated;
+
+        [Header("Collisions")] // Variables governing jump motion.
         public Vector3 _wallNormal;
 
         [Header("Jump Queueing")]
-        private const float _jumpBuffer = 0.15f; // How long prior to landing can the jump input be triggered?
-        private float _jumpTracker; // The time the last mid-air jump input was pressed.
+        private const float jumpbuffer = 0.15f; // How long prior to landing can the jump input be triggered?
+        private float _jumpTimer; // The time the last mid-air jump input was pressed.
         public bool _isJumpQueued; // Is a jump currently queued for landing?
 
         [Header("Coyote Time")]
-        private const float _coyoteTime = .12f; // The player can still jump as if they are on the edge.
-        private float _coyoteTracker; // The last time the player became airborne (without jumping)
-        private bool _coyoteAvailable = true;
+        private const float coyotewindow = .12f; // The player can still jump as if they are on the edge.
+        private float _coyoteTimer; // The last time the player became airborne (without jumping)
+        private bool _coyoteReady = true;
 
-        [Header("Movement States")] // Variables governing character states
-        public bool playerGrounded;
-        public JumpState _jumpState = JumpState.None;
-        public SlideState _slideState = SlideState.None;
-        public MoveState _moveState = MoveState.Walk;
-
-        // Temporary Variables
-        public Vector3 _appliedMove = Vector3.zero;
-
-        // State Variables
-        PlayerBaseState _currentSuperState;
-        PlayerBaseState _currentSubState;
-        PlayerStateFactory _states;
+        //[Header("Movement States")] // Variables governing character states
+        //public bool playerGrounded;
+        //public JumpState _jumpState = JumpState.None;
+        //public SlideState _slideState = SlideState.None;
+        //public MoveState _moveState = MoveState.Walk;
 
     #endregion
 
     #region Getters & Setters
-
-        // State
-        public PlayerBaseState CurrentSuperState { get { return _currentSuperState; } set { _currentSuperState = value; }}
-        public PlayerBaseState CurrentSubState { get { return _currentSubState; } set { _currentSubState = value; }}
-
         // Objects & Components
         public Camera Camera { get { return _camera; }}
         public Rigidbody PlayerRb { get { return _playerRb; }}
         public CharacterController CharController { get { return _charController; }}
         public Transform Navigator { get { return _navigator; }}
         public PlayerActions PlayerActions { get { return _playerActions; }}
+        public PlayerStateFactory Factory { get { return _states; }}
+
+        // Input
+        public bool IsJumpPressed { get { return _isJumpPressed; }}
+        public bool IsRunPressed { get { return _isRunPressed; }}
+        public Vector2 MoveInput { get { return _moveInput; }}
+
+        // State
+        public PlayerBaseState CurrentSuperState { get { return _currentSuperState; } set { _currentSuperState = value; }}
+        public PlayerBaseState CurrentSubState { get { return _currentSubState; } set { _currentSubState = value; }}
         
         // Gravity
-        public float GroundedGravity { get { return _groundedGravity; }}
+        public float GroundedGravity { get { return groundedgravity; }}
 
-        // Movement
+        // MovementConstants
+        public float WalkMax { get { return walkmax; }}
+        public float WalkAccel { get { return walkaccel;}}
+        public float WalkDrag { get { return walkdrag; }}
+        public float WalkJump { get { return walkjump; }}
+        public float WalkLerp { get { return walklerp; }}
+        public float RunMax { get { return runmax; }}
+        public float RunAccel { get { return runaccel; }}
+        public float RunDrag { get { return rundrag; }}
+        public float RunJump { get { return runjump; }}
+        public float RunLerp { get { return runlerp; }}
+        public float SpeedTuner { get { return speedtuner; }}
+
+        // Movement Variables
+        public float Acceleration { get { return acceleration; } set { acceleration = value; }}
+        public float Drag { get { return drag; } set { drag = value; }}
+        public float TurnLerp { get { return turnLerp; } set { turnLerp = value; }}
+        public float JumpSpeed { get { return jumpSpeed; } set { jumpSpeed = value; }}
         public float YSpeed { get { return ySpeed; } set { ySpeed = value; }}
         private float OriginalStepOffset { get { return originalStepOffset; }}
-        public Vector2 MoveInput { get { return _moveInput; }}
-        public Vector3 CharDirection { get { return charDirection; }}
-        public Vector3 Velocity { get { return velocity; } set { velocity = value; }}
-        public float TurnLerp { get { return turnLerp; } set { turnLerp = value; }}
-        public float Acceleration { get { return acceleration; }}
-        public float GroundDrag { get { return groundDrag; }}
-        public float SpeedDial { get { return speedDial; }}
         public float AppliedMoveY { get { return _appliedMove.y;} set { _appliedMove.y = value; }}
-        public float WalkMax { get { return walkMax;}}
-
-        // Jump Values
-        public bool IsJumpPressed { get { return _isJumpPressed; }}
-        public float JumpSpeed { get { return jumpSpeed; }}
-
-        // Jump Queuing
-        public bool IsJumpQueued { get { return _isJumpQueued; } set { _isJumpQueued = value; }}
+        public Vector3 Velocity { get { return velocity; } set { velocity = value; }}
+        public Vector3 PriorVelocity { get { return priorVelocity; } set { priorVelocity = value; }}
         
         // Orientation
+        public Vector3 CharDirection { get { return charDirection; }}
         public Vector3 Heading { get { return _heading;} set { _heading = value; }}
         public Vector3 HeadingRotated { get { return _headingRotated; }}
 
+        // Collisions
+        public Vector3 WallNormal { get { return _wallNormal; } set { _wallNormal = value; }}
+
+        // Jump Queuing
+        public float JumpBuffer { get { return jumpbuffer; }}
+        public bool IsJumpQueued { get { return _isJumpQueued; } set { _isJumpQueued = value; }}
+        public float JumpTimer { get { return _jumpTimer; } set { _jumpTimer = value; }}
+
+        // Coyote Time
+        public float CoyoteTime { get { return coyotewindow; }}
+        public float CoyoteTimer { get {return _coyoteTimer; } set { _coyoteTimer = value; }}
+        public bool CoyoteReady { get { return _coyoteReady; } set { _coyoteReady = value; }}
 
     #endregion
 
@@ -135,9 +158,9 @@ public class PlayerStateMachine : MonoBehaviour
             _playerActions.TownState.Movement.canceled += x => OnMove();
 
             // Value Initialization
-            groundDrag = walkDrag;
-            acceleration = walkAccel;
-            turnLerp = WalkLerp;
+            drag = walkdrag;
+            acceleration = walkaccel;
+            turnLerp = walklerp;
         }
 
     void OnEnable()
@@ -156,6 +179,7 @@ public class PlayerStateMachine : MonoBehaviour
         _currentSuperState.UpdateStates();
         InputToHeading();
         MoveChar();
+        Debug.Log("Super State: " + _currentSuperState + ", Substate: " + _currentSubState);
     }
 
     void FixedUpdate()
@@ -189,13 +213,13 @@ public class PlayerStateMachine : MonoBehaviour
         _isJumpPressed = context.ReadValueAsButton();
     }
     
-    private void RunPressed() {_moveState = MoveState.Run;}
-    private void RunReleased() {_moveState = MoveState.Walk;}
+    private void RunPressed() {_isRunPressed = true;}
+    private void RunReleased() {_isRunPressed = false;}
     private void OnMove() {_moveInput = _playerActions.TownState.Movement.ReadValue<Vector2>();}
 
     private void RotateNavigator()
     {
-        if (_slideState == SlideState.None)
+        if (_currentSubState == _states.Slide())
         {
             if (_charController.isGrounded)
             {
@@ -218,16 +242,12 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void MoveChar()
     {
-        float speedLimit = _moveState == MoveState.Run ? runMax : walkMax;
-        float dragFactor = _moveState == MoveState.Run ? runDrag : walkDrag;
-        float accelFactor = _moveState == MoveState.Run ? runAccel : walkAccel;
+        float speedLimit = _isRunPressed ? runmax : walkmax;
+        float dragFactor = _isRunPressed ? rundrag : walkdrag;
+        float accelFactor = _isRunPressed ? runaccel : walkaccel;
         if (_headingRotated != Vector3.zero)
         {
             if(_charController.isGrounded)
-            {
-                velocity = Vector3.MoveTowards(velocity, new Vector3(speedLimit * _headingRotated.x, 0.0f, speedLimit * _headingRotated.z), acceleration * Time.deltaTime);
-            }
-            else if(!_charController.isGrounded && _jumpState == JumpState.StandingJump)
             {
                 velocity = Vector3.MoveTowards(velocity, new Vector3(speedLimit * _headingRotated.x, 0.0f, speedLimit * _headingRotated.z), acceleration * Time.deltaTime);
             }
@@ -238,7 +258,7 @@ public class PlayerStateMachine : MonoBehaviour
         }
         else
         {
-            velocity = Vector3.MoveTowards(velocity, Vector3.zero, groundDrag * Time.deltaTime);
+            velocity = Vector3.MoveTowards(velocity, Vector3.zero, drag * Time.deltaTime);
         }
         
         
@@ -275,5 +295,4 @@ public class PlayerStateMachine : MonoBehaviour
 
             return velocity; // otherwise return the original velocity.
         }
-
 }

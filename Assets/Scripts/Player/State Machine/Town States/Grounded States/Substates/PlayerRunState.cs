@@ -17,6 +17,7 @@ public class PlayerRunState : PlayerGroundedState
 
     public override void UpdateState()
     {
+        CheckSwitchStates();
         _ctx.Heading = new Vector3(_ctx.MoveInput.x, 0.0f, _ctx.MoveInput.y); // Create Heading vector from moveinput.
     }
 
@@ -26,7 +27,11 @@ public class PlayerRunState : PlayerGroundedState
 
     public override void CheckSwitchStates()
     {
-        if (_ctx.MoveInput == Vector2.zero)
+        if (Vector3.Angle(_ctx.Velocity, _ctx.HeadingRotated) >= 90) 
+        { 
+            SwitchState(_factory.Slide());
+        }
+        if (_ctx.MoveInput == Vector2.zero && _ctx.Velocity.magnitude == 0.0f)
         {
             SwitchState(_factory.Idle());
         } else if (_ctx.MoveInput != Vector2.zero && _ctx.Velocity.magnitude <= _ctx.WalkMax)

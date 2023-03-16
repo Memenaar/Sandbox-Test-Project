@@ -32,7 +32,7 @@ public class PlayerFallState : PlayerAirborneState
 
     public override void CheckSwitchStates()
     {
-        if (_ctx._charController.isGrounded)  // Change for final ver, char must pass through Falling -> Landing/Hard Landing before becoming grounded.
+        if (_ctx.CharController.isGrounded)  // Change for final ver, char must pass through Falling -> Landing/Hard Landing before becoming grounded.
         {
             if (_ctx.YSpeed > HardLandingThreshold) 
             {

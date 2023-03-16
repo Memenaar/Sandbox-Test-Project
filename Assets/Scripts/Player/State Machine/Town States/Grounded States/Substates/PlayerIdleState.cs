@@ -12,18 +12,20 @@ public class PlayerIdleState : PlayerGroundedState
 
     public override void EnterState()
     {
-        Debug.Log("Hello from the Idle State");
+    
     }
 
     public override void UpdateState()
     {
         CheckSwitchStates();
-        //if (_ctx.CharController.isGrounded) Debug.Log("The player is well and truly grounded");
+        _ctx.Heading = new Vector3(_ctx.MoveInput.x, 0.0f, _ctx.MoveInput.y);
+        // Should have a method that starts a timer, 
+        // After a variable amount of time, plays an "impatient" idle animation
     }
 
     public override void ExitState()
     {
-        Debug.Log("Exit Idle State");
+
     }
 
     public override void InitializeSubState(){}

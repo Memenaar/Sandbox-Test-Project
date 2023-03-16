@@ -27,7 +27,7 @@ public class PlayerWalkState : PlayerGroundedState
 
     public override void CheckSwitchStates()
     {
-        if (_ctx.MoveInput == Vector2.zero)
+        if (_ctx.MoveInput == Vector2.zero && _ctx.Velocity.magnitude == 0.0f)
         {
             SwitchState(_factory.Idle());
         } else if (_ctx.MoveInput != Vector2.zero && _ctx.Velocity.magnitude > _ctx.WalkMax)

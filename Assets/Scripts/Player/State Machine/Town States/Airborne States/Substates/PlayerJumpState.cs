@@ -34,7 +34,7 @@ public class PlayerJumpState : PlayerAirborneState
     {
         if (_ctx.YSpeed <= 0) 
         {
-            //SwitchState(_factory.Fall());
+            SwitchState(_factory.Fall());
         }
     }
     #endregion

@@ -58,22 +58,21 @@ public abstract class PlayerBaseState
         if (_ctx.CurrentSuperState == newState.Parent) // If the new State belongs to the current SuperState
         {
             Debug.Log(newState + "'s parent state " + newState.Parent + " is a match for current SuperState " + _ctx.CurrentSuperState);
-            //if (_ctx.CurrentSubState != null) _ctx.CurrentSubState.ExitState(); // Exit the current SubState
+            if (_ctx.CurrentSubState != null) _ctx.CurrentSubState.ExitState(); // Exit the current SubState
+            
+            newState.EnterState(); // Enter the new SubState
 
-            //newState.EnterState(); // Enter the new SubState
+            _ctx.CurrentSubState = newState; // Switch the CurrentSubState to the new state.
 
-            //_ctx.CurrentSubState = newState; // Switch the CurrentSubState to the new state.
-
-            //_ctx.CurrentSuperState.SetSubState(newState); // Run the SetSubState method in the current SuperState, using the new substate as a parameter.
+            _ctx.CurrentSuperState.SetSubState(newState); // Run the SetSubState method in the current SuperState, using the new substate as a parameter.
 
         } else
         {
             Debug.Log(newState + "'s parent state " + newState.Parent + " is NOT a match for current SuperState " + _ctx.CurrentSuperState);
-            //_localSuperState.ExitStates();
-            //_localSuperState = newState._parentState;
-            //_localSuperState.SetSubState(newState);
-            //newState.EnterStates();
-            //_ctx.CurrentState = _localSuperState;
+            _ctx.CurrentSuperState.ExitStates(); // Exit current Super and Sub states.
+            _ctx.CurrentSuperState = newState.Parent; // Set the current Superstate to the Parent of the incoming Substate.
+            _ctx.CurrentSuperState.SetSubState(newState); // Set the current Substate in the newly updated Superstate.
+            _ctx.CurrentSuperState.EnterStates(); // Run Enter State in the newly updated Super and Sub states.
         }
     }
 

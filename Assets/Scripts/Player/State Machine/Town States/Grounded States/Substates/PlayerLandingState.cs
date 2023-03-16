@@ -13,11 +13,13 @@ public class PlayerLandingState : PlayerGroundedState
     public override void EnterState()
     {
         Debug.Log("Hello from the Landing State");
-        GroundedGravity();
-        CheckSwitchStates();
+        if (_ctx.IsJumpQueued == true) SwitchState(_factory.Jump());
     }
 
-    public override void UpdateState(){}
+    public override void UpdateState()
+    {
+        CheckSwitchStates();
+    }
 
     public override void ExitState()
     {
@@ -26,22 +28,17 @@ public class PlayerLandingState : PlayerGroundedState
 
     public override void InitializeSubState(){}
 
-    public override void CheckSwitchStates(){
-        if (_ctx.IsJumpQueued == true)
+    public override void CheckSwitchStates()
+    {
+        if (_ctx.Velocity == Vector3.zero)
         {
-            //SwitchState(_factory.Jump());
+            SwitchState(_factory.Idle());
+        } else if (_ctx.Velocity.magnitude > _ctx.WalkMax)
+        {
+            SwitchState(_factory.Run());
         } else
         {
-            if (_ctx.Velocity == Vector3.zero)
-            {
-                SwitchState(_factory.Idle());
-            } else if (_ctx.Velocity.magnitude > _ctx.WalkMax)
-            {
-                //SwitchState(_factory.Run());
-            } else
-            {
-                //SwitchState(_factory.Walk());
-            }
+            SwitchState(_factory.Walk());
         }
     }
 }
