@@ -14,6 +14,7 @@ public class PlayerGroundedState : PlayerBaseState
     public override void EnterState()
     {
         GroundedGravity();
+        _ctx.CharController.stepOffset = _ctx.OriginalStepOffset;
 
         // If no Substate is set locally 
         if(_localSubState == null) InitializeSubState();

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerJumpState : PlayerAirborneState
 {
+    bool _wallTouch = false;
     public PlayerJumpState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, PlayerBaseState _parentState)
         : base (currentContext, playerStateFactory)
         {
@@ -13,19 +14,20 @@ public class PlayerJumpState : PlayerAirborneState
     #region Method Overrides
     public override void EnterState()
     {
+        _ctx.CoyoteReady = false;
+        _ctx.IsJumpQueued = false;
         Jump();
-        Debug.Log("Hello from the Jump state");
     }
 
     public override void UpdateState()
     {
         AirborneGravity();
+        if ((_ctx.CharController.collisionFlags & CollisionFlags.Above) != 0){ HeadBump(); }
         CheckSwitchStates();
     }
 
     public override void ExitState()
     {
-        Debug.Log("Exiting Jump State");
     }
 
     public override void InitializeSubState(){}
@@ -39,27 +41,16 @@ public class PlayerJumpState : PlayerAirborneState
     }
     #endregion
 
-    /*void JumpLogic()
-    {
-        //if (_slideState == SlideState.Slide && !_jumpQueued) {_jumpQueued = true;} // Queues a jump for end of slide
-        //if (_ctx.HeadingRotated == Vector3.zero) {_jumpState = JumpState.StandingJump; Jump();}
-        //else if ((_charController.collisionFlags & CollisionFlags.Sides) != 0) {velocity = Vector3.zero; _jumpState = JumpState.StandingJump; Jump();}
-        //else { _jumpState = JumpState.NormalJump; Jump();}
-        Jump();
-    }*/
-
     private void Jump(Vector3 ? horizontalPower = null)
-        {
+    {
+        //_ctx.Velocity = Vector3.ClampMagnitude((_ctx.HeadingRotated * _ctx.Velocity.magnitude), _ctx.RunJump);
+        _ctx.YSpeed += _ctx.JumpSpeed; // Add the current JumpForce to the player's vertical speed.
+    }
 
-            // No longer relevant, as WallJump is a seperate state float jumpForce = _jumpState == JumpState.WallJump ? (jumpSpeed * 0.75f) : jumpSpeed;
-            //float speedLimit = _moveState == MoveState.Run ? runMax : walkMax;
-            /* _ctx.Velocity = Vector3.ClampMagnitude((_ctx.HeadingRotated * _ctx.Velocity.magnitude), runJump);
-            if (horizontalPower != null) // If an override is provided
-            {
-                _ctx.Velocity = Vector3.ClampMagnitude((horizontalPower.Value * speedLimit), runJump); // Set velocity = the input horizontal power value, multiplied by the current SpeedLimit, with a max value = the character's running jump speed.
-            } */
-            // Move to Falling state _coyoteAvailable = false; // Mark Coyote Time as unavailable.
-            _ctx.YSpeed += _ctx.JumpSpeed; // Add the current JumpForce to the player's vertical speed.
-            //_ctx.AppliedMoveY += _ctx.YSpeed;
-        }
+    private void HeadBump() // Ensures if you hit your head on something while jumping you don't hang under it until gravity takes effect.
+    {
+        _ctx.Velocity += _ctx.Velocity * -5 * Time.deltaTime; // Reduce velocity by -5* TdeltaT
+        _ctx.YSpeed += _ctx.YSpeed * -1.5f; // Multiply ySpeed by 1.5 and invert.
+        Debug.Log("Headbump");
+    }
 }

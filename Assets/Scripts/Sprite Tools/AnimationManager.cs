@@ -12,69 +12,73 @@ namespace SpriteController {
             protected List<AnimationClip> jumpAnimations = new List<AnimationClip>();
 
             [Header("Components")]
-            protected SpriteRenderer spriteRenderer;
-            protected SpriteManager spriteManager;
-            protected PlayerStateMachine charMovement;
-            protected DirectionTracker directionTracker;
+            public SpriteRenderer _spriteRenderer;
+            public SpriteManager _spriteManager;
+            public PlayerStateMachine _psm;
+            public DirectionTracker _directionTracker;
             public Animator animator;
+            public PlayerStateFactory _factory;
+            public PlayerBaseState _currentSuperState;
             private string currentState;
+        
 
             void Awake()
             {
-                spriteManager = GetComponent<SpriteManager>();
-                spriteRenderer = GetComponent<SpriteRenderer>();
-                charMovement = GetComponentInParent<PlayerStateMachine>();
+                _spriteManager = GetComponent<SpriteManager>();
+                _spriteRenderer = GetComponent<SpriteRenderer>();
+                _psm = GetComponentInParent<PlayerStateMachine>();
                 animator = GetComponent<Animator>();
-                directionTracker = transform.parent.Find("Navigator").GetComponent<DirectionTracker>();
-            }
-            // Start is called before the first frame update
-            void Start()
-            {
-                
+                _directionTracker = transform.parent.Find("Navigator").GetComponent<DirectionTracker>();
             }
 
             // Update is called once per frame
             void Update()
             {
                 // Change this script so that it reacts to the state machine rather than to pseudo-states like isGrounded.
-             /*   if (charMovement.CharController.isGrounded)
+                if (_psm.CurrentSuperState == _psm.Factory.Grounded())
                 {
-                    if (charMovement._slideState == SlideState.Slide)
+                    if (_psm.CurrentSubState == _psm.Factory.Slide())
                     {
-                        string animName = "Ivy_Slide_" + directionTracker.direction.ToString();
+                        string animName = _psm._activeChar + "_Slide_" + _directionTracker.direction.ToString();
                         ChangeAnimationState(animName);
-                        Debug.Log(animName);
 
-                    } else if (charMovement.velocity != Vector3.zero)
+                    } else if (_psm.Velocity != Vector3.zero)
                     {
-                        if (charMovement.velocity.magnitude <= charMovement.WalkMax)
+                        if (_psm.CurrentSubState == _psm.Factory.Walk())
                         {
-                            string animName = "Ivy_Walk_" + directionTracker.direction.ToString();
+                            string animName = _psm._activeChar + "_Walk_" + _directionTracker.direction.ToString();
                             ChangeAnimationState(animName);
-                        } else
+                        } else if (_psm.CurrentSubState == _psm.Factory.Run())
                         {
-                            string animName = "Ivy_Run_" + directionTracker.direction.ToString();
+                            string animName = _psm._activeChar + "_Run_" + _directionTracker.direction.ToString();
                             ChangeAnimationState(animName);
                         }
 
                     } else
                     {
-                        string animName = "Ivy_Idle_" + directionTracker.direction.ToString();
+                        string animName = _psm._activeChar + "_Idle_" + _directionTracker.direction.ToString();
                         ChangeAnimationState(animName);
                     }
-                } else if (charMovement._slideState == SlideState.WallSlide)
+                } else if (_psm.CurrentSuperState == _psm.Factory.Airborne())
                 {
-                        string animName = "Ivy_WallSlide_Left";
+                    if (_psm.CurrentSubState == _psm.Factory.Jump() || (_psm.CurrentSubState == _psm.Factory.Fall() && _psm.YSpeed <= -_psm.HardLandingThreshold))
+                    {
+                        string animName = _psm._activeChar + "_Jump_" + _directionTracker.direction.ToString();
                         ChangeAnimationState(animName);
-                } else if (charMovement._jumpState != JumpState.None || (charMovement.CurrentSubState == charMovement.Factory.Fall() && charMovement.ySpeed <= -5f))
+                    }
+                } else if (_psm.CurrentSuperState == _psm.Factory.Wall())
                 {
-                        string animName = "Ivy_Jump_" + directionTracker.direction.ToString();
+                    if (_psm.CurrentSubState == _psm.Factory.WallSlide())
+                    {
+                        string animName = _psm._activeChar + "_WallSlide_Left";
                         ChangeAnimationState(animName);
+                        Debug.Log("Animation Name: " + animName);
+                    }
                 } else
                 {
-                        string animName = "Ivy_Idle_" + directionTracker.direction.ToString();
+                        string animName = _psm._activeChar + "_Idle_" + _directionTracker.direction.ToString();
                         ChangeAnimationState(animName);
-                } */
+                }
             }
 
             void ChangeAnimationState(string newState)

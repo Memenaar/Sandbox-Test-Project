@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -179,7 +179,7 @@ namespace SpriteController
             }
         }
 
-        /* METHODS BELOW THIS POINT */
+        // METHODS BELOW THIS POINT
         
 
         // Fixes slope bounce
@@ -408,4 +408,4 @@ namespace SpriteController
         }
 
     }
-}
+} */

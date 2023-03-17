@@ -12,14 +12,34 @@ public class PlayerWallState : PlayerBaseState
 
     public override void EnterState()
     {
-        InitializeSubState();
+        if(_localSubState == null) InitializeSubState();
     }
 
-    public override void UpdateState(){}
+    public override void UpdateState()
+    {
+        CheckSwitchStates();
+    }
 
     public override void ExitState(){}
 
-    public override void InitializeSubState(){}
+    public override void InitializeSubState()
+    {
+        if ((_ctx.CharController.collisionFlags & CollisionFlags.Sides) != 0)
+        {
+            SetSubState(_factory.WallSlide());
+        }
+    }
 
-    public override void CheckSwitchStates(){}
+    public override void CheckSwitchStates()
+    {
+        if (_ctx.CharController.collisionFlags == CollisionFlags.None || _ctx.CharController.collisionFlags == CollisionFlags.Above) // If player becomes free-floating
+        {
+            _ctx.Velocity = Vector3.zero;
+            SwitchState(_factory.Fall());
+        }
+        else if ((_ctx.CharController.collisionFlags & CollisionFlags.Below) != 0)
+        {
+            SwitchState(_factory.Landing());
+        }
+    }
 }

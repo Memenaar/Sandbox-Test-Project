@@ -12,8 +12,10 @@ public class PlayerLandingState : PlayerGroundedState
 
     public override void EnterState()
     {
-        Debug.Log("Hello from the Landing State");
-        if (_ctx.IsJumpQueued == true) SwitchState(_factory.Jump());
+        //Debug.Log("Hello from the Landing State");
+        if (_ctx.IsJumpQueued == true  && (_ctx.JumpTimer + _ctx.JumpBuffer > Time.time)) { SwitchState(_factory.Jump());}
+        else {_ctx.CoyoteReady = true; _ctx.IsJumpQueued = false;}
+        
     }
 
     public override void UpdateState()
@@ -33,12 +35,12 @@ public class PlayerLandingState : PlayerGroundedState
         if (_ctx.Velocity == Vector3.zero)
         {
             SwitchState(_factory.Idle());
-        } else if (_ctx.Velocity.magnitude > _ctx.WalkMax)
-        {
-            SwitchState(_factory.Run());
-        } else
+        } else if (_ctx.Velocity.magnitude <= _ctx.WalkMax)
         {
             SwitchState(_factory.Walk());
+        } else
+        {
+            SwitchState(_factory.Run());
         }
     }
 }

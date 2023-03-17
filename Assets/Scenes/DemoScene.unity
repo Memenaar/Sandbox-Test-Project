@@ -5612,13 +5612,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveInput: {x: 0, y: 0}
   walkmax: 8
-  walkaccel: 4
-  walkdrag: 25
+  walkaccel: 150
+  walkdrag: 500
   walkjump: 7.5
   runmax: 12
-  runaccel: 200
-  rundrag: 150
-  runjump: 12
+  runaccel: 30
+  rundrag: 20
+  runjump: 10
   speedtuner: 25
   acceleration: 15
   drag: 0
@@ -5809,7 +5809,8 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 234923351238863590, guid: 3301dcee8f928ec4dbc689e6581235cf, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 3301dcee8f928ec4dbc689e6581235cf, type: 3}
 --- !u!1001 &1330052018032646027
 PrefabInstance:

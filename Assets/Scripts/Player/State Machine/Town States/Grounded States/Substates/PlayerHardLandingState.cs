@@ -12,17 +12,25 @@ public class PlayerHardLandingState : PlayerGroundedState
 
     public override void EnterState()
     {
-        Debug.Log("Hello from the Hard Landing State");
+        //Debug.Log("Hello from the Hard Landing State");
+        // if velocity.magnitude > walkMax, lock input & slide in direction of velocity for x seconds.
+        // else lock input for x seconds
     }
 
-    public override void UpdateState(){}
+    public override void UpdateState()
+    {
+        CheckSwitchStates();
+    }
 
     public override void ExitState()
     {
-        Debug.Log("Exiting Hard Landing State");
+        //Debug.Log("Exiting Hard Landing State");
     }
 
     public override void InitializeSubState(){}
 
-    public override void CheckSwitchStates(){}
+    public override void CheckSwitchStates()
+    {
+        // If wait period is over, switch to Idle();
+    }
 }

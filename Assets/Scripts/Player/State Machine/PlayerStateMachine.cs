@@ -21,12 +21,14 @@ public class PlayerStateMachine : MonoBehaviour
         public Vector2 _moveInput;
 
         [Header("Player State")] // Variables that interface with the Player State Machine.
+        public Character _activeChar = Character.Ivy;
         private PlayerBaseState _currentSuperState;
         private PlayerBaseState _currentSubState;
         private PlayerStateFactory _states;
 
         [Header("Gravity")]
         private const float groundedgravity = -0.5f;
+        private const float hardlandingthreshold = 5f;
 
         [Header("Movement Constants")]
         public float walkmax;
@@ -48,7 +50,6 @@ public class PlayerStateMachine : MonoBehaviour
         public float jumpSpeed;
         public float ySpeed;
         private float originalStepOffset;
-        public Vector3 _appliedMove = Vector3.zero;
         public Vector3 velocity;
         public Vector3 priorVelocity;
 
@@ -59,6 +60,8 @@ public class PlayerStateMachine : MonoBehaviour
 
         [Header("Collisions")] // Variables governing jump motion.
         public Vector3 _wallNormal;
+        public bool _jumpWall;
+        private ControllerColliderHit _lastHit;
 
         [Header("Jump Queueing")]
         private const float jumpbuffer = 0.15f; // How long prior to landing can the jump input be triggered?
@@ -98,6 +101,7 @@ public class PlayerStateMachine : MonoBehaviour
         
         // Gravity
         public float GroundedGravity { get { return groundedgravity; }}
+        public float HardLandingThreshold {get { return hardlandingthreshold; }}
 
         // MovementConstants
         public float WalkMax { get { return walkmax; }}
@@ -118,8 +122,9 @@ public class PlayerStateMachine : MonoBehaviour
         public float TurnLerp { get { return turnLerp; } set { turnLerp = value; }}
         public float JumpSpeed { get { return jumpSpeed; } set { jumpSpeed = value; }}
         public float YSpeed { get { return ySpeed; } set { ySpeed = value; }}
-        private float OriginalStepOffset { get { return originalStepOffset; }}
-        public float AppliedMoveY { get { return _appliedMove.y;} set { _appliedMove.y = value; }}
+        public float OriginalStepOffset { get { return originalStepOffset; }}
+        public float VelocityX { get { return velocity.x; } set { velocity.x = value; }}
+        public float VelocityZ { get { return velocity.z; } set { velocity.z = value; }}
         public Vector3 Velocity { get { return velocity; } set { velocity = value; }}
         public Vector3 PriorVelocity { get { return priorVelocity; } set { priorVelocity = value; }}
         
@@ -129,7 +134,11 @@ public class PlayerStateMachine : MonoBehaviour
         public Vector3 HeadingRotated { get { return _headingRotated; }}
 
         // Collisions
+        public bool JumpWall { get { return _jumpWall; } set { _jumpWall = value; }}
+        public float WallNormalX {get { return _wallNormal.x; } set { _wallNormal.x = value;}}
+        public float WallNormalZ {get { return _wallNormal.z; } set { _wallNormal.z = value;}}
         public Vector3 WallNormal { get { return _wallNormal; } set { _wallNormal = value; }}
+        public ControllerColliderHit LastHit {get { return _lastHit; }}
 
         // Jump Queuing
         public float JumpBuffer { get { return jumpbuffer; }}
@@ -179,7 +188,8 @@ public class PlayerStateMachine : MonoBehaviour
         _currentSuperState.UpdateStates();
         InputToHeading();
         MoveChar();
-        Debug.Log("Super State: " + _currentSuperState + ", Substate: " + _currentSubState);
+        _lastHit = null;
+        //_wallNormal = Vector3.zero;
     }
 
     void FixedUpdate()
@@ -240,6 +250,15 @@ public class PlayerStateMachine : MonoBehaviour
         }
     }
 
+    private void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+            print("Any combination of collisions EXCEPT touching ground only.");
+            _wallNormal = new Vector3(hit.normal.x, hit.normal.y, hit.normal.z); // Get the x and z axes of the collision's normal. Omission of y axis prevents undue up/downward momentum in wall jump.
+            _lastHit = hit;
+            if (hit.gameObject.CompareTag("WallJump")) _jumpWall = true;
+            else _jumpWall = false; 
+    }
+
     private void MoveChar()
     {
         float speedLimit = _isRunPressed ? runmax : walkmax;
@@ -247,7 +266,7 @@ public class PlayerStateMachine : MonoBehaviour
         float accelFactor = _isRunPressed ? runaccel : walkaccel;
         if (_headingRotated != Vector3.zero)
         {
-            if(_charController.isGrounded)
+            if(_currentSuperState == _states.Grounded())
             {
                 velocity = Vector3.MoveTowards(velocity, new Vector3(speedLimit * _headingRotated.x, 0.0f, speedLimit * _headingRotated.z), acceleration * Time.deltaTime);
             }
@@ -279,20 +298,21 @@ public class PlayerStateMachine : MonoBehaviour
     }
 
     private Vector3 AdjustVelocityToSlope(Vector3 velocity)
+    {
+        var ray = new Ray(transform.position, Vector3.down); // Cast a ray downward from the player's transform
+
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f)) // Generatese hitInfo if the raycast hits something at a max of 0.2f distance
         {
-            var ray = new Ray(transform.position, Vector3.down); // Cast a ray downward from the player's transform
+            var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal); // Get the rotation of any slope under the player from the raycast's normal
+            var adjustedVelocity = slopeRotation * velocity; // Adjust player velocity to match the rotation of the slope
 
-            if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f)) // Generatese hitInfo if the raycast hits something at a max of 0.2f distance
+            if (adjustedVelocity.y < 0) // if the adjust velocity is less than 0 (ie: the slope is downward)
             {
-                var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal); // Get the rotation of any slope under the player from the raycast's normal
-                var adjustedVelocity = slopeRotation * velocity; // Adjust player velocity to match the rotation of the slope
-
-                if (adjustedVelocity.y < 0) // if the adjust velocity is less than 0 (ie: the slope is downward)
-                {
-                    return adjustedVelocity; // then return the adjust velocity
-                }
+                return adjustedVelocity; // then return the adjust velocity
             }
-
-            return velocity; // otherwise return the original velocity.
         }
+
+        return velocity; // otherwise return the original velocity.
+    }
+
 }

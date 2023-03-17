@@ -12,21 +12,24 @@ public class PlayerAirborneState : PlayerBaseState
 
     public override void EnterState()
     {
-        Debug.Log("Hello from the Grounded State!");
+        //Debug.Log("Hello from the Airborne State!");
+
+        _ctx.CoyoteTimer = Time.time;
+        _ctx.CharController.stepOffset = 0;
 
         // If no Substate is set locally
-        if(_localSubState == null) Debug.Log("Ding-dong."); InitializeSubState();
+        if(_localSubState == null) InitializeSubState();
     }
 
     public override void UpdateState()
     {
         CheckSwitchStates();
+        JumpInputHandler();
         AirborneGravity();
     }
 
     public override void ExitState()
     {
-        Debug.Log("Exiting Airborne State");
     }
 
     public override void InitializeSubState()
@@ -37,13 +40,31 @@ public class PlayerAirborneState : PlayerBaseState
 
     public override void CheckSwitchStates()
     {
-        if (_ctx.CharController.isGrounded) SwitchState(_factory.Landing());
+        if (_ctx.CharController.isGrounded)  // Change for final ver, char must pass through Falling -> Landing/Hard Landing before becoming grounded.
+        {
+            if (_ctx.YSpeed > _ctx.HardLandingThreshold) 
+            {
+                SwitchState(_factory.HardLanding());
+            } else
+            {
+                SwitchState(_factory.Landing());
+            }
+        } else if ((_ctx.CharController.collisionFlags & CollisionFlags.Sides) != 0 && _ctx.JumpWall == true && _ctx.Velocity.magnitude > _ctx.WalkMax)
+        {
+            if (Mathf.Sign(_ctx.VelocityX) != Mathf.Sign(_ctx.WallNormalX) && Mathf.Sign(_ctx.VelocityZ) != Mathf.Sign(_ctx.WallNormalZ))
+            {
+                _ctx.JumpWall = false;
+                SwitchState(_factory.WallSlide());
+            }
+        }
     }
 
     void JumpInputHandler()
     {
-        /*if (_coyoteAvailable && (_coyoteTracker + _coyoteTime >= Time.time)) { _jumpState = JumpState.NormalJump; Jump();} // Coyote Time jump                    
-        else if (!_jumpQueued) { _jumpQueued = true; _jumpTracker = Time.time;} // Queues a jump for landing*/
+        if (_ctx.IsJumpPressed){
+            if (_ctx.CoyoteReady && (_ctx.CoyoteTimer + _ctx.CoyoteTime >= Time.time)) { SwitchState(_factory.Jump());} // Coyote Time jump                    
+            else if (!_ctx.IsJumpQueued) { _ctx.IsJumpQueued = true; _ctx.JumpTimer = Time.time;} // Queues a jump for landing*/
+        }
     }
 
     protected void AirborneGravity()
@@ -51,4 +72,5 @@ public class PlayerAirborneState : PlayerBaseState
         _ctx.YSpeed += Physics.gravity.y * Time.deltaTime; // Fall at normal rate
         //_ctx.AppliedMove += new Vector3(0, _ctx.YSpeed, 0);
     }
+
 }

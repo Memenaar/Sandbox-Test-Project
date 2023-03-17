@@ -15,27 +15,11 @@
 		UpRight
 	}
 
-/* Char Movement-related Enums */
+/* Playable Char Enums */
 
-	public enum JumpState
+	public enum Character
 	{
-		None,
-		StandingJump,
-		WallJump,
-		NormalJump
-	}
-
-	public enum SlideState
-	{
-		None,
-		Slide,
-		WallSlide
-	}
-
-	public enum MoveState
-	{
-		Walk,
-		Run,
-		Locked
+		Ivy,
+		Neku
 	}
 }

@@ -12,7 +12,7 @@ public class PlayerRunState : PlayerGroundedState
 
     public override void EnterState()
     {
-        Debug.Log("Hello from the Run State");
+        //Debug.Log("Hello from the Run State");
     }
 
     public override void UpdateState()
