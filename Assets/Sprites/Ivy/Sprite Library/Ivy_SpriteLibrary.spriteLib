@@ -359,22 +359,22 @@ MonoBehaviour:
     m_Hash: 583574866
     m_CategoryList: []
     m_OverrideEntries:
-    - m_Name: Ivy_Slide_Left
-      m_Hash: 933399948
-      m_Sprite: {fileID: 1764542017, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+    - m_Name: Ivy_WallSlide_Left
+      m_Hash: 426692103
+      m_Sprite: {fileID: -114559314, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 1764542017, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+      m_SpriteOverride: {fileID: -114559314, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 1
   - m_Name: Slide_DownLeft
     m_Hash: 173446544
     m_CategoryList: []
     m_OverrideEntries:
-    - m_Name: Ivy_Slide_DownLeft
-      m_Hash: 636790916
-      m_Sprite: {fileID: 2121100394, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+    - m_Name: Ivy_WallSlide_DownLeft
+      m_Hash: 995212426
+      m_Sprite: {fileID: -1177728919, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
       m_FromMain: 0
-      m_SpriteOverride: {fileID: 2121100394, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
+      m_SpriteOverride: {fileID: -1177728919, guid: bdbcfaabd149a5f499430b5598e46385, type: 3}
     m_FromMain: 0
     m_EntryOverrideCount: 1
   - m_Name: Slide_Down

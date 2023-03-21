@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerJumpState : PlayerAirborneState
 {
-    bool _wallTouch = false;
     public PlayerJumpState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory, PlayerBaseState _parentState)
         : base (currentContext, playerStateFactory)
         {
@@ -14,15 +13,16 @@ public class PlayerJumpState : PlayerAirborneState
     #region Method Overrides
     public override void EnterState()
     {
+        Debug.Log("Hello from the Jump state");
         _ctx.CoyoteReady = false;
-        _ctx.IsJumpQueued = false;
+        if (_ctx.IsJumpQueued) _ctx.IsJumpQueued = false;
         Jump();
+        NewJumpCheck();
     }
 
     public override void UpdateState()
     {
-        AirborneGravity();
-        if ((_ctx.CharController.collisionFlags & CollisionFlags.Above) != 0){ HeadBump(); }
+        HeadBump();
         CheckSwitchStates();
     }
 
@@ -49,8 +49,15 @@ public class PlayerJumpState : PlayerAirborneState
 
     private void HeadBump() // Ensures if you hit your head on something while jumping you don't hang under it until gravity takes effect.
     {
+        if((_ctx.CharController.collisionFlags & CollisionFlags.Above) != 0) 
+        {
         _ctx.Velocity += _ctx.Velocity * -5 * Time.deltaTime; // Reduce velocity by -5* TdeltaT
         _ctx.YSpeed += _ctx.YSpeed * -1.5f; // Multiply ySpeed by 1.5 and invert.
-        Debug.Log("Headbump");
+        }
+    }
+
+    private void NewJumpCheck()
+    {
+        if (_ctx.IsJumpPressed) {_ctx.NewJumpNeeded = true;}
     }
 }

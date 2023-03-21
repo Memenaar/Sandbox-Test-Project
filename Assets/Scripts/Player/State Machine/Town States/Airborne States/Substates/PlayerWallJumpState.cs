@@ -13,17 +13,21 @@ public class PlayerWallJumpState : PlayerAirborneState
     #region Method Overrides
     public override void EnterState()
     {
+        Debug.Log("Hello from the WallJump state");
         _ctx.CoyoteReady = false;
-        _ctx.IsJumpQueued = false;
+        if (_ctx.IsJumpQueued) _ctx.IsJumpQueued = false;
         WallJump(_ctx.WallNormal);
+        NewJumpCheck();
     }
 
     public override void UpdateState()
     {
-
+        CheckSwitchStates();
     }
 
-    public override void ExitState(){}
+    public override void ExitState()
+    {
+    }
 
     public override void InitializeSubState(){}
 
@@ -40,6 +44,12 @@ public class PlayerWallJumpState : PlayerAirborneState
     {
         _ctx.Velocity = Vector3.ClampMagnitude((horizontalPower.Value * _ctx.JumpSpeed), _ctx.JumpSpeed);
         _ctx.YSpeed += (_ctx.JumpSpeed * 0.75f); // Add 3/4 of JumpSpeed to the character's vertical Speed
+        _ctx.Heading = _ctx.WallNormal;
+    }
+
+    private void NewJumpCheck()
+    {
+        if (_ctx.IsJumpPressed) {_ctx.NewJumpNeeded = true;}
     }
 
 }

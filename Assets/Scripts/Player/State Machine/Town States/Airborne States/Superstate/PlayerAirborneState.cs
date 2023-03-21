@@ -12,7 +12,7 @@ public class PlayerAirborneState : PlayerBaseState
 
     public override void EnterState()
     {
-        //Debug.Log("Hello from the Airborne State!");
+        Debug.Log("Hello from the Airborne State!");
 
         _ctx.CoyoteTimer = Time.time;
         _ctx.CharController.stepOffset = 0;
@@ -42,28 +42,40 @@ public class PlayerAirborneState : PlayerBaseState
     {
         if (_ctx.CharController.isGrounded)  // Change for final ver, char must pass through Falling -> Landing/Hard Landing before becoming grounded.
         {
-            if (_ctx.YSpeed > _ctx.HardLandingThreshold) 
+            if (Mathf.Abs(_ctx.YSpeed) > _ctx.HardLandingThreshold) 
             {
                 SwitchState(_factory.HardLanding());
             } else
             {
                 SwitchState(_factory.Landing());
             }
-        } else if ((_ctx.CharController.collisionFlags & CollisionFlags.Sides) != 0 && _ctx.JumpWall == true && _ctx.Velocity.magnitude > _ctx.WalkMax)
+        } else if ((_ctx.CharController.collisionFlags & CollisionFlags.Sides) != 0 && _ctx.Velocity.magnitude > _ctx.WalkMax * 0.5f)
         {
-            if (Mathf.Sign(_ctx.VelocityX) != Mathf.Sign(_ctx.WallNormalX) && Mathf.Sign(_ctx.VelocityZ) != Mathf.Sign(_ctx.WallNormalZ))
+            if (_ctx.JumpWall)
             {
-                _ctx.JumpWall = false;
-                SwitchState(_factory.WallSlide());
+                if (Mathf.Sign(_ctx.VelocityX) != Mathf.Sign(_ctx.WallNormalX) || Mathf.Sign(_ctx.VelocityZ) != Mathf.Sign(_ctx.WallNormalZ))
+                {
+                    _ctx.JumpWall = false;
+                    SwitchState(_factory.WallSlide());
+                }
+            } else
+            {
+                if (_ctx.CurrentSubState != _factory.Fall()) {_ctx.YSpeed = 0;}
             }
         }
     }
 
+    void SetHeading()
+    {
+        _ctx.Heading = _ctx.Velocity;
+    }
+
     void JumpInputHandler()
     {
-        if (_ctx.IsJumpPressed){
+        if (_ctx.IsJumpPressed && !_ctx.NewJumpNeeded){
             if (_ctx.CoyoteReady && (_ctx.CoyoteTimer + _ctx.CoyoteTime >= Time.time)) { SwitchState(_factory.Jump());} // Coyote Time jump                    
             else if (!_ctx.IsJumpQueued) { _ctx.IsJumpQueued = true; _ctx.JumpTimer = Time.time;} // Queues a jump for landing*/
+            //else if (!_ctx.PlayerActions.TownState.Jump.WasPressedThisFrame() && !_ctx.IsJumpQueued) { _ctx.IsJumpQueued = true; _ctx.JumpTimer = Time.time;}
         }
     }
 

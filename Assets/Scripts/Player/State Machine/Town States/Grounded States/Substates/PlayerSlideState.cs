@@ -10,11 +10,15 @@ public class PlayerSlideState : PlayerGroundedState
             _parent = _parentState;
         }
 
-    public override void EnterState(){}
+    public override void EnterState()
+    {
+        Debug.Log("Hello from the Slide state");
+    }
 
     public override void UpdateState()
     {
         CheckSwitchStates();
+        JumpInputHandler();
     }
 
     public override void ExitState(){}
@@ -27,7 +31,6 @@ public class PlayerSlideState : PlayerGroundedState
         {
             if(_ctx.IsJumpQueued)
             {
-                _ctx.IsJumpQueued = false;
                 SwitchState(_factory.Jump());
             }
             else if(_ctx.MoveInput == Vector2.zero && _ctx.Velocity.magnitude == 0.0f)
@@ -39,6 +42,13 @@ public class PlayerSlideState : PlayerGroundedState
                 if (_ctx.Velocity.magnitude > _ctx.WalkMax) SwitchState(_factory.Run());
                 else SwitchState(_factory.Walk());
             }
+        }
+    }
+
+    void JumpInputHandler()
+    {
+        if (_ctx.IsJumpPressed && !_ctx.NewJumpNeeded && !_ctx.IsJumpQueued){              
+            _ctx.IsJumpQueued = true; // Queues a jump for end of Slide
         }
     }
 }

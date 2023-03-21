@@ -12,11 +12,11 @@ public class PlayerFallState : PlayerAirborneState
 
     public override void EnterState()
     {
+        Debug.Log("Hello from the Fall state");
     }
 
     public override void UpdateState()
     {
-        AirborneGravity();
     }
 
     public override void ExitState()

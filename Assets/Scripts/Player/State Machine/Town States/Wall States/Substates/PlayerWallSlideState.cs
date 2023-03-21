@@ -12,8 +12,10 @@ public class PlayerWallSlideState : PlayerWallState
 
     public override void EnterState()
     {
+        Debug.Log("Hello from the WallSlide state");
         _ctx.YSpeed = 0;
         if (_ctx.IsJumpQueued && (_ctx.JumpTimer + _ctx.JumpBuffer > Time.time)) SwitchState(_factory.WallJump());
+        else _ctx.IsJumpQueued = false;
     }
 
     public override void UpdateState()
@@ -28,7 +30,7 @@ public class PlayerWallSlideState : PlayerWallState
 
     public override void CheckSwitchStates()
     {
-        if (_ctx.IsJumpPressed == true) SwitchState(_factory.WallJump());
+        if (_ctx.IsJumpPressed && !_ctx.NewJumpNeeded) SwitchState(_factory.WallJump());
     }
 
     public void WallSlideGravity()

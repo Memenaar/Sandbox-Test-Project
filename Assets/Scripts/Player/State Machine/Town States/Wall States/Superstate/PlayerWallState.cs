@@ -12,6 +12,7 @@ public class PlayerWallState : PlayerBaseState
 
     public override void EnterState()
     {
+        Debug.Log("Hello from the Wall state");
         if(_localSubState == null) InitializeSubState();
     }
 
@@ -32,7 +33,7 @@ public class PlayerWallState : PlayerBaseState
 
     public override void CheckSwitchStates()
     {
-        if (_ctx.CharController.collisionFlags == CollisionFlags.None || _ctx.CharController.collisionFlags == CollisionFlags.Above) // If player becomes free-floating
+        if (!((_ctx.CharController.collisionFlags & CollisionFlags.Sides) !=0) || _ctx.CharController.collisionFlags == CollisionFlags.Above) // If player becomes free-floating
         {
             _ctx.Velocity = Vector3.zero;
             SwitchState(_factory.Fall());

@@ -7,6 +7,9 @@ using SpriteController;
 public class PlayerStateMachine : MonoBehaviour
 {
     #region Variable Declarations
+    public string TempStringSuper;
+    public string TempStringSub;
+
         [Header("Objects & Components")] // Variables containing objects and components
         private Camera _camera;
         private Rigidbody _playerRb;
@@ -16,8 +19,10 @@ public class PlayerStateMachine : MonoBehaviour
         private InputHandler _inputHandler;
 
         [Header("Input")] // Variables that read and govern player inputs
-        private bool _isJumpPressed = false;
+        public bool _isJumpPressed = false;
+        public bool _newJumpNeeded = false;
         private bool _isRunPressed = false;
+        private bool _moveLocked = false;
         public Vector2 _moveInput;
 
         [Header("Player State")] // Variables that interface with the Player State Machine.
@@ -28,7 +33,7 @@ public class PlayerStateMachine : MonoBehaviour
 
         [Header("Gravity")]
         private const float groundedgravity = -0.5f;
-        private const float hardlandingthreshold = 5f;
+        private const float hardlandingthreshold = 20f;
 
         [Header("Movement Constants")]
         public float walkmax;
@@ -61,11 +66,11 @@ public class PlayerStateMachine : MonoBehaviour
         [Header("Collisions")] // Variables governing jump motion.
         public Vector3 _wallNormal;
         public bool _jumpWall;
-        private ControllerColliderHit _lastHit;
+        public bool _isGrounded;
 
         [Header("Jump Queueing")]
         private const float jumpbuffer = 0.15f; // How long prior to landing can the jump input be triggered?
-        private float _jumpTimer; // The time the last mid-air jump input was pressed.
+        public float _jumpTimer; // The time the last mid-air jump input was pressed.
         public bool _isJumpQueued; // Is a jump currently queued for landing?
 
         [Header("Coyote Time")]
@@ -92,7 +97,9 @@ public class PlayerStateMachine : MonoBehaviour
 
         // Input
         public bool IsJumpPressed { get { return _isJumpPressed; }}
+        public bool NewJumpNeeded { get { return _newJumpNeeded; } set { _newJumpNeeded = value; }}
         public bool IsRunPressed { get { return _isRunPressed; }}
+        public bool MoveLocked { get { return _moveLocked; } set { _moveLocked = value; }}
         public Vector2 MoveInput { get { return _moveInput; }}
 
         // State
@@ -131,14 +138,13 @@ public class PlayerStateMachine : MonoBehaviour
         // Orientation
         public Vector3 CharDirection { get { return charDirection; }}
         public Vector3 Heading { get { return _heading;} set { _heading = value; }}
-        public Vector3 HeadingRotated { get { return _headingRotated; }}
+        public Vector3 HeadingRotated { get { return _headingRotated; } set { _headingRotated = value; }}
 
         // Collisions
         public bool JumpWall { get { return _jumpWall; } set { _jumpWall = value; }}
         public float WallNormalX {get { return _wallNormal.x; } set { _wallNormal.x = value;}}
         public float WallNormalZ {get { return _wallNormal.z; } set { _wallNormal.z = value;}}
         public Vector3 WallNormal { get { return _wallNormal; } set { _wallNormal = value; }}
-        public ControllerColliderHit LastHit {get { return _lastHit; }}
 
         // Jump Queuing
         public float JumpBuffer { get { return jumpbuffer; }}
@@ -188,8 +194,8 @@ public class PlayerStateMachine : MonoBehaviour
         _currentSuperState.UpdateStates();
         InputToHeading();
         MoveChar();
-        _lastHit = null;
-        //_wallNormal = Vector3.zero;
+        TempStringSuper = _currentSuperState.ToString();
+        TempStringSub = _currentSubState.ToString();
     }
 
     void FixedUpdate()
@@ -218,47 +224,57 @@ public class PlayerStateMachine : MonoBehaviour
         _states = new PlayerStateFactory(this);
     }
 
-    private void onJump(InputAction.CallbackContext context)
-    { 
-        _isJumpPressed = context.ReadValueAsButton();
-    }
-    
+    private void onJump(InputAction.CallbackContext context){ _isJumpPressed = context.ReadValueAsButton(); _newJumpNeeded = false; }
     private void RunPressed() {_isRunPressed = true;}
     private void RunReleased() {_isRunPressed = false;}
-    private void OnMove() {_moveInput = _playerActions.TownState.Movement.ReadValue<Vector2>();}
+    private void OnMove() { if (!_moveLocked) {_moveInput = _playerActions.TownState.Movement.ReadValue<Vector2>();} else {_moveInput = Vector2.zero; }}
 
     private void RotateNavigator()
-    {
-        if (_currentSubState == _states.Slide())
         {
-            if (_charController.isGrounded)
+            if (_currentSubState != _states.Slide() && _currentSubState != _states.WallSlide())
             {
-                if (_headingRotated != Vector3.zero)
-                {
-                    _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(_headingRotated.normalized), turnLerp);
-                }
-            } else
-            {
-                if (velocity != Vector3.zero)
-                {
-                    _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(velocity.normalized), turnLerp);
-                }
+                    if (_currentSuperState == _states.Grounded())
+                    {
+                        if (_headingRotated != Vector3.zero)
+                        {
+                            _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(_headingRotated.normalized), turnLerp);
+                        }
+                    }
+                    else
+                    {
+                        if (velocity != Vector3.zero)
+                        {
+                            _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(velocity.normalized), turnLerp);
+                        }
+                    }
             }
-        }else 
-        { 
-            if (_headingRotated!= Vector3.zero) _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(_headingRotated.normalized), turnLerp); 
+            else { if (_headingRotated != Vector3.zero) _navigator.rotation = Quaternion.Slerp(_navigator.rotation, Quaternion.LookRotation(_headingRotated.normalized), turnLerp); }
         }
-    }
 
     private void OnControllerColliderHit(ControllerColliderHit hit)
     {
-            print("Any combination of collisions EXCEPT touching ground only.");
-            _wallNormal = new Vector3(hit.normal.x, hit.normal.y, hit.normal.z); // Get the x and z axes of the collision's normal. Omission of y axis prevents undue up/downward momentum in wall jump.
-            _lastHit = hit;
-            if (hit.gameObject.CompareTag("WallJump")) _jumpWall = true;
-            else _jumpWall = false; 
-    }
+        _wallNormal = new Vector3(hit.normal.x, 0.0f, hit.normal.z);
 
+        if (_currentSuperState == _states.Grounded())
+        {
+            if ((_charController.collisionFlags & CollisionFlags.Sides) != 0)
+            {
+                if (Mathf.Abs(_wallNormal.x) == 1) velocity.x = Mathf.Clamp(velocity.x, -1, 1);
+                if (Mathf.Abs(_wallNormal.z) == 1) velocity.z = Mathf.Clamp(velocity.z, -1, 1);
+            }
+        } else if (_currentSuperState == _states.Airborne())
+        {
+            if (_charController.collisionFlags == CollisionFlags.Sides && hit.gameObject.CompareTag("WallJump")) 
+            {
+                _jumpWall = true;
+            } else 
+            {
+                _jumpWall = false;
+            }
+        }
+
+    }
+    
     private void MoveChar()
     {
         float speedLimit = _isRunPressed ? runmax : walkmax;
@@ -269,22 +285,26 @@ public class PlayerStateMachine : MonoBehaviour
             if(_currentSuperState == _states.Grounded())
             {
                 velocity = Vector3.MoveTowards(velocity, new Vector3(speedLimit * _headingRotated.x, 0.0f, speedLimit * _headingRotated.z), acceleration * Time.deltaTime);
+                if (Mathf.Abs(velocity.x) < _charController.minMoveDistance) velocity.x = 0f;
+                if (Mathf.Abs(velocity.z) < _charController.minMoveDistance) velocity.z = 0f;
             }
             else
             {
                 velocity = Vector3.MoveTowards(velocity, new Vector3(velocity.x, velocity.y, velocity.z), acceleration * Time.deltaTime);
+                if (Mathf.Abs(velocity.x) < _charController.minMoveDistance) velocity.x = 0f;
+                if (Mathf.Abs(velocity.z) < _charController.minMoveDistance) velocity.z = 0f;
             }
         }
         else
         {
             velocity = Vector3.MoveTowards(velocity, Vector3.zero, drag * Time.deltaTime);
+            if (Mathf.Abs(velocity.x) < _charController.minMoveDistance) velocity.x = 0f;
+            if (Mathf.Abs(velocity.z) < _charController.minMoveDistance) velocity.z = 0f;
         }
-        
         
         Vector3 _appliedMove = velocity;
         _appliedMove = AdjustVelocityToSlope(_appliedMove);
         _appliedMove.y += ySpeed;
-
         _charController.Move(_appliedMove * Time.deltaTime);
     
         RotateNavigator();
@@ -292,16 +312,16 @@ public class PlayerStateMachine : MonoBehaviour
 
     private void InputToHeading(bool clampInput = false) // Uses a default value of false for clampInput if one is not provided.
     {
-        _headingRotated = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * _heading; // Rotate heading relative to camera direction       
-        _headingRotated.Normalize(); // Normalize the rotated heading.
-        if (clampInput) {_headingRotated = _headingRotated * 0.25f;} // Reduces effect of input to 1/4 is clampInput is true.
+            _headingRotated = Quaternion.AngleAxis(Camera.main.transform.eulerAngles.y, Vector3.up) * _heading; // Rotate heading relative to camera direction       
+            _headingRotated.Normalize(); // Normalize the rotated heading.
+            if (clampInput) {_headingRotated = _headingRotated * 0.25f;} // Reduces effect of input to 1/4 is clampInput is true.
     }
 
     private Vector3 AdjustVelocityToSlope(Vector3 velocity)
     {
         var ray = new Ray(transform.position, Vector3.down); // Cast a ray downward from the player's transform
 
-        if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.2f)) // Generatese hitInfo if the raycast hits something at a max of 0.2f distance
+        if (Physics.Raycast(ray, out RaycastHit hitInfo, 0.3f)) // Generate hitInfo if the raycast hits something at a max of 0.2f distance
         {
             var slopeRotation = Quaternion.FromToRotation(Vector3.up, hitInfo.normal); // Get the rotation of any slope under the player from the raycast's normal
             var adjustedVelocity = slopeRotation * velocity; // Adjust player velocity to match the rotation of the slope

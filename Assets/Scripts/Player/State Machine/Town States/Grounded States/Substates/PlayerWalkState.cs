@@ -12,7 +12,7 @@ public class PlayerWalkState : PlayerGroundedState
 
     public override void EnterState()
     {
-        //Debug.Log("Hello from the Walk State");
+        Debug.Log("Hello from the Walk State");
     }
 
     public override void UpdateState()
@@ -27,7 +27,7 @@ public class PlayerWalkState : PlayerGroundedState
 
     public override void CheckSwitchStates()
     {
-        if (_ctx.MoveInput == Vector2.zero && _ctx.Velocity.magnitude == 0.0f)
+        if (_ctx.MoveInput == Vector2.zero && _ctx.Velocity.normalized.magnitude == 0.0f)
         {
             SwitchState(_factory.Idle());
         } else if (_ctx.MoveInput != Vector2.zero && _ctx.Velocity.magnitude > _ctx.WalkMax)

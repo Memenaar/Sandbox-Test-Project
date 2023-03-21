@@ -15,7 +15,7 @@ namespace SpriteController
 		// ...the rotation smoothing
 		private const float cameraSmoothing = 10;
 		// ... the rotation sensitivity...
-		private const float rotationSensitivity = 50;
+		private const float rotationSensitivity = 30;
 		// ...and the Z-distance from the target.
 		private float _distance = 20;
 		// Used to track how long the camera rotate action has been active, increasing speed over time.

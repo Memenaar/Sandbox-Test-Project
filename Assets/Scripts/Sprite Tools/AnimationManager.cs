@@ -42,6 +42,11 @@ namespace SpriteController {
                         string animName = _psm._activeChar + "_Slide_" + _directionTracker.direction.ToString();
                         ChangeAnimationState(animName);
 
+                    } else if (_psm.CurrentSubState == _psm.Factory.HardLanding())
+                    {
+                        string animName = _psm._activeChar + "_Slide_" + _directionTracker.direction.ToString();
+                        ChangeAnimationState(animName);
+
                     } else if (_psm.Velocity != Vector3.zero)
                     {
                         if (_psm.CurrentSubState == _psm.Factory.Walk())
@@ -61,7 +66,7 @@ namespace SpriteController {
                     }
                 } else if (_psm.CurrentSuperState == _psm.Factory.Airborne())
                 {
-                    if (_psm.CurrentSubState == _psm.Factory.Jump() || (_psm.CurrentSubState == _psm.Factory.Fall() && _psm.YSpeed <= -_psm.HardLandingThreshold))
+                    if (_psm.CurrentSubState == _psm.Factory.Jump() || _psm.CurrentSubState == _psm.Factory.WallJump() || (_psm.CurrentSubState == _psm.Factory.Fall() && Mathf.Abs(_psm.YSpeed) <= _psm.HardLandingThreshold))
                     {
                         string animName = _psm._activeChar + "_Jump_" + _directionTracker.direction.ToString();
                         ChangeAnimationState(animName);
@@ -72,7 +77,7 @@ namespace SpriteController {
                     {
                         string animName = _psm._activeChar + "_WallSlide_Left";
                         ChangeAnimationState(animName);
-                        Debug.Log("Animation Name: " + animName);
+                        //Debug.Log("Animation Name: " + animName);
                     }
                 } else
                 {

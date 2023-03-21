@@ -12,13 +12,13 @@ public class PlayerIdleState : PlayerGroundedState
 
     public override void EnterState()
     {
-    
+        Debug.Log("Hello from the Idle state");
     }
 
     public override void UpdateState()
     {
         CheckSwitchStates();
-        _ctx.Heading = new Vector3(_ctx.MoveInput.x, 0.0f, _ctx.MoveInput.y);
+        //_ctx.Heading = new Vector3(_ctx.MoveInput.x, 0.0f, _ctx.MoveInput.y);
         // Should have a method that starts a timer, 
         // After a variable amount of time, plays an "impatient" idle animation
     }

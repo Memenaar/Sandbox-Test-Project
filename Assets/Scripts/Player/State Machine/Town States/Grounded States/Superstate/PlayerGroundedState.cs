@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class PlayerGroundedState : PlayerBaseState
 {
-    bool fallcheck = false;
     public PlayerGroundedState(PlayerStateMachine currentContext, PlayerStateFactory playerStateFactory)
         : base (currentContext, playerStateFactory) 
         {
@@ -13,6 +12,7 @@ public class PlayerGroundedState : PlayerBaseState
 
     public override void EnterState()
     {
+        Debug.Log("Hello from the Grounded state.");
         GroundedGravity();
         _ctx.CharController.stepOffset = _ctx.OriginalStepOffset;
 
@@ -22,6 +22,7 @@ public class PlayerGroundedState : PlayerBaseState
 
     public override void UpdateState()
     {
+        GroundedGravity();
         CheckSwitchStates();
         PlayerRun();
     }
@@ -37,13 +38,19 @@ public class PlayerGroundedState : PlayerBaseState
 
     public override void CheckSwitchStates()
     {
-        if (_ctx.IsJumpPressed == true) SwitchState(_factory.Jump());
-        else if (!_ctx.CharController.isGrounded) SwitchState(_factory.Fall());
+        if (_ctx.IsJumpPressed && !_ctx.NewJumpNeeded)
+        {
+            if ( _ctx.CurrentSubState == _factory.Idle() || _ctx.CurrentSubState == _factory.Walk() || _ctx.CurrentSubState == _factory.Run()) SwitchState(_factory.Jump());
+        } else if (!_ctx.CharController.isGrounded) 
+        {
+            bool _stairMaster = StairMaster();
+            if (_stairMaster == false) {SwitchState(_factory.Fall());}
+        }
     }
 
     protected void GroundedGravity()
     {
-        _ctx.YSpeed = _ctx.GroundedGravity;
+            _ctx.YSpeed = _ctx.GroundedGravity;
     }
 
     private void PlayerRun()
@@ -62,5 +69,26 @@ public class PlayerGroundedState : PlayerBaseState
             _ctx.JumpSpeed = Mathf.Lerp(_ctx.JumpSpeed, _ctx.WalkJump, Time.deltaTime);
         }
     }
+
+    // Helps the player descend steps by snapping the player transform downward if a drop's height is less than the player step offset.
+    private bool StairMaster()
+    {
+        var ray = new Ray(_ctx.transform.position, Vector3.down);
+        float maxHeight = _ctx.OriginalStepOffset + 0.1f;
+
+        if (Physics.Raycast(ray, out RaycastHit hitinfo, maxHeight))
+        {
+                float stairDrop = hitinfo.distance;
+                if (stairDrop > 0 && stairDrop <= maxHeight) 
+                {
+                    _ctx.transform.position = new Vector3(_ctx.transform.position.x, _ctx.transform.position.y - stairDrop, _ctx.transform.position.z); 
+                    Physics.SyncTransforms();
+                }
+                return true;
+        }
+
+        return false;
+    }
+            
 
 }

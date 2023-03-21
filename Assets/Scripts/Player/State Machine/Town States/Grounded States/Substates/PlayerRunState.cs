@@ -12,13 +12,14 @@ public class PlayerRunState : PlayerGroundedState
 
     public override void EnterState()
     {
-        //Debug.Log("Hello from the Run State");
+        Debug.Log("Hello from the Run State");
     }
 
     public override void UpdateState()
     {
         CheckSwitchStates();
         _ctx.Heading = new Vector3(_ctx.MoveInput.x, 0.0f, _ctx.MoveInput.y); // Create Heading vector from moveinput.
+        CollisionCheck();
     }
 
     public override void ExitState(){}
@@ -30,13 +31,21 @@ public class PlayerRunState : PlayerGroundedState
         if (Vector3.Angle(_ctx.Velocity, _ctx.HeadingRotated) >= 90) 
         { 
             SwitchState(_factory.Slide());
-        }
-        if (_ctx.MoveInput == Vector2.zero && _ctx.Velocity.magnitude == 0.0f)
-        {
-            SwitchState(_factory.Idle());
-        } else if (_ctx.MoveInput != Vector2.zero && _ctx.Velocity.magnitude <= _ctx.WalkMax)
+        } else if (_ctx.Velocity.magnitude <= _ctx.WalkMax)
         {
             SwitchState(_factory.Walk());
+        } else if (_ctx.Velocity.magnitude == 0.0f)
+        {
+            SwitchState(_factory.Idle());
         }
     }
+
+    private void CollisionCheck() 
+    {
+        if ((_ctx.CharController.collisionFlags & CollisionFlags.Sides) != 0) // If character is touching sides
+        {
+
+        }
+    }
+
 }

@@ -12,7 +12,7 @@ public class PlayerLandingState : PlayerGroundedState
 
     public override void EnterState()
     {
-        //Debug.Log("Hello from the Landing State");
+        Debug.Log("Hello from the Landing State");
         if (_ctx.IsJumpQueued == true  && (_ctx.JumpTimer + _ctx.JumpBuffer > Time.time)) { SwitchState(_factory.Jump());}
         else {_ctx.CoyoteReady = true; _ctx.IsJumpQueued = false;}
         
