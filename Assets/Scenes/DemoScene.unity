@@ -3460,7 +3460,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1366173143
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4999,6 +4999,10 @@ PrefabInstance:
       propertyPath: distance
       value: 20
       objectReference: {fileID: 0}
+    - target: {fileID: 1330052017329617371, guid: dfde41e41ef541145add04ab438bface, type: 3}
+      propertyPath: inputReader
+      value: 
+      objectReference: {fileID: 11400000, guid: 68e9574c2fdb0aa48b284199783c95ba, type: 2}
     - target: {fileID: 1330052017329617371, guid: dfde41e41ef541145add04ab438bface, type: 3}
       propertyPath: rotationSensitivity
       value: 50

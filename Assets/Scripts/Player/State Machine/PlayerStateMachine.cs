@@ -15,8 +15,7 @@ public class PlayerStateMachine : MonoBehaviour
         private Rigidbody _playerRb;
         private CharacterController _charController;
         private Transform _navigator;
-        private PlayerActions _playerActions;
-        private InputHandler _inputHandler;
+        private GameInput _gameInput;
 
         [Header("Input")] // Variables that read and govern player inputs
         public bool _isJumpPressed = false;
@@ -92,7 +91,7 @@ public class PlayerStateMachine : MonoBehaviour
         public Rigidbody PlayerRb { get { return _playerRb; }}
         public CharacterController CharController { get { return _charController; }}
         public Transform Navigator { get { return _navigator; }}
-        public PlayerActions PlayerActions { get { return _playerActions; }}
+        public GameInput GameInput { get { return _gameInput; }}
         public PlayerStateFactory Factory { get { return _states; }}
 
         // Input
@@ -164,13 +163,13 @@ public class PlayerStateMachine : MonoBehaviour
             InitializeStates();
 
             // Player Action initialization
-            _playerActions = new PlayerActions();
-            _playerActions.TownState.RunStart.performed += x => RunPressed();
-            _playerActions.TownState.RunFinish.performed += x => RunReleased();
-            _playerActions.TownState.Jump.started += onJump;
-            _playerActions.TownState.Jump.canceled += onJump;
-            _playerActions.TownState.Movement.performed += x => OnMove();
-            _playerActions.TownState.Movement.canceled += x => OnMove();
+            _gameInput = new GameInput();
+            _gameInput.TownState.RunStart.performed += x => RunPressed();
+            _gameInput.TownState.RunFinish.performed += x => RunReleased();
+            _gameInput.TownState.Jump.started += onJump;
+            _gameInput.TownState.Jump.canceled += onJump;
+            _gameInput.TownState.Movement.performed += x => OnMove();
+            _gameInput.TownState.Movement.canceled += x => OnMove();
 
             // Value Initialization
             drag = walkdrag;
@@ -180,12 +179,12 @@ public class PlayerStateMachine : MonoBehaviour
 
     void OnEnable()
     {
-        _playerActions.TownState.Enable();
+        _gameInput.TownState.Enable();
     }
     
     void OnDisable()
     {
-        _playerActions.TownState.Disable();
+        _gameInput.TownState.Disable();
     }
 
     // Update is called once per frame
@@ -227,7 +226,7 @@ public class PlayerStateMachine : MonoBehaviour
     private void onJump(InputAction.CallbackContext context){ _isJumpPressed = context.ReadValueAsButton(); _newJumpNeeded = false; }
     private void RunPressed() {_isRunPressed = true;}
     private void RunReleased() {_isRunPressed = false;}
-    private void OnMove() { if (!_moveLocked) {_moveInput = _playerActions.TownState.Movement.ReadValue<Vector2>();} else {_moveInput = Vector2.zero; }}
+    private void OnMove() { if (!_moveLocked) {_moveInput = _gameInput.TownState.Movement.ReadValue<Vector2>();} else {_moveInput = Vector2.zero; }}
 
     private void RotateNavigator()
         {

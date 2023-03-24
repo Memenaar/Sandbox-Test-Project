@@ -75,7 +75,7 @@ public class PlayerAirborneState : PlayerBaseState
         if (_ctx.IsJumpPressed && !_ctx.NewJumpNeeded){
             if (_ctx.CoyoteReady && (_ctx.CoyoteTimer + _ctx.CoyoteTime >= Time.time)) { SwitchState(_factory.Jump());} // Coyote Time jump                    
             else if (!_ctx.IsJumpQueued) { _ctx.IsJumpQueued = true; _ctx.JumpTimer = Time.time;} // Queues a jump for landing*/
-            //else if (!_ctx.PlayerActions.TownState.Jump.WasPressedThisFrame() && !_ctx.IsJumpQueued) { _ctx.IsJumpQueued = true; _ctx.JumpTimer = Time.time;}
+            //else if (!_ctx.GameInput.TownState.Jump.WasPressedThisFrame() && !_ctx.IsJumpQueued) { _ctx.IsJumpQueued = true; _ctx.JumpTimer = Time.time;}
         }
     }
 

@@ -13,7 +13,7 @@ namespace SpriteController
         private Rigidbody _playerRb;
         public CharacterController _charController;
         private Transform _navigator;
-        private PlayerActions _playerActions;
+        private GameInput _gameInput;
 
 
         [Header("Movement Variables")] // Variables governing character movement and orientation
@@ -74,26 +74,26 @@ namespace SpriteController
 
 
             // Player Action initialization
-            _playerActions = new PlayerActions();
-            _playerActions.TownState.RunStart.performed += x => RunPressed();
-            _playerActions.TownState.RunFinish.performed += x => RunReleased();
-            _playerActions.TownState.Jump.performed += x => JumpLogic();
+            _gameInput = new GameInput();
+            _gameInput.TownState.RunStart.performed += x => RunPressed();
+            _gameInput.TownState.RunFinish.performed += x => RunReleased();
+            _gameInput.TownState.Jump.performed += x => JumpLogic();
         }
         
         void OnEnable()
         {
-            _playerActions.TownState.Enable();
+            _gameInput.TownState.Enable();
         }
         
         void OnDisable()
         {
-            _playerActions.TownState.Disable();
+            _gameInput.TownState.Disable();
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (_playerActions.TownState.Jump.WasPressedThisFrame())
+            if (_gameInput.TownState.Jump.WasPressedThisFrame())
             {
                 // Skip ahead to movement if Jump was pressed this frame.
                 if (_charController.isGrounded) 
@@ -107,7 +107,7 @@ namespace SpriteController
             }
             else
             {
-                moveInput = _playerActions.TownState.Movement.ReadValue<Vector2>(); // Gets movement input
+                moveInput = _gameInput.TownState.Movement.ReadValue<Vector2>(); // Gets movement input
 
                 if (_charController.isGrounded) // Executed if player's character controller is grounded.
                 {
