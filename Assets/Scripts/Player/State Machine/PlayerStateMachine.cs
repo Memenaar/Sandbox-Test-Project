@@ -6,16 +6,16 @@ using SpriteController;
 
 public class PlayerStateMachine : MonoBehaviour
 {
-    #region Variable Declarations
-    public string TempStringSuper;
-    public string TempStringSub;
+    #region Declarations
+    public string TempStringSuper; // only for testing visibility
+    public string TempStringSub; // only for testing visibility
 
         [Header("Objects & Components")] // Variables containing objects and components
+        public InputReader inputReader; // Scriptable object that conveys input 
         private Camera _camera;
         private Rigidbody _playerRb;
         private CharacterController _charController;
         private Transform _navigator;
-        private GameInput _gameInput;
 
         [Header("Input")] // Variables that read and govern player inputs
         public bool _isJumpPressed = false;
@@ -58,9 +58,9 @@ public class PlayerStateMachine : MonoBehaviour
         public Vector3 priorVelocity;
 
         [Header("Orientation")] // Variables governing player orientation
-        private Vector3 charDirection;
         public Vector3 _heading;
         public Vector3 _headingRotated;
+        private Vector3 charDirection;
 
         [Header("Collisions")] // Variables governing jump motion.
         public Vector3 _wallNormal;
@@ -68,20 +68,14 @@ public class PlayerStateMachine : MonoBehaviour
         public bool _isGrounded;
 
         [Header("Jump Queueing")]
-        private const float jumpbuffer = 0.15f; // How long prior to landing can the jump input be triggered?
         public float _jumpTimer; // The time the last mid-air jump input was pressed.
         public bool _isJumpQueued; // Is a jump currently queued for landing?
+        private const float jumpbuffer = 0.15f; // How long prior to landing can the jump input be triggered?
 
         [Header("Coyote Time")]
         private const float coyotewindow = .12f; // The player can still jump as if they are on the edge.
         private float _coyoteTimer; // The last time the player became airborne (without jumping)
         private bool _coyoteReady = true;
-
-        //[Header("Movement States")] // Variables governing character states
-        //public bool playerGrounded;
-        //public JumpState _jumpState = JumpState.None;
-        //public SlideState _slideState = SlideState.None;
-        //public MoveState _moveState = MoveState.Walk;
 
     #endregion
 
@@ -91,7 +85,6 @@ public class PlayerStateMachine : MonoBehaviour
         public Rigidbody PlayerRb { get { return _playerRb; }}
         public CharacterController CharController { get { return _charController; }}
         public Transform Navigator { get { return _navigator; }}
-        public GameInput GameInput { get { return _gameInput; }}
         public PlayerStateFactory Factory { get { return _states; }}
 
         // Input
@@ -159,17 +152,9 @@ public class PlayerStateMachine : MonoBehaviour
 
     void Awake()
         {
+            inputReader.GameInput.TownState.Enable(); // Want to move this to Game State stuff eventually.
             InitializeMovement();
             InitializeStates();
-
-            // Player Action initialization
-            _gameInput = new GameInput();
-            _gameInput.TownState.RunStart.performed += x => RunPressed();
-            _gameInput.TownState.RunFinish.performed += x => RunReleased();
-            _gameInput.TownState.Jump.started += onJump;
-            _gameInput.TownState.Jump.canceled += onJump;
-            _gameInput.TownState.Movement.performed += x => OnMove();
-            _gameInput.TownState.Movement.canceled += x => OnMove();
 
             // Value Initialization
             drag = walkdrag;
@@ -179,12 +164,16 @@ public class PlayerStateMachine : MonoBehaviour
 
     void OnEnable()
     {
-        _gameInput.TownState.Enable();
+        inputReader.PlayerJumpEvent += PlayerJump;
+        inputReader.PlayerMoveEvent += PlayerMove;
+        inputReader.PlayerRunEvent += PlayerRun;
     }
     
     void OnDisable()
     {
-        _gameInput.TownState.Disable();
+        inputReader.PlayerJumpEvent -= PlayerJump;
+        inputReader.PlayerMoveEvent -= PlayerMove;
+        inputReader.PlayerRunEvent -= PlayerRun;
     }
 
     // Update is called once per frame
@@ -223,10 +212,9 @@ public class PlayerStateMachine : MonoBehaviour
         _states = new PlayerStateFactory(this);
     }
 
-    private void onJump(InputAction.CallbackContext context){ _isJumpPressed = context.ReadValueAsButton(); _newJumpNeeded = false; }
-    private void RunPressed() {_isRunPressed = true;}
-    private void RunReleased() {_isRunPressed = false;}
-    private void OnMove() { if (!_moveLocked) {_moveInput = _gameInput.TownState.Movement.ReadValue<Vector2>();} else {_moveInput = Vector2.zero; }}
+    private void PlayerJump(bool isJumping){ _isJumpPressed = isJumping; _newJumpNeeded = false; }
+    private void PlayerRun(bool isRunning) {_isRunPressed = isRunning;}
+    private void PlayerMove(Vector2 playerMove) { if (!_moveLocked) {_moveInput = playerMove;} else {_moveInput = Vector2.zero; }}
 
     private void RotateNavigator()
         {

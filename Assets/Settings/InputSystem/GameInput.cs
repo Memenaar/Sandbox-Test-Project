@@ -46,18 +46,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""RunStart"",
+                    ""name"": ""Run"",
                     ""type"": ""PassThrough"",
                     ""id"": ""cc2abb0f-d687-4af4-b37c-69fed7dc0fd7"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""RunFinish"",
-                    ""type"": ""Button"",
-                    ""id"": ""c69b80bf-e57e-4ea9-b5bc-ae41e5297327"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -210,10 +201,10 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""ce082843-ec23-4d47-ab76-683479fbf1ea"",
                     ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": ""MouseAndKeyboard"",
-                    ""action"": ""RunStart"",
+                    ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -221,32 +212,10 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
                     ""name"": """",
                     ""id"": ""6f093e82-653e-4c2a-9cd5-e26ed8e3ffb6"",
                     ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": ""Press"",
+                    ""interactions"": ""Press(behavior=2)"",
                     ""processors"": """",
                     ""groups"": ""Controller"",
-                    ""action"": ""RunStart"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""25f747ff-f002-4aec-aa29-3abe09d47c65"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": ""Press(behavior=1)"",
-                    ""processors"": """",
-                    ""groups"": ""Controller"",
-                    ""action"": ""RunFinish"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""40311a0d-dd1c-409f-a10f-c8fb53554a13"",
-                    ""path"": ""<Keyboard>/leftShift"",
-                    ""interactions"": ""Press(behavior=1)"",
-                    ""processors"": """",
-                    ""groups"": ""MouseAndKeyboard"",
-                    ""action"": ""RunFinish"",
+                    ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -449,8 +418,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         m_TownState = asset.FindActionMap("TownState", throwIfNotFound: true);
         m_TownState_Jump = m_TownState.FindAction("Jump", throwIfNotFound: true);
         m_TownState_Movement = m_TownState.FindAction("Movement", throwIfNotFound: true);
-        m_TownState_RunStart = m_TownState.FindAction("RunStart", throwIfNotFound: true);
-        m_TownState_RunFinish = m_TownState.FindAction("RunFinish", throwIfNotFound: true);
+        m_TownState_Run = m_TownState.FindAction("Run", throwIfNotFound: true);
         m_TownState_Interact = m_TownState.FindAction("Interact", throwIfNotFound: true);
         // DungeonState
         m_DungeonState = asset.FindActionMap("DungeonState", throwIfNotFound: true);
@@ -522,8 +490,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     private List<ITownStateActions> m_TownStateActionsCallbackInterfaces = new List<ITownStateActions>();
     private readonly InputAction m_TownState_Jump;
     private readonly InputAction m_TownState_Movement;
-    private readonly InputAction m_TownState_RunStart;
-    private readonly InputAction m_TownState_RunFinish;
+    private readonly InputAction m_TownState_Run;
     private readonly InputAction m_TownState_Interact;
     public struct TownStateActions
     {
@@ -531,8 +498,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
         public TownStateActions(@GameInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Jump => m_Wrapper.m_TownState_Jump;
         public InputAction @Movement => m_Wrapper.m_TownState_Movement;
-        public InputAction @RunStart => m_Wrapper.m_TownState_RunStart;
-        public InputAction @RunFinish => m_Wrapper.m_TownState_RunFinish;
+        public InputAction @Run => m_Wrapper.m_TownState_Run;
         public InputAction @Interact => m_Wrapper.m_TownState_Interact;
         public InputActionMap Get() { return m_Wrapper.m_TownState; }
         public void Enable() { Get().Enable(); }
@@ -549,12 +515,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Movement.started += instance.OnMovement;
             @Movement.performed += instance.OnMovement;
             @Movement.canceled += instance.OnMovement;
-            @RunStart.started += instance.OnRunStart;
-            @RunStart.performed += instance.OnRunStart;
-            @RunStart.canceled += instance.OnRunStart;
-            @RunFinish.started += instance.OnRunFinish;
-            @RunFinish.performed += instance.OnRunFinish;
-            @RunFinish.canceled += instance.OnRunFinish;
+            @Run.started += instance.OnRun;
+            @Run.performed += instance.OnRun;
+            @Run.canceled += instance.OnRun;
             @Interact.started += instance.OnInteract;
             @Interact.performed += instance.OnInteract;
             @Interact.canceled += instance.OnInteract;
@@ -568,12 +531,9 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
             @Movement.started -= instance.OnMovement;
             @Movement.performed -= instance.OnMovement;
             @Movement.canceled -= instance.OnMovement;
-            @RunStart.started -= instance.OnRunStart;
-            @RunStart.performed -= instance.OnRunStart;
-            @RunStart.canceled -= instance.OnRunStart;
-            @RunFinish.started -= instance.OnRunFinish;
-            @RunFinish.performed -= instance.OnRunFinish;
-            @RunFinish.canceled -= instance.OnRunFinish;
+            @Run.started -= instance.OnRun;
+            @Run.performed -= instance.OnRun;
+            @Run.canceled -= instance.OnRun;
             @Interact.started -= instance.OnInteract;
             @Interact.performed -= instance.OnInteract;
             @Interact.canceled -= instance.OnInteract;
@@ -716,8 +676,7 @@ public partial class @GameInput: IInputActionCollection2, IDisposable
     {
         void OnJump(InputAction.CallbackContext context);
         void OnMovement(InputAction.CallbackContext context);
-        void OnRunStart(InputAction.CallbackContext context);
-        void OnRunFinish(InputAction.CallbackContext context);
+        void OnRun(InputAction.CallbackContext context);
         void OnInteract(InputAction.CallbackContext context);
     }
     public interface IDungeonStateActions

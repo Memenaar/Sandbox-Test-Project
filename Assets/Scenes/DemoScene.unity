@@ -364,9 +364,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b353825956f6f8843a0b8147d8ba9001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputReader: {fileID: 11400000, guid: 68e9574c2fdb0aa48b284199783c95ba, type: 2}
+  _speechBubble: {fileID: 2098418163}
   playerProximity: 0
   _navTransform: {fileID: 0}
-  _speechBubble: {fileID: 2098418163}
 --- !u!136 &59115306
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3439,9 +3440,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b353825956f6f8843a0b8147d8ba9001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputReader: {fileID: 11400000, guid: 68e9574c2fdb0aa48b284199783c95ba, type: 2}
+  _speechBubble: {fileID: 929930025}
   playerProximity: 0
   _navTransform: {fileID: 0}
-  _speechBubble: {fileID: 929930025}
 --- !u!1 &1366173142
 GameObject:
   m_ObjectHideFlags: 0
@@ -4546,9 +4548,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b353825956f6f8843a0b8147d8ba9001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inputReader: {fileID: 11400000, guid: 68e9574c2fdb0aa48b284199783c95ba, type: 2}
+  _speechBubble: {fileID: 496781046}
   playerProximity: 0
   _navTransform: {fileID: 0}
-  _speechBubble: {fileID: 496781046}
 --- !u!136 &2007068053
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -4693,6 +4696,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TempStringSuper: 
   TempStringSub: 
+  inputReader: {fileID: 11400000, guid: 68e9574c2fdb0aa48b284199783c95ba, type: 2}
   _isJumpPressed: 0
   _newJumpNeeded: 0
   _moveInput: {x: 0, y: 0}

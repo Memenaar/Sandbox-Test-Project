@@ -24,18 +24,9 @@
                     "initialStateCheck": true
                 },
                 {
-                    "name": "RunStart",
+                    "name": "Run",
                     "type": "PassThrough",
                     "id": "cc2abb0f-d687-4af4-b37c-69fed7dc0fd7",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                },
-                {
-                    "name": "RunFinish",
-                    "type": "Button",
-                    "id": "c69b80bf-e57e-4ea9-b5bc-ae41e5297327",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -188,10 +179,10 @@
                     "name": "",
                     "id": "ce082843-ec23-4d47-ab76-683479fbf1ea",
                     "path": "<Keyboard>/leftShift",
-                    "interactions": "Press",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "MouseAndKeyboard",
-                    "action": "RunStart",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -199,32 +190,10 @@
                     "name": "",
                     "id": "6f093e82-653e-4c2a-9cd5-e26ed8e3ffb6",
                     "path": "<Gamepad>/buttonEast",
-                    "interactions": "Press",
+                    "interactions": "Press(behavior=2)",
                     "processors": "",
                     "groups": "Controller",
-                    "action": "RunStart",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "25f747ff-f002-4aec-aa29-3abe09d47c65",
-                    "path": "<Gamepad>/buttonEast",
-                    "interactions": "Press(behavior=1)",
-                    "processors": "",
-                    "groups": "Controller",
-                    "action": "RunFinish",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "40311a0d-dd1c-409f-a10f-c8fb53554a13",
-                    "path": "<Keyboard>/leftShift",
-                    "interactions": "Press(behavior=1)",
-                    "processors": "",
-                    "groups": "MouseAndKeyboard",
-                    "action": "RunFinish",
+                    "action": "Run",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

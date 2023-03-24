@@ -6,9 +6,11 @@ using UnityEngine.Events;
 
 public class InputReader : DescriptionBaseSO, GameInput.ICameraActions, GameInput.ITownStateActions, GameInput.IDungeonStateActions
 {
+    #region Declarations
+    // Objects & Components
     /*
-    [Space]
     [SerializeField] private GameStateSO _gameStateManager; */
+    private GameInput _gameInput;
 
     // Camera
     public event UnityAction<Vector2, bool> CameraRotateEvent = delegate { };
@@ -16,9 +18,18 @@ public class InputReader : DescriptionBaseSO, GameInput.ICameraActions, GameInpu
     public event UnityAction EnableMouseControlCameraEvent = delegate { };
     public event UnityAction DisableMouseControlCameraEvent = delegate { };
 
-    // Insert other Action Map events here
+    // TownState
+    public event UnityAction<Vector2> PlayerMoveEvent = delegate { };
+    public event UnityAction<bool> PlayerJumpEvent = delegate { };
+    public event UnityAction<bool> PlayerRunEvent = delegate { };
+    public event UnityAction<bool> PlayerInteractEvent = delegate { };
 
-    private GameInput _gameInput;
+    // Insert other Action Map events here
+    
+    
+    #endregion
+
+    // Getters & Setters
     public GameInput GameInput { get { return _gameInput; }}
 
     private void OnEnable()
@@ -61,27 +72,23 @@ public class InputReader : DescriptionBaseSO, GameInput.ICameraActions, GameInpu
     // ITownStateActions interface members
     public void OnJump(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        PlayerJumpEvent.Invoke(context.ReadValueAsButton());
     }
 
     public void OnMovement(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        PlayerMoveEvent.Invoke(context.ReadValue<Vector2>());
     }
 
-    public void OnRunStart(InputAction.CallbackContext context)
+    public void OnRun(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
-    }
-
-    public void OnRunFinish(InputAction.CallbackContext context)
-    {
-        throw new System.NotImplementedException();
+        PlayerRunEvent.Invoke(context.ReadValueAsButton());
     }
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        if (context.phase == InputActionPhase.Started)
+            PlayerInteractEvent.Invoke(context.ReadValueAsButton());
     }
 
     // IDungeonStateActions interface members

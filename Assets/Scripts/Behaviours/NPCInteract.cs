@@ -6,40 +6,36 @@ using UnityEngine.InputSystem;
 public class NPCInteract : MonoBehaviour
 {
 
+    #region Declarations
+    // Objects & Components
+    public InputReader inputReader = default; // Scriptable object that conveys input
+    [SerializeField]
+    private GameObject _speechBubble;
     public bool playerProximity;
-    private GameInput _gameInput;
     private GameObject _player;
     public Transform _navTransform;
     
-    [SerializeField]
-    private GameObject _speechBubble;
+    #endregion
 
     void Awake()
     {
         _player = GameObject.Find("Player");
-        _gameInput = new GameInput();
         _navTransform = transform.parent.Find("Navigator").GetComponent<Transform>();
     }
 
     void OnEnable()
     {
-        _gameInput.TownState.Enable();
+        inputReader.PlayerInteractEvent += PlayerInteract;
     }
     void OnDisable()
     {
-        _gameInput.TownState.Disable();
+        inputReader.PlayerInteractEvent -= PlayerInteract;
     }
 
 
     // Update is called once per frame
     void Update()
     {
-        if (_gameInput.TownState.Interact.triggered && playerProximity)
-        {
-            _player.transform.Find("Navigator").LookAt(_navTransform.transform);
-            // Insert dialogue call here
-            PlayerInteract();
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -60,14 +56,17 @@ public class NPCInteract : MonoBehaviour
         }
     }
     
-    private void PlayerInteract()
+    private void PlayerInteract(bool interactPressed)
     {
-        // 1. Determine whether a. dialogue w/ char or b. other interaction
-        //      if a, then 1b. Tween camera pos to refocus on other Char.
-        // 3. Call Dialogue box UI
-        // 4. Call and display Dialogue
-        LookAtPlayer();
-        Debug.Log("Sup fucker.");
+        if (interactPressed && playerProximity)
+        {
+            // 1. Determine whether a. dialogue w/ char or b. other interaction
+            //      if a, then 1b. Tween camera pos to refocus on other Char.
+            // 3. Call Dialogue box UI
+            // 4. Call and display Dialogue
+            LookAtPlayer();
+            Debug.Log("Sup fucker.");
+        }
     }
 
     private void LookAtPlayer()
