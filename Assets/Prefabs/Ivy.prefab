@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 234923351238863595}
   - component: {fileID: 234923351238863591}
-  - component: {fileID: 234923351238863590}
+  - component: {fileID: 945996472809345536}
   m_Layer: 0
   m_Name: Ivy
   m_TagString: Player
@@ -26,7 +26,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234923351238863593}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.29, z: 0}
+  m_LocalPosition: {x: 0, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -50,10 +50,10 @@ CharacterController:
   m_Radius: 0.4
   m_SlopeLimit: 60
   m_StepOffset: 0.3
-  m_SkinWidth: 0.08
+  m_SkinWidth: 0.04
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.75, z: 0}
---- !u!114 &234923351238863590
+--- !u!114 &945996472809345536
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -62,34 +62,32 @@ MonoBehaviour:
   m_GameObject: {fileID: 234923351238863593}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 711449ffcde19014aa7991417e5179cb, type: 3}
+  m_Script: {fileID: 11500000, guid: 532f02206a7872649a02babe1816e9a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TempStringSuper: 
+  TempStringSub: 
+  inputReader: {fileID: 11400000, guid: 68e9574c2fdb0aa48b284199783c95ba, type: 2}
+  _playerID: {fileID: 11400000, guid: 306110bf84105a54f8947a7699556748, type: 2}
+  _navigator: {fileID: 0}
+  _billboard: {fileID: 0}
+  _isJumpPressed: 0
+  _newJumpNeeded: 0
+  _moveInput: {x: 0, y: 0}
+  _activeChar: 0
+  acceleration: 0
+  drag: 0
+  turnLerp: 0
+  jumpSpeed: 7.5
   ySpeed: 0
   velocity: {x: 0, y: 0, z: 0}
-  priorVelocity: {x: 0, y: 0, z: 0}
-  heading: {x: 0, y: 0, z: 0}
-  headingRotated: {x: 0, y: 0, z: 0}
-  _currentMovement: {x: 0, y: 0, z: 0}
-  turnLerp: 0
-  acceleration: 15
-  groundDrag: 20
-  speedDial: 25
-  walkMax: 8
-  runMax: 15
-  walkAccel: 150
-  runAccel: 30
-  walkDrag: 500
-  runDrag: 20
-  walkJump: 7.5
-  runJump: 10
-  jumpSpeed: 7.5
+  _heading: {x: 0, y: 0, z: 0}
+  _headingRotated: {x: 0, y: 0, z: 0}
   _wallNormal: {x: 0, y: 0, z: 0}
-  _jumpQueued: 0
-  playerGrounded: 0
-  _jumpState: 0
-  _slideState: 0
-  _moveState: 0
+  _jumpWall: 0
+  _isGrounded: 0
+  _jumpTimer: 0
+  _isJumpQueued: 0
 --- !u!1 &234923351257254974
 GameObject:
   m_ObjectHideFlags: 0
@@ -99,6 +97,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 234923351257254969}
+  - component: {fileID: 475812614110238362}
   m_Layer: 0
   m_Name: Navigator
   m_TagString: Untagged
@@ -122,6 +121,20 @@ Transform:
   m_Father: {fileID: 234923351238863595}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &475812614110238362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 234923351257254974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20f7d05d924204445ab225246af1ff61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  directionSprites: []
+  direction: 0
 --- !u!1 &234923352435663555
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +165,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 234923352435663555}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.9, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -265,6 +278,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7cc56e733ba4a0d47a486fa2eaa55d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spriteRenderer: {fileID: 0}
+  _spriteManager: {fileID: 0}
+  _psm: {fileID: 0}
+  _directionTracker: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!114 &1844918902
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,7 +329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &234923352474653060
 Transform:
   m_ObjectHideFlags: 0

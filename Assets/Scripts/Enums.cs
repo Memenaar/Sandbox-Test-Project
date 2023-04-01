@@ -1,7 +1,4 @@
-﻿namespace SpriteController
-{
-
-/* Sprite-related Enums */
+﻿/* Sprite-related Enums */
 
 	public enum Facing
 	{
@@ -15,6 +12,16 @@
 		UpRight
 	}
 
+/* Identity Type Enums */
+
+	public enum IdentityType
+	{
+		PlayerChar,
+		NPC,
+		Tulpa,
+		Enemy
+	}
+
 /* Playable Char Enums */
 
 	public enum Character
@@ -22,4 +29,12 @@
 		Ivy,
 		Neku
 	}
-}
+
+/* Non-Playable Char Enums */
+	public enum NPC
+	{
+		Ivy,
+		Neku,
+		Pencilboy
+	}
+

@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 [CreateAssetMenu(fileName = "InputReader", menuName = "Game/Input Reader")]
 
-public class InputReader : DescriptionBaseSO, GameInput.ICameraActions, GameInput.ITownStateActions, GameInput.IDungeonStateActions
+public class InputReader : DescriptionBaseSO, GameInput.ICameraActions, GameInput.ITownStateActions, GameInput.IDungeonStateActions, GameInput.IDialogueStateActions
 {
     #region Declarations
     // Objects & Components
@@ -24,6 +24,10 @@ public class InputReader : DescriptionBaseSO, GameInput.ICameraActions, GameInpu
     public event UnityAction<bool> PlayerRunEvent = delegate { };
     public event UnityAction<bool> PlayerInteractEvent = delegate { };
 
+    // DialogueState
+    public event UnityAction DialogueContinueEvent = delegate { };
+    public event UnityAction<Vector2> NavigateChoicesEvent = delegate { };
+
     // Insert other Action Map events here
     
     
@@ -41,6 +45,8 @@ public class InputReader : DescriptionBaseSO, GameInput.ICameraActions, GameInpu
             _gameInput.Camera.SetCallbacks(this);
             _gameInput.TownState.SetCallbacks(this);
             _gameInput.DungeonState.SetCallbacks(this);
+            _gameInput.DialogueState.SetCallbacks(this);
+
         }
     }
 
@@ -94,6 +100,18 @@ public class InputReader : DescriptionBaseSO, GameInput.ICameraActions, GameInpu
     // IDungeonStateActions interface members
         // Currently Empty
 
+    // IDialogueStateActions interface members
+    public void OnContinue(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Started)
+            DialogueContinueEvent.Invoke();
+    }
+    
+    public void OnNavigateChoices(InputAction.CallbackContext context)
+    {
+        NavigateChoicesEvent.Invoke(context.ReadValue<Vector2>());
+    }
+
     // Unsorted
     private bool IsDeviceMouse(InputAction.CallbackContext context) => context.control.device.name == "Mouse";
 
@@ -103,6 +121,7 @@ public class InputReader : DescriptionBaseSO, GameInput.ICameraActions, GameInpu
         _gameInput.Camera.Disable();
         _gameInput.TownState.Disable();
         _gameInput.DungeonState.Disable();
+        _gameInput.DialogueState.Disable();
     }
 
     public void EnableTownInput()
@@ -110,6 +129,7 @@ public class InputReader : DescriptionBaseSO, GameInput.ICameraActions, GameInpu
         _gameInput.Camera.Enable();
         _gameInput.TownState.Enable();
         _gameInput.DungeonState.Disable();
+        _gameInput.DialogueState.Disable();
     }
 
     public void EnableDungeonInput()
@@ -117,5 +137,14 @@ public class InputReader : DescriptionBaseSO, GameInput.ICameraActions, GameInpu
         _gameInput.Camera.Enable();
         _gameInput.DungeonState.Enable();
         _gameInput.TownState.Disable();
+        _gameInput.DialogueState.Disable();
+    }
+
+    public void EnableDialogueInput()
+    {
+        _gameInput.Camera.Disable();
+        _gameInput.TownState.Disable();
+        _gameInput.DungeonState.Disable();
+        _gameInput.DialogueState.Enable();
     }
 }

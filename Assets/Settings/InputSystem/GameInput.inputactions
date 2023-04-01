@@ -360,6 +360,153 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "DialogueState",
+            "id": "8a2b3431-e2ff-4b33-ba95-de68cdc7cceb",
+            "actions": [
+                {
+                    "name": "Continue",
+                    "type": "Button",
+                    "id": "6f5fcbbb-e7a3-4414-91e4-8004eb96a29e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "NavigateChoices",
+                    "type": "Value",
+                    "id": "5c28a572-4b53-444b-8cf9-b71817dbb637",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "93d50066-8922-4642-9039-7d66fc3b9b56",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseAndKeyboard",
+                    "action": "Continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "9810e162-4c44-4c7e-940b-1e8a8fb4f31f",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "Continue",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "ControllerDPad",
+                    "id": "1a5975ed-7bdf-46d2-82f7-1af1efe5cb26",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NavigateChoices",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "down",
+                    "id": "62d0869f-d97f-427b-a838-5a8115f06a9c",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "NavigateChoices",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "up",
+                    "id": "fcb77acd-77f0-4025-89ba-b236c7d34a1e",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Controller",
+                    "action": "NavigateChoices",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "MouseScroll",
+                    "id": "d21e4993-2f22-420c-b379-c3869d510245",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NavigateChoices",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "Up",
+                    "id": "8007bb9a-e67d-4c72-90b8-e55f944f229c",
+                    "path": "<Mouse>/scroll/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseAndKeyboard",
+                    "action": "NavigateChoices",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "Down",
+                    "id": "eca3aa1d-c543-458f-8fbe-5fa0a261c884",
+                    "path": "<Mouse>/scroll/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "MouseAndKeyboard",
+                    "action": "NavigateChoices",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "KeyboardScroll",
+                    "id": "b77d4e5b-494a-4933-8eb6-b4861ea22043",
+                    "path": "2DVector",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NavigateChoices",
+                    "isComposite": true,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "down",
+                    "id": "5ef4fbe9-1944-468b-8b63-f549c18f879c",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NavigateChoices",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                },
+                {
+                    "name": "up",
+                    "id": "d24e165f-7784-43db-a68e-befd7c3f8b5b",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "NavigateChoices",
+                    "isComposite": false,
+                    "isPartOfComposite": true
+                }
+            ]
         }
     ],
     "controlSchemes": [
