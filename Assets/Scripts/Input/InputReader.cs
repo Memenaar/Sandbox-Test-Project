@@ -22,7 +22,7 @@ public class InputReader : DescriptionBaseSO, GameInput.ICameraActions, GameInpu
     public event UnityAction<Vector2> PlayerMoveEvent = delegate { };
     public event UnityAction<bool> PlayerJumpEvent = delegate { };
     public event UnityAction<bool> PlayerRunEvent = delegate { };
-    public event UnityAction<bool> PlayerInteractEvent = delegate { };
+    public event UnityAction PlayerInteractEvent = delegate { };
 
     // DialogueState
     public event UnityAction DialogueContinueEvent = delegate { };
@@ -94,7 +94,7 @@ public class InputReader : DescriptionBaseSO, GameInput.ICameraActions, GameInpu
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started)
-            PlayerInteractEvent.Invoke(context.ReadValueAsButton());
+            PlayerInteractEvent.Invoke();
     }
 
     // IDungeonStateActions interface members

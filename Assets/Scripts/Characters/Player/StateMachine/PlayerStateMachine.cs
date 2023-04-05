@@ -16,7 +16,7 @@ public class PlayerStateMachine : MonoBehaviour
         private Camera _camera;
         private Rigidbody _playerRb;
         private CharacterController _charController;
-        [SerializeField] private CharIdentity _playerID;
+        [SerializeField] private CharIdentitySO _playerID;
         [SerializeField] private Transform _navigator;
         [SerializeField] private Transform _billboard;
 
@@ -28,7 +28,7 @@ public class PlayerStateMachine : MonoBehaviour
         public Vector2 _moveInput;
 
         [Header("Player State")] // Variables that interface with the Player State Machine.
-        public Character _activeChar = Character.Ivy;
+        public CharID _activeChar = CharID.Ivy;
         private bool _playerInteraction = false;
         private PlayerBaseState _currentSuperState;
         private PlayerBaseState _currentSubState;
@@ -75,7 +75,7 @@ public class PlayerStateMachine : MonoBehaviour
         public Rigidbody PlayerRb { get { return _playerRb; }}
         public CharacterController CharController { get { return _charController; }}
         public Transform Navigator { get { return _navigator; }}
-        public CharIdentity PlayerID { get { return _playerID; } set { _playerID = value; }}
+        public CharIdentitySO PlayerID { get { return _playerID; } set { _playerID = value; }}
         public PlayerStateFactory Factory { get { return _states; }}
 
         // Input
@@ -192,7 +192,7 @@ public class PlayerStateMachine : MonoBehaviour
     protected void InitializeValues() // Initialize needed game objects, components, and variables.
     {
         originalStepOffset = _charController.stepOffset;
-        turnLerp = CharIdentity.walklerp;
+        turnLerp = CharIdentitySO.walklerp;
         acceleration = _playerID.walkaccel;
         drag = _playerID.walkdrag;
         jumpSpeed = _playerID.WalkJump;

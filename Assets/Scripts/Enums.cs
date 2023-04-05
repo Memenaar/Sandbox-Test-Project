@@ -21,20 +21,3 @@
 		Tulpa,
 		Enemy
 	}
-
-/* Playable Char Enums */
-
-	public enum Character
-	{
-		Ivy,
-		Neku
-	}
-
-/* Non-Playable Char Enums */
-	public enum NPC
-	{
-		Ivy,
-		Neku,
-		Pencilboy
-	}
-

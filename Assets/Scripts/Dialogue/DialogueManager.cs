@@ -1,13 +1,14 @@
-using System.Collections.Generic;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using TMPro;
 using Ink.Runtime;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
+    [SerializeField] private List<CharIdentitySO> _charactersList = default;
     [SerializeField] private InputReader _inputReader = default; // Scriptable object that conveys input
     [SerializeField] private GameStateSO _gameState = default; // Tracks game state
 
@@ -15,6 +16,7 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private float _typingSpeed = 0.04f;
 
     [Header("Dialogue UI")]
+    [SerializeField] private UIDialogueManager _uiDialogueManager;
     [SerializeField] private GameObject _dialoguePanel;
     [SerializeField] private GameObject _continueIcon;
     [SerializeField] private GameObject _namePanelLeft;
@@ -28,10 +30,25 @@ public class DialogueManager : MonoBehaviour
     public string _activeSide;
     Dictionary<string, GameObject> portraitSelection;
 
+
     [Header("Choices UI")]
     [SerializeField] private GameObject[] _choices;
     private TextMeshProUGUI[] _choicesText;
 
+	[Header("Broadcasting On")]
+	[SerializeField] private DialogueLineChannelSO _openUIDialogueEvent = default;
+	[SerializeField] private DialogueChoicesChannelSO _showChoicesUIEvent = default;
+	[SerializeField] private IntEventChannelSO _endDialogueWithTypeEvent = default;
+	//[SerializeField] private VoidEventChannelSO _continueWithStep = default;
+	//[SerializeField] private VoidEventChannelSO _playIncompleteDialogue = default;
+	//[SerializeField] private VoidEventChannelSO _makeWinningChoice = default;
+	//[SerializeField] private VoidEventChannelSO _makeLosingChoice = default;
+
+    [Header("Listening To")]
+	[SerializeField] private DialogueDataChannelSO _startDialogue = default;
+	[SerializeField] private DialogueChoiceChannelSO _makeDialogueChoiceEvent = default;
+
+    private DialogueDataSO _currentDialogue;
     private Story _currentStory;
 
     private bool _skipLine = false;
@@ -47,6 +64,8 @@ public class DialogueManager : MonoBehaviour
     private Coroutine _displayLineCoroutine;
 
     private bool _canContinueToNextLine = false;
+
+    private string _currentSpeaker;
 
     [Header("Tag Keys")]
     private const string SIDE_TAG = "side";
@@ -65,10 +84,12 @@ public class DialogueManager : MonoBehaviour
     private void Awake()
     {
         InitializeDM();
+        _startDialogue.OnEventRaised += ProcessDialogueData; // When an event is raised on the channel assigned to StartDialogue
     }
     
     private void Start()
     {
+        
         _dialogueIsPlaying = false;
         ResetAll();
 
@@ -81,6 +102,23 @@ public class DialogueManager : MonoBehaviour
         }
     }
     #endregion
+
+    public void ProcessDialogueData(DialogueDataSO dialogueDataSO)
+    {
+        SwitchGameState();
+        _currentDialogue = dialogueDataSO;
+        _currentStory = new Story(dialogueDataSO.DialogueInk.text);
+        _dialogueIsPlaying = true;
+
+        DialogueContinue();
+
+    }
+
+    public void DisplayDialogueLine(string dialogueLine, string charName)
+    {
+        CharIdentitySO currentCharID = _charactersList.Find(o => o.CharID.ToString() == charName); // Uses the _charactersList array to find the CharIdentitySO where ID = current speaker
+        _openUIDialogueEvent.RaiseEvent(dialogueLine, currentCharID);
+    }
 
     #region Initialization
     public void InitializeDM()
@@ -114,19 +152,19 @@ public class DialogueManager : MonoBehaviour
         ResetAll();
         _currentStory = new Story(inkJson.text);
         _dialogueIsPlaying = true;
-        _dialoguePanel.SetActive(true);
+        //_dialoguePanel.SetActive(true);
         SwitchGameState();
-        // Change game state to dialogue/menu in order to disable character control & switch control scheme?
         DialogueContinue();
+        
     }
 
     private void ExitDialogueMode()
     {
         _dialogueIsPlaying = false;
-        _dialoguePanel.SetActive(false);
-        _dialogueText.text = "";
+        //_dialoguePanel.SetActive(false);
+        _uiDialogueManager.DialogueText.text = "";
         SwitchGameState();
-        // Change game state in order to re-enable character control & switch control scheme?
+        
     }
 
     private void SwitchGameState()
@@ -173,17 +211,8 @@ public class DialogueManager : MonoBehaviour
     {
         if (_currentStory.canContinue)
         {
-
-            if (_displayLineCoroutine != null)
-            {
-                StopCoroutine(_displayLineCoroutine);
-            }
-
-            // Type out the current dialogue line using the DisplayLine coroutine
-            _displayLineCoroutine = StartCoroutine(DisplayLine(_currentStory.Continue()));
-
-            // Handle Tags
             HandleTags(_currentStory.currentTags);
+            DisplayDialogueLine(_currentStory.Continue(), _currentSpeaker);
 
         } else
         {
@@ -192,7 +221,7 @@ public class DialogueManager : MonoBehaviour
     }
 
     #region Tag Parsing
-    private void HandleTags(List<string> currentTags)
+    /* private void HandleTags(List<string> currentTags)
     {
         // Loop through each tag and handle accordingly
         foreach (string tag in currentTags)
@@ -244,49 +273,63 @@ public class DialogueManager : MonoBehaviour
                     break;
             }
         }
-    }
-    #endregion
+    } */
 
-    private IEnumerator DisplayLine(string line)
+    private void HandleTags(List<string> currentTags)
     {
-        _dialogueText.text = line; // Set the dialogue text to the full line
-        _dialogueText.maxVisibleCharacters = 0; // Set visible characters to 0
-        
-        _continueIcon.SetActive(false); // Hide continue icon while text is typing
-        HideChoices();
-
-        _canContinueToNextLine = false; // Prevents player from continuing to next line before text is fully displayed.
-
-        bool isAddingRichTextTag = false;
-
-        // Display each letter one at a time
-        foreach (char letter in line.ToCharArray())
+        // Loop through each tag and handle accordingly
+        foreach (string tag in currentTags)
         {
-            if (_skipLine) // If _skipLine has been triggered
+            // Parse the tag
+            string[] splitTag = tag.Split(':');
+            if (splitTag.Length != 2)
             {
-                _dialogueText.maxVisibleCharacters = line.Length; // Reveal the whole line at once
-                _skipLine = false; // Reset _skipLine
-                break; // Exit the foreach loop
+                _dialogueError = true;
+                _dialogueText.text = "Tag could not be appropriately parsed: " + tag.ToString();
+                Debug.LogError("Tag could not be appropriately parsed: " + tag);
+                return;
             }
+            string tagKey = splitTag[0].Trim();
+            string tagValue = splitTag[1].Trim();
 
-            if (letter == '<' || isAddingRichTextTag) // Check for RTT opening character or isAddingRichTextTag variable
+            // Handle the tag
+            switch (tagKey)
             {
-                isAddingRichTextTag = true;
-                if (letter == '>') // Check for tag closing
-                {
-                    isAddingRichTextTag = false;
-                }
-            } else // If not adding rich text, add the next letter and wait _typingSpeed
-            {
-                _dialogueText.maxVisibleCharacters++;
-                yield return new WaitForSeconds(_typingSpeed);
+                case SIDE_TAG:
+                    if (tagValue == "L")
+                    {
+                        _activeSide = "L";
+                        _activeNameText = _nameTextLeft;
+                        _namePanelLeft.SetActive(true);
+                        _namePanelRight.SetActive(false);
+                    } else if (tagValue == "R")
+                    {
+                        _activeSide = "R";
+                        _activeNameText = _nameTextRight;
+                        _namePanelRight.SetActive(true);
+                        _namePanelLeft.SetActive(false);
+                    }
+                    break;
+                case PORTRAIT_TAG:
+                    _currentPortrait = portraitSelection["Portrait" + _activeSide + tagValue];
+                    _currentPortrait.SetActive(true);
+                    ChangePortraitFocus(_currentPortrait);
+                    break;
+                case SPEAKER_TAG:
+                    _currentSpeaker = tagValue;
+                    _activeNameText.text = tagValue;
+                    break;
+                case ANIMATION_TAG:
+                    _currentPortrait.SetActive(true);
+                    _currentPortrait.GetComponent<Animator>().Play(tagValue);
+                    break;
+                default:
+                    Debug.LogWarning("Tag came in but is not currently being handled: " + tag);
+                    break;
             }
         }
-
-        _continueIcon.SetActive(true); // Display continue icon when text is done typing
-        DisplayChoices(); // Display choices, if any, that respond to this dialogue line.
-        _canContinueToNextLine = true; // Allows player to continue to next line
     }
+    #endregion
 
     private void DisplayChoices()
     {
@@ -296,7 +339,7 @@ public class DialogueManager : MonoBehaviour
         if (currentChoices.Count > _choices.Length)
         {
             _dialogueError = true;
-            _dialogueText.text = "Error: More choices were given than UI can support.";
+            _uiDialogueManager.DialogueText.text = "Error: More choices were given than UI can support.";
             Debug.LogError("More choices were given than UI can support.");
             return;
         }
@@ -368,7 +411,7 @@ public class DialogueManager : MonoBehaviour
 
     public void ProcessInput()
     {
-        if (_canContinueToNextLine)
+        if (_uiDialogueManager.CanContinueToNextLine)
         {
             if (_currentStory.currentChoices.Count == 0) // If there are no choices in response to the current dialogue, call the DialogueContinue() method.
             {
@@ -381,7 +424,7 @@ public class DialogueManager : MonoBehaviour
             // Otherwise, the MakeChoice() method will be called by the selected button.
         } else
         {
-            _skipLine = true;
+            _uiDialogueManager.SkipLine = true;
         }
     }
     #endregion

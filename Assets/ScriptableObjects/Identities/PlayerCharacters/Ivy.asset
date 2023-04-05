@@ -9,15 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 91a7d95fe69e12b4abe5d38f8e659ce2, type: 3}
+  m_Script: {fileID: 11500000, guid: a37499b5e5484ab41b2b641c181376b1, type: 3}
   m_Name: Ivy
   m_EditorClassIdentifier: 
-  _guid: 306110bf84105a54f8947a7699556748
+  _guid: db10924fb6b994b408e66ef6f86d995f
   _idType: 0
-  _charName: 0
+  _charID: 0
+  _charName: Ivy
   _animationController: {fileID: 9100000, guid: 3d939e1aded836f4b87c762a9eaa5a7a, type: 2}
   _spriteLibrary: {fileID: 7108339969198208228, guid: 30b05082a87a2eb4290e0c8daf68c09f, type: 3}
-  _dialogueInk: {fileID: 4900000, guid: 8d4c31551ef3a5942ad5a83d7ae6c1b9, type: 3}
+  _dialogueInk: {fileID: 4900000, guid: c29933c1eb2f5094f81c5ee3c82ebec4, type: 3}
+  _defaultDialogue: {fileID: 11400000, guid: 5ba90614b74fbe944ad5094e1d6f3b96, type: 2}
   _center: {x: 0, y: 0.75, z: 0}
   _radius: 0.5
   _height: 1.5

@@ -1,16 +1,27 @@
 using UnityEngine;
 using UnityEngine.U2D.Animation;
 
-[CreateAssetMenu(fileName = "CharacterIdentity", menuName = "Identities/Character")]
+public enum CharID
+{
+    Ivy,
+	Neku,
+	Pencilboy
+}
 
-public class CharIdentity : IdentityBaseSO
+[CreateAssetMenu(fileName = "newCharacterIdentity", menuName = "Identities/Character")]
+
+public class CharIdentitySO : IdentityBaseSO
 {
     #region Declarations
+    [Header("ID & Name")]
+    [SerializeField] private CharID _charID = default;
+    [SerializeField] private string _charName = default;
+
     [Header("Objects & Components")] // Variables containing objects and components
-    public Character _charName;
     public RuntimeAnimatorController _animationController;
     public SpriteLibraryAsset _spriteLibrary;
     [SerializeField] private TextAsset _dialogueInk;
+    [SerializeField] private DialogueDataSO _defaultDialogue;
 
     [Header("Collider Size")]
     [SerializeField] private Vector3 _center;
@@ -33,11 +44,15 @@ public class CharIdentity : IdentityBaseSO
 
     #region Getters & Setters
     
+    // ID & Name
+    public CharID CharID { get => _charID; }
+    public string CharName { get => _charName; }
+
     // Objects & Components
-    public Character CharName { get { return _charName; } }
     public RuntimeAnimatorController AnimationController { get { return _animationController; } }
     public SpriteLibraryAsset SpriteLibrary { get { return _spriteLibrary; } }
     public TextAsset DialogueInk { get { return _dialogueInk; }}
+    public DialogueDataSO DefaultDialogue { get { return _defaultDialogue; }}
 
     // Collider Size
     public float CenterY { get { return _center.y; }}
