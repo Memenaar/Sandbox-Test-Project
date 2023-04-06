@@ -8,10 +8,11 @@ using UnityEngine.Events;
 public class NPCResponseController : MonoBehaviour
 {
     [Header("Data")]
-    [SerializeField] private CharIdentitySO _NPCID = default;
-    private DialogueDataSO _defaultDialogue;
+    [SerializeField] [ReadOnly] private NPCManager _NPCManager = default;
     //[SerializeField] private QuestManagerSO _questData = default;
     [SerializeField] private GameStateSO _gameStateManager = default;
+    [SerializeField] [ReadOnly] private DialogueDataSO _defaultDialogue;
+    [SerializeField] [ReadOnly] private DialogueDataSO _currentDialogue;
 
     [Header("Broadcasting On")]
     public DialogueDataChannelSO _startDialogueEvent = default;
@@ -19,35 +20,36 @@ public class NPCResponseController : MonoBehaviour
     [Header("Listening To")]
     [SerializeField] private IntEventChannelSO _endDialogueEvent = default;
 
-    private DialogueDataSO _currentDialogue;
-
-    public bool isInDialogue; // Currently handled in the PlayerStateMachine by the _playerInteraction bool. Functionality should likely be migrated.
+    [Header("Parameters")]
+    public bool isInDialogue; // Consumed by NPC State Machine
 
     void Awake()
     {
-        if (_NPCID != null)
+        _NPCManager = gameObject.GetComponent<NPCManager>();
+
+        if (_NPCManager.NPCID != null)
         {
-            _defaultDialogue = _NPCID.DefaultDialogue;
-            if (_defaultDialogue == null)
+            _defaultDialogue = _NPCManager.NPCID.DefaultDialogue; // Set Default Dialogue to the DD contained in the assigned CharIdentitySO
+            if (_defaultDialogue == null) // If null, throw error
             {
-                Debug.LogError("Couldn't find a default dialogue for the following NPC ID: " + _NPCID);
+                Debug.LogError("Couldn't find a default dialogue for the following NPC ID: " + _NPCManager.NPCID);
             }
-        } else {}
+        }
     }
 
     void PlayDefaultDialogue()
     {
         if (_defaultDialogue != null)
         {
-            
-            _currentDialogue = _defaultDialogue;
+            _currentDialogue = _defaultDialogue; // Assign default dialogue to current dialogue
             StartDialogue();
         }
     }
 
+    // Called by the Player Character's Interaction Manager script.
     public void InteractWithCharacter()
     {
-        if (_gameStateManager.CurrentGameState == GameState.GameplayTown)
+        if (_gameStateManager.CurrentGameState == GameState.GameplayTown) // This line needs an update once GameplayDungeon state is implemented.
         {
             DialogueDataSO displayDialogue = null; // This line is placeholder. null value to be replaced by a check with the Quest Manager, with NPCID passed through.
 
@@ -66,22 +68,22 @@ public class NPCResponseController : MonoBehaviour
     void StartDialogue()
     {
         _startDialogueEvent.RaiseEvent(_currentDialogue);
-        //_endDialogueEvent.OnEventRaised += EndDialogue;
-        //StopConversation(); // Little confused about this as it doesn't seem to work in the source project, and it's reversed? Investigate further.
+        _endDialogueEvent.OnEventRaised += EndDialogue;
+        //StopConversation(); // If NPC is in conversation with a 2nd NPC, abort that conversation to talk to Player.
         isInDialogue = true;
     }
 
-    void EndDialogue()
+    void EndDialogue(int dialogueType)
     {
-        //_endDialogueEvent.OnEventRaised -= EndDialogue;
-        //ResumeConversation(); // Little confused about this as it doesn't seem to work in the source project, and it's reversed? Investigate further.
+        _endDialogueEvent.OnEventRaised -= EndDialogue;
+        //ResumeConversation(); // If the NPC was in conversation with a 2nd NPC, resume that conversation once done talking to Player.
         isInDialogue = false;
     }
 
 
     private void StopConversation()
     {
-        GameObject[] talkingTo = gameObject.GetComponent<NPC>().talkingTo; // New array of game objects called Talking To.
+        GameObject[] talkingTo = gameObject.GetComponent<NPC>().talkingTo;
         if (talkingTo != null) // If not
         {
             for (int i = 0; i < talkingTo.Length; ++i)
@@ -93,10 +95,10 @@ public class NPCResponseController : MonoBehaviour
 
     private void ResumeConversation()
     {
-        GameObject[] talkingTo = GetComponent<NPC>().talkingTo;
+        GameObject[] talkingTo = GetComponent<NPC>().talkingTo; // Copy an array called TalkingTo from the NPC script, and recreate it here.
         if (talkingTo != null)
         {
-            for (int i = 0; i < talkingTo.Length; ++i)
+            for (int i = 0; i < talkingTo.Length; ++i) 
             {
                 talkingTo[i].GetComponent<NPC>().npcState = NPCState.Talk;
             }

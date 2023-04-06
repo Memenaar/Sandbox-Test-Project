@@ -17,6 +17,7 @@ MonoBehaviour:
   _charID: 0
   _charName: Ivy
   _animationController: {fileID: 9100000, guid: 3d939e1aded836f4b87c762a9eaa5a7a, type: 2}
+  _portraitController: {fileID: 9100000, guid: 0e471510f56b13b428479a1c7f8cb4dc, type: 2}
   _spriteLibrary: {fileID: 7108339969198208228, guid: 30b05082a87a2eb4290e0c8daf68c09f, type: 3}
   _dialogueInk: {fileID: 4900000, guid: c29933c1eb2f5094f81c5ee3c82ebec4, type: 3}
   _defaultDialogue: {fileID: 11400000, guid: 5ba90614b74fbe944ad5094e1d6f3b96, type: 2}

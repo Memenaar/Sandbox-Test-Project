@@ -1,15 +1,14 @@
 using UnityEngine;
 using UnityEngine.Events;
-using Ink.Runtime;
 
 [CreateAssetMenu(menuName = "Events/UI/Dialogue Line Channel")]
 public class DialogueLineChannelSO : DescriptionBaseSO
 {
-	public UnityAction<string, CharIdentitySO> OnEventRaised;
+	public UnityAction<string> OnEventRaised;
 
-	public void RaiseEvent(string line, CharIdentitySO charID)
+	public void RaiseEvent(string line)
 	{
 		if (OnEventRaised != null)
-			OnEventRaised.Invoke(line, charID);
+			OnEventRaised.Invoke(line);
 	}
 }

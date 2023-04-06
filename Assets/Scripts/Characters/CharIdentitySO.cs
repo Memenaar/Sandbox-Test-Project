@@ -19,6 +19,7 @@ public class CharIdentitySO : IdentityBaseSO
 
     [Header("Objects & Components")] // Variables containing objects and components
     public RuntimeAnimatorController _animationController;
+    public RuntimeAnimatorController _portraitController;
     public SpriteLibraryAsset _spriteLibrary;
     [SerializeField] private TextAsset _dialogueInk;
     [SerializeField] private DialogueDataSO _defaultDialogue;
@@ -50,9 +51,10 @@ public class CharIdentitySO : IdentityBaseSO
 
     // Objects & Components
     public RuntimeAnimatorController AnimationController { get { return _animationController; } }
+    public RuntimeAnimatorController PortraitController { get { return _portraitController; } }
     public SpriteLibraryAsset SpriteLibrary { get { return _spriteLibrary; } }
-    public TextAsset DialogueInk { get { return _dialogueInk; }}
-    public DialogueDataSO DefaultDialogue { get { return _defaultDialogue; }}
+    public TextAsset DialogueInk { get { return _dialogueInk; } }
+    public DialogueDataSO DefaultDialogue { get { return _defaultDialogue; } }
 
     // Collider Size
     public float CenterY { get { return _center.y; }}

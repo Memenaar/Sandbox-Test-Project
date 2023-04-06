@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5434781595284212552
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5434781595284212555}
+  - component: {fileID: 5434781595284212554}
+  m_Layer: 0
+  m_Name: DialogueManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5434781595284212555
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5434781595284212552}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5434781595284212554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5434781595284212552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4bfc2c25bfbcce342aa7d2180a87743a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _callsheet: {fileID: 11400000, guid: 08d051bdc823d424e96dd5a9f928dfca, type: 2}
+  _inputReader: {fileID: 11400000, guid: 68e9574c2fdb0aa48b284199783c95ba, type: 2}
+  _gameState: {fileID: 11400000, guid: 9a5b94051e598c9439fd97a02ae585f0, type: 2}
+  _typingSpeed: 0.04
+  _uiDialogueManager: {fileID: 0}
+  _dialoguePanel: {fileID: 0}
+  _continueIcon: {fileID: 0}
+  _namePanelLeft: {fileID: 0}
+  _namePanelRight: {fileID: 0}
+  _dialogueText: {fileID: 0}
+  _nameTextLeft: {fileID: 0}
+  _nameTextRight: {fileID: 0}
+  _leftPortraits: []
+  _leftPortraitPanel: {fileID: 0}
+  _rightPortraitPanel: {fileID: 0}
+  _rightPortraits: []
+  _activeSide: 
+  _currentSpeakerText: 
+  _activeNameText: {fileID: 0}
+  _activePortraitSide: {fileID: 0}
+  _activePortraits: []
+  _currentPortraits: []
+  _currentSpeakers: []
+  _choices:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  _openDialogueUIEvent: {fileID: 11400000, guid: 3545d1e57ba7f6c498c6fcf3c8df1ef6, type: 2}
+  _changeDialogueUIEvent: {fileID: 11400000, guid: a277617c53e4b6e498f98bf621095f15, type: 2}
+  _showChoicesUIEvent: {fileID: 0}
+  _endDialogueWithTypeEvent: {fileID: 11400000, guid: 16ad34e9e1e9bf24d84f4c4c7c310859, type: 2}
+  _startDialogue: {fileID: 11400000, guid: 2efa731b09faf904cbd625cde33ab547, type: 2}
+  _makeDialogueChoiceEvent: {fileID: 0}

@@ -519,7 +519,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2087964399695561044
 RectTransform:
   m_ObjectHideFlags: 0
@@ -795,23 +795,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7434fab7e0b619d42b0ca1cfd6d37780, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _dialogueText: {fileID: 2106601195594525082}
+  _uiDialogueManager: {fileID: 0}
   _dialoguePanel: {fileID: 2106601195642501182}
-  _nameTextLeft: {fileID: 2106601196461627162}
+  _continueIcon: {fileID: 2106601195380457903}
   _namePanelLeft: {fileID: 2106601195073398392}
-  _nameTextRight: {fileID: 6780011797323528815}
   _namePanelRight: {fileID: 2106601195306005738}
+  _dialogueText: {fileID: 2106601195594525082}
+  _nameTextLeft: {fileID: 2106601196461627162}
+  _nameTextRight: {fileID: 6780011797323528815}
   _leftPortraits:
   - {fileID: 2106601195547722087}
   - {fileID: 4305585763171037354}
   - {fileID: 1316594377994826871}
+  _leftPortraitPanel: {fileID: 3635692836047992175}
+  _rightPortraitPanel: {fileID: 2411682770446868731}
   _rightPortraits:
   - {fileID: 2106601195382554267}
   - {fileID: 7092466344325040542}
   - {fileID: 8014120935561165700}
-  _continueIcon: {fileID: 2106601195380457903}
+  _activeSide: 
+  _currentSpeakerText: 
+  _activeNameText: {fileID: 0}
+  _activePortraitSide: {fileID: 0}
+  _activePortraits: []
+  _currentPortraits: []
+  _currentSpeakers: []
   _choicesManager: {fileID: 1845327689005841504}
   _showChoicesEvent: {fileID: 0}
+  _changeDialogueUIEvent: {fileID: 11400000, guid: a277617c53e4b6e498f98bf621095f15, type: 2}
   _typingSpeed: 0.04
 --- !u!1 &2087964400124000236
 GameObject:
@@ -1864,7 +1875,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2106601195073398393
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1941,7 +1952,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2106601195306005739
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2122,7 +2133,7 @@ MonoBehaviour:
   _gameStateManager: {fileID: 11400000, guid: 9a5b94051e598c9439fd97a02ae585f0, type: 2}
   _inputReader: {fileID: 11400000, guid: 68e9574c2fdb0aa48b284199783c95ba, type: 2}
   _onSceneReady: {fileID: 11400000, guid: ede0137dc6b393944b813637c60f0dfe, type: 2}
-  _openUIDialogueEvent: {fileID: 11400000, guid: 3545d1e57ba7f6c498c6fcf3c8df1ef6, type: 2}
+  _openDialogueUIEvent: {fileID: 11400000, guid: 3545d1e57ba7f6c498c6fcf3c8df1ef6, type: 2}
   _closeUIDialogueEvent: {fileID: 11400000, guid: 16ad34e9e1e9bf24d84f4c4c7c310859, type: 2}
   _setInteractionEvent: {fileID: 11400000, guid: 0ec5c7b81aad2234c9b44712be6964fd, type: 2}
   _loadMenuEvent: {fileID: 11400000, guid: b7d9e5c88a8939b40bf9b261343aaf62, type: 2}
@@ -2144,7 +2155,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2106601195380457900
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2221,7 +2232,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2106601195382554264
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2319,7 +2330,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2106601195547722084
 RectTransform:
   m_ObjectHideFlags: 0

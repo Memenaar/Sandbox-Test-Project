@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0fff5ebbe8f99944a85c75499aa4f630, type: 3}
+  m_Name: CharacterCallsheet
+  m_EditorClassIdentifier: 
+  _guid: 08d051bdc823d424e96dd5a9f928dfca
+  description: Contains a list of all characters in the game. Used in situations
+    when we need to get a character's full CharIdentitySO from their name.
+  _charactersList:
+  - {fileID: 11400000, guid: db10924fb6b994b408e66ef6f86d995f, type: 2}
+  - {fileID: 11400000, guid: 701b99e45fb93cb47a982eba6c1c8c00, type: 2}

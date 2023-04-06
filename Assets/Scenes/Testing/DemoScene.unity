@@ -2052,10 +2052,6 @@ PrefabInstance:
       propertyPath: m_SpriteLibraryAsset
       value: 
       objectReference: {fileID: 7108339969198208228, guid: 059365265e2cfd848b60bcbee70c959a, type: 3}
-    - target: {fileID: 1239348575285204972, guid: ea32890fc69938445b6091a8edea6423, type: 3}
-      propertyPath: _NPCID
-      value: 
-      objectReference: {fileID: 11400000, guid: 701b99e45fb93cb47a982eba6c1c8c00, type: 2}
     - target: {fileID: 2060543324552236610, guid: ea32890fc69938445b6091a8edea6423, type: 3}
       propertyPath: m_SpriteKey
       value: 3.1902203e-25
@@ -4006,10 +4002,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1239348575285204972, guid: ea32890fc69938445b6091a8edea6423, type: 3}
-      propertyPath: _NPCID
-      value: 
-      objectReference: {fileID: 11400000, guid: db10924fb6b994b408e66ef6f86d995f, type: 2}
     - target: {fileID: 2674294138437898208, guid: ea32890fc69938445b6091a8edea6423, type: 3}
       propertyPath: m_Name
       value: NPC1

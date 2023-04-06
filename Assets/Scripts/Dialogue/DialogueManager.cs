@@ -8,12 +8,9 @@ using UnityEngine.UI;
 
 public class DialogueManager : MonoBehaviour
 {
-    [SerializeField] private List<CharIdentitySO> _charactersList = default;
+    [SerializeField] private CallsheetSO _callsheet = default; // Scriptable object containing a list of all characters' CharIdentitySOs
     [SerializeField] private InputReader _inputReader = default; // Scriptable object that conveys input
     [SerializeField] private GameStateSO _gameState = default; // Tracks game state
-
-    [Header("Parameters")]
-    [SerializeField] private float _typingSpeed = 0.04f;
 
     [Header("Dialogue UI")]
     [SerializeField] private UIDialogueManager _uiDialogueManager;
@@ -24,11 +21,19 @@ public class DialogueManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _dialogueText;
     [SerializeField] private TextMeshProUGUI _nameTextLeft;
     [SerializeField] private TextMeshProUGUI _nameTextRight;
-    [SerializeField] private GameObject[] _portraits;
-    public GameObject _currentPortrait;   
-    private TextMeshProUGUI _activeNameText;
-    public string _activeSide;
-    Dictionary<string, GameObject> portraitSelection;
+    [SerializeField] private GameObject[] _leftPortraits;
+    [SerializeField] private GameObject _leftPortraitPanel;
+    [SerializeField] private GameObject _rightPortraitPanel;
+    [SerializeField] private GameObject[] _rightPortraits;
+
+    [Header("Value Holders")]
+    [SerializeField] [ReadOnly] private string _activeSide;
+    [SerializeField] [ReadOnly] private string _currentSpeakerText;
+    [SerializeField] [ReadOnly] private TextMeshProUGUI _activeNameText;
+    [SerializeField] [ReadOnly] private GameObject _activePortraitSide;
+    [SerializeField] [ReadOnly] private GameObject[] _activePortraits;
+    [SerializeField] [ReadOnly] public List<GameObject> _currentPortraits;   
+    [SerializeField] [ReadOnly] private List<CharIdentitySO> _currentSpeakers;
 
 
     [Header("Choices UI")]
@@ -36,7 +41,8 @@ public class DialogueManager : MonoBehaviour
     private TextMeshProUGUI[] _choicesText;
 
 	[Header("Broadcasting On")]
-	[SerializeField] private DialogueLineChannelSO _openUIDialogueEvent = default;
+	[SerializeField] private DialogueLineChannelSO _openDialogueUIEvent = default;
+    [SerializeField] private DialogueUIChannelSO _changeDialogueUIEvent = default;
 	[SerializeField] private DialogueChoicesChannelSO _showChoicesUIEvent = default;
 	[SerializeField] private IntEventChannelSO _endDialogueWithTypeEvent = default;
 	//[SerializeField] private VoidEventChannelSO _continueWithStep = default;
@@ -65,14 +71,15 @@ public class DialogueManager : MonoBehaviour
 
     private bool _canContinueToNextLine = false;
 
-    private string _currentSpeaker;
-
     [Header("Tag Keys")]
     private const string SIDE_TAG = "side";
-    private const string PORTRAIT_TAG = "portrait";
+    private const string LAYOUT_TAG = "layout";
+    private const string POSITION_TAG = "position";
     private const string SPEAKER_TAG = "speaker";
     private const string ANIMATION_TAG = "animation";
 
+    public CallsheetSO Callsheet { get { return _callsheet; }}
+    public bool DialogueError { get { return _dialogueError; } set { _dialogueError = value; }}
 
     public static DialogueManager GetInstance()
     {
@@ -105,19 +112,19 @@ public class DialogueManager : MonoBehaviour
 
     public void ProcessDialogueData(DialogueDataSO dialogueDataSO)
     {
+
         SwitchGameState();
         _currentDialogue = dialogueDataSO;
         _currentStory = new Story(dialogueDataSO.DialogueInk.text);
         _dialogueIsPlaying = true;
-
+        
         DialogueContinue();
 
     }
 
-    public void DisplayDialogueLine(string dialogueLine, string charName)
+    public void DisplayDialogueLine(string dialogueLine)
     {
-        CharIdentitySO currentCharID = _charactersList.Find(o => o.CharID.ToString() == charName); // Uses the _charactersList array to find the CharIdentitySO where ID = current speaker
-        _openUIDialogueEvent.RaiseEvent(dialogueLine, currentCharID);
+        _openDialogueUIEvent.RaiseEvent(dialogueLine);
     }
 
     #region Initialization
@@ -134,30 +141,10 @@ public class DialogueManager : MonoBehaviour
 
         _player = GameObject.Find("Player");
 
-        portraitSelection = new Dictionary<string, GameObject>() // Define the dictionary used to select current portrait.
-        {
-            {"PortraitL1", _portraits[0]},
-            {"PortraitL2", _portraits[1]},
-            {"PortraitL3", _portraits[2]},
-            {"PortraitR1", _portraits[3]},
-            {"PortraitR2", _portraits[4]},
-            {"PortraitR3", _portraits[5]}
-        };
     }
     #endregion
 
     #region Game State Methods
-    public void EnterDialogueMode(TextAsset inkJson)
-    {
-        ResetAll();
-        _currentStory = new Story(inkJson.text);
-        _dialogueIsPlaying = true;
-        //_dialoguePanel.SetActive(true);
-        SwitchGameState();
-        DialogueContinue();
-        
-    }
-
     private void ExitDialogueMode()
     {
         _dialogueIsPlaying = false;
@@ -191,7 +178,11 @@ public class DialogueManager : MonoBehaviour
         _dialoguePanel.SetActive(false);
         _namePanelLeft.SetActive(false);
         _namePanelRight.SetActive(false);
-        foreach(GameObject portrait in _portraits)
+        foreach(GameObject portrait in _leftPortraits)
+        {
+            portrait.SetActive(false);
+        }
+        foreach(GameObject portrait in _rightPortraits)
         {
             portrait.SetActive(false);
         }
@@ -201,7 +192,7 @@ public class DialogueManager : MonoBehaviour
     {
         _nameTextLeft.text = "";
         _nameTextRight.text = "";
-        _currentPortrait = _portraits[0];
+        _currentPortraits = null;
         _activeSide = "R";
         _activeNameText = _nameTextRight;
     }
@@ -211,125 +202,14 @@ public class DialogueManager : MonoBehaviour
     {
         if (_currentStory.canContinue)
         {
-            HandleTags(_currentStory.currentTags);
-            DisplayDialogueLine(_currentStory.Continue(), _currentSpeaker);
+            DisplayDialogueLine(_currentStory.Continue());
+            _changeDialogueUIEvent.RaiseEvent(_currentStory.currentTags); // Passes currentTags to UI Dialogue Manager for processing
 
         } else
         {
             ExitDialogueMode();
         }        
     }
-
-    #region Tag Parsing
-    /* private void HandleTags(List<string> currentTags)
-    {
-        // Loop through each tag and handle accordingly
-        foreach (string tag in currentTags)
-        {
-            // Parse the tag
-            string[] splitTag = tag.Split(':');
-            if (splitTag.Length != 2)
-            {
-                _dialogueError = true;
-                _dialogueText.text = "Tag could not be appropriately parsed: " + tag.ToString();
-                Debug.LogError("Tag could not be appropriately parsed: " + tag);
-                return;
-            }
-            string tagKey = splitTag[0].Trim();
-            string tagValue = splitTag[1].Trim();
-
-            // Handle the tag
-            switch (tagKey)
-            {
-                case SIDE_TAG:
-                    if (tagValue == "L")
-                    {
-                        _activeSide = "L";
-                        _activeNameText = _nameTextLeft;
-                        _namePanelLeft.SetActive(true);
-                        _namePanelRight.SetActive(false);
-                    } else if (tagValue == "R")
-                    {
-                        _activeSide = "R";
-                        _activeNameText = _nameTextRight;
-                        _namePanelRight.SetActive(true);
-                        _namePanelLeft.SetActive(false);
-                    }
-                    break;
-                case PORTRAIT_TAG:
-                    _currentPortrait = portraitSelection["Portrait" + _activeSide + tagValue];
-                    _currentPortrait.SetActive(true);
-                    ChangePortraitFocus(_currentPortrait);
-                    break;
-                case SPEAKER_TAG:
-                    _activeNameText.text = tagValue;
-                    break;
-                case ANIMATION_TAG:
-                    _currentPortrait.SetActive(true);
-                    _currentPortrait.GetComponent<Animator>().Play(tagValue);
-                    break;
-                default:
-                    Debug.LogWarning("Tag came in but is not currently being handled: " + tag);
-                    break;
-            }
-        }
-    } */
-
-    private void HandleTags(List<string> currentTags)
-    {
-        // Loop through each tag and handle accordingly
-        foreach (string tag in currentTags)
-        {
-            // Parse the tag
-            string[] splitTag = tag.Split(':');
-            if (splitTag.Length != 2)
-            {
-                _dialogueError = true;
-                _dialogueText.text = "Tag could not be appropriately parsed: " + tag.ToString();
-                Debug.LogError("Tag could not be appropriately parsed: " + tag);
-                return;
-            }
-            string tagKey = splitTag[0].Trim();
-            string tagValue = splitTag[1].Trim();
-
-            // Handle the tag
-            switch (tagKey)
-            {
-                case SIDE_TAG:
-                    if (tagValue == "L")
-                    {
-                        _activeSide = "L";
-                        _activeNameText = _nameTextLeft;
-                        _namePanelLeft.SetActive(true);
-                        _namePanelRight.SetActive(false);
-                    } else if (tagValue == "R")
-                    {
-                        _activeSide = "R";
-                        _activeNameText = _nameTextRight;
-                        _namePanelRight.SetActive(true);
-                        _namePanelLeft.SetActive(false);
-                    }
-                    break;
-                case PORTRAIT_TAG:
-                    _currentPortrait = portraitSelection["Portrait" + _activeSide + tagValue];
-                    _currentPortrait.SetActive(true);
-                    ChangePortraitFocus(_currentPortrait);
-                    break;
-                case SPEAKER_TAG:
-                    _currentSpeaker = tagValue;
-                    _activeNameText.text = tagValue;
-                    break;
-                case ANIMATION_TAG:
-                    _currentPortrait.SetActive(true);
-                    _currentPortrait.GetComponent<Animator>().Play(tagValue);
-                    break;
-                default:
-                    Debug.LogWarning("Tag came in but is not currently being handled: " + tag);
-                    break;
-            }
-        }
-    }
-    #endregion
 
     private void DisplayChoices()
     {
@@ -375,28 +255,6 @@ public class DialogueManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         yield return new WaitForEndOfFrame();
         EventSystem.current.SetSelectedGameObject(_choices[0].gameObject);
-    }
-
-    private void ChangePortraitFocus(GameObject currentPortrait)
-    {
-        int index = 0;
-        foreach(GameObject portrait in _portraits)
-        {
-            if(portrait.activeSelf)
-                {
-                    Debug.Log(portrait + " is active.");
-                    if (portrait == _currentPortrait)
-                    {
-                        Debug.Log(portrait + " is current portrait");
-                        portrait.GetComponent<Image>().color = Color.HSVToRGB(0,0,1);
-                    } else
-                    {
-                        Debug.Log(portrait + " is NOT current portrait");
-                        portrait.GetComponent<Image>().color = Color.HSVToRGB(0,0,0.25f);
-                    }
-                }
-            index++;
-        }
     }
 
     #region Input Methods

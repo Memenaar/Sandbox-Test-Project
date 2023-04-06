@@ -19,7 +19,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private VoidEventChannelSO _onSceneReady = default;
 
     [Header("Dialogue Events")]
-    [SerializeField] private DialogueLineChannelSO _openUIDialogueEvent = default;
+    [SerializeField] private DialogueLineChannelSO _openDialogueUIEvent = default;
     [SerializeField] private IntEventChannelSO _closeUIDialogueEvent = default;
 
     [Header("Interaction Events")]
@@ -32,7 +32,8 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         //_onSceneReady.OnEventRaised += ResetUI;
-        _openUIDialogueEvent.OnEventRaised += OpenUIDialogue;
+        _openDialogueUIEvent.OnEventRaised += OpenDialogueUI;
+        //_openDialogueUIEvent.
         //_closeUIDialogueEvent.OnEventRaised += CloseUIDialogue;
         _setInteractionEvent.OnEventRaised += SetInteractionUI;
     }
@@ -40,17 +41,17 @@ public class UIManager : MonoBehaviour
     private void OnDisable()
     {
         //_onSceneReady.OnEventRaised -= ResetUI;
-        _openUIDialogueEvent.OnEventRaised -= OpenUIDialogue;
+        _openDialogueUIEvent.OnEventRaised -= OpenDialogueUI;
         //_closeUIDialogueEvent.OnEventRaised -= CloseUIDialogue;
         _setInteractionEvent.OnEventRaised -= SetInteractionUI;
     }
 
-    void OpenUIDialogue(string dialogueLine, CharIdentitySO speaker)
+    void OpenDialogueUI(string text)
     {
         _dialogueController.gameObject.SetActive(true);
+        _dialogueController.SetDialogue(text);
         // Set appropriate Speaker nameplate and text based on tags (may need to pass an extra parameter or two to this function)
         // Set appropriate Portrait and resolve status of other portraits (may need to pass an extra parameter)
-        _dialogueController.SetDialogue(dialogueLine, speaker);
         // Set Interaction Pip UI to OFF here
     }
 
