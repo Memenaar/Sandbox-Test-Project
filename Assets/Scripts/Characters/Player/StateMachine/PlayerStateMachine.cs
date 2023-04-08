@@ -205,8 +205,6 @@ public class PlayerStateMachine : MonoBehaviour
         _charController.height = _playerID.Height;
 
         _billboard.localPosition = new Vector3(_billboard.localPosition.x, _playerID.CenterY + 0.1f, _billboard.localPosition.z);
-        Debug.Log(_billboard.position);
-        Debug.Log(_playerID.CenterY);
     }
 
     private void PlayerJump(bool isJumping){ _isJumpPressed = isJumping; _newJumpNeeded = false; }

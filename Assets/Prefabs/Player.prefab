@@ -505,6 +505,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _inputReader: {fileID: 11400000, guid: 68e9574c2fdb0aa48b284199783c95ba, type: 2}
   _PSM: {fileID: 4343033015079535204}
+  _navigator: {fileID: 3614080190393408602}
   _startTalking: {fileID: 11400000, guid: f49e94c3283e92f44aa164419cb13ed1, type: 2}
   _toggleInteractionUI: {fileID: 11400000, guid: 0ec5c7b81aad2234c9b44712be6964fd, type: 2}
   _onInteractionEnded: {fileID: 11400000, guid: 101da880333b7ec4da036a407cf5703e, type: 2}

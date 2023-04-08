@@ -8,6 +8,7 @@ public class InteractionManager : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader = default;
     [SerializeField] private PlayerStateMachine _PSM = default;
+    [SerializeField] private GameObject _navigator = default;
 
     // Events for the different Interaction types
     [Header("Broadcasting On")]
@@ -26,14 +27,14 @@ public class InteractionManager : MonoBehaviour
     {
         //_inputReader.PlayerInteractEvent += OnInteractionButtonPress; // Will move receipt of Player Interaction input here from PlayerStateMachine when ready
         _inputReader.PlayerInteractEvent += OnInteractionButtonPress;
-        //_onInteractionEnded.OnEventRaised += OnInteractionEnd;
+        _onInteractionEnded.OnEventRaised += OnInteractionEnd;
     }
 
     private void OnDisable()
     {
         //_inputReader.PlayerInteractEvent -= OnInteractionButtonPress; // Will move receipt of Player Interaction input here from PlayerStateMachine when ready\
         _inputReader.PlayerInteractEvent -= OnInteractionButtonPress;
-        //_onInteractionEnded.OnEventRaised -= OnInteractionEnd;
+        _onInteractionEnded.OnEventRaised -= OnInteractionEnd;
     }
 
     private void Collect()
@@ -47,6 +48,8 @@ public class InteractionManager : MonoBehaviour
             return;
 
         currentInteractionType = _potentialInteractions.First.Value.type;
+
+        PlayerFace(_potentialInteractions.First.Value.interactableObject);
 
         switch (_potentialInteractions.First.Value.type)
         {
@@ -134,6 +137,11 @@ public class InteractionManager : MonoBehaviour
     private void FacePlayer(GameObject subject)
     {
         subject.transform.Find("Navigator").LookAt(this.transform); 
+    }
+
+    private void PlayerFace(GameObject subject)
+    {
+        _navigator.transform.LookAt(subject.transform);
     }
 
 }

@@ -1,6 +1,6 @@
-- Hey, my name is Neku. #side:R #portrait:1 #speaker:Neku #animation:neku_idle
-- I'm kind of a cool guy.
+- Hey, my name is Neku. #side:right #position:0 #speaker:Neku #animation:neku_idle
+- I'm kind of a cool guy. #animation:neku_injured
 - This is just a placeholder, so come back for more later!
-- Ok Neku, sounds good. Nice to meet you. #side:L #portrait:1 #speaker:Player Ivy #animation:default
-- Bye! #side:R #portrait:1 #speaker:Neku
+- Ok Neku, sounds good. Nice to meet you. #side:left #position:0 #speaker:Ivy #animation:ivy_idle
+- Bye! #side:right #position:0 #speaker:Neku
     -> END

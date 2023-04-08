@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 using System.Linq;
 using TMPro;
+using Ink.Runtime;
 
 public class UIDialogueManager : MonoBehaviour
 {
@@ -22,6 +24,9 @@ public class UIDialogueManager : MonoBehaviour
     [SerializeField] private GameObject[] _leftPortraits;
     [SerializeField] private GameObject[] _rightPortraits;
 	
+	[Header("Choices UI")]
+	[SerializeField] private GameObject[] _choices;
+	private TextMeshProUGUI[] _choicesText;
 
     [Header("Value Holders")]
     [SerializeField] [ReadOnly] private string _activeSide;
@@ -30,9 +35,12 @@ public class UIDialogueManager : MonoBehaviour
 	[SerializeField] [ReadOnly] private GameObject _activeNamePanel;
     [SerializeField] [ReadOnly] private GameObject _activePortraitPanel;
     [SerializeField] [ReadOnly] private GameObject[] _activePortraits;
+	[SerializeField] [ReadOnly] private GameObject _targetPortrait;
     [SerializeField] [ReadOnly] public List<GameObject> _currentPortraits;   
 	[SerializeField] [ReadOnly] private List<GameObject> _allPortraits;
     [SerializeField] [ReadOnly] private List<CharIdentitySO> _currentSpeakers;
+	[SerializeField] [ReadOnly] private List<Choice> _currentChoices;
+	[SerializeField] [ReadOnly] List<GameObject> inactivePortraits;
 	
 	[SerializeField] private UIDialogueChoicesManager _choicesManager = default;
 
@@ -49,6 +57,8 @@ public class UIDialogueManager : MonoBehaviour
 
 	private Coroutine _displayLineCoroutine;
 
+	private bool _abortParse = false;
+
 	[Header("Tag Keys")]
     private const string SIDE_TAG = "side";
     private const string LAYOUT_TAG = "layout";
@@ -56,6 +66,8 @@ public class UIDialogueManager : MonoBehaviour
 	private const string STYLE_TAG = "style";
     private const string SPEAKER_TAG = "speaker";
     private const string ANIMATION_TAG = "animation";
+	private const string NAMEOVERRIDE_TAG = "name";
+	private const string DISABLE_TAG = "disable";
 
 
 	public TextMeshProUGUI DialogueText { get { return _dialogueText; } set { _dialogueText = value; }}
@@ -65,19 +77,31 @@ public class UIDialogueManager : MonoBehaviour
 	private void Awake()
 	{
 		_dialogueManager = DialogueManager.GetInstance();
+		InitializeChoices();
 		CollectPortraits();
 	}
 
 	private void OnEnable()
 	{
-		//_showChoicesEvent.OnEventRaised += ShowChoices;
+		_showChoicesEvent.OnEventRaised += CollectChoices;
 		_changeDialogueUIEvent.OnEventRaised += ProcessTags;
 	}
 
 	private void OnDisable()
 	{
-		//_showChoicesEvent.OnEventRaised -= ShowChoices;
+		_showChoicesEvent.OnEventRaised -= CollectChoices;
 		_changeDialogueUIEvent.OnEventRaised -= ProcessTags;
+	}
+
+	private void InitializeChoices()
+	{
+		_choicesText = new TextMeshProUGUI[_choices.Length];
+        int index = 0;
+        foreach (GameObject choice in _choices)
+        {
+            _choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
+            index++;
+        }
 	}
 
 	public void CollectPortraits()
@@ -92,10 +116,13 @@ public class UIDialogueManager : MonoBehaviour
 		}
 	}
 
+	public void CollectChoices(List<Choice> choices)
+	{
+		_currentChoices = choices;
+	}
+
 	public void SetDialogue(string dialogueLine)
 	{
-		_choicesManager.gameObject.SetActive(false); // Does this belong here? Or should it go elsewhere?
-
 		if(_displayLineCoroutine != null)
 		{
 			StopCoroutine(_displayLineCoroutine);
@@ -106,15 +133,24 @@ public class UIDialogueManager : MonoBehaviour
 
 	}
 
+	public void SetError(string errorLine)
+	{
+		if(_displayLineCoroutine != null)
+		{
+			StopCoroutine(_displayLineCoroutine);
+		}
+
+		_dialogueText.text = errorLine;
+		_dialogueText.maxVisibleCharacters = errorLine.Length;
+		_dialogueManager.DialogueError = true;
+		_abortParse = true;
+
+	}
+
     private void ShowChoices()
     {
         //_choicesManager.FillChoices(choices);
         //_choicesManager.gameObject.SetActive(true);
-    }
-
-    private void HideChoices()
-    {
-        _choicesManager.gameObject.SetActive(false);
     }
 
 	private IEnumerator DisplayLine(string line)
@@ -154,21 +190,53 @@ public class UIDialogueManager : MonoBehaviour
 		}
 
 		_continueIcon.SetActive(true);
-		// DisplayChoices(); Display choices, if any, that respond to this dialogue line.
+		DisplayChoices();
 		_canContinueToNextLine = true; // Allows player to continue to next line.
 	}
 
+	public void ResetAll()
+	{
+		ResetTags();
+		ResetUI();
+	}
+
+    private void ResetUI()
+    {
+        _namePanelLeft.SetActive(false);
+        _namePanelRight.SetActive(false);
+        foreach(GameObject portrait in _leftPortraits)
+        {
+            portrait.SetActive(false);
+        }
+        foreach(GameObject portrait in _rightPortraits)
+        {
+            portrait.SetActive(false);
+        }
+    }
+
+	private void ResetTags()
+    {
+		_currentSpeakerText = "";
+		_currentSpeakers.RemoveRange(0, _currentSpeakers.Count);
+        _currentPortraits.RemoveRange(0, _currentPortraits.Count);
+    }
+
 	private void ProcessTags(List<string> currentTags)
 	{
-		int i = 0;
         // Loop through and split each tag
         foreach (string tag in currentTags)
         {
+			if (_abortParse)
+			{
+				_abortParse = false;
+				return;
+			}
+
             // Parse the tag
             string[] splitTag = tag.Split(':');
             if (splitTag.Length != 2)
             {
-				SpitError("Tag could not be appropriately parsed: ", tag);
+				SpitError("ERROR: Tag could not be appropriately parsed: ", tag);
                 return;
             }
             string tagKey = splitTag[0].Trim();
@@ -182,8 +250,7 @@ public class UIDialogueManager : MonoBehaviour
 						_activeNameText = _nameTextLeft;
 						_namePanelLeft.SetActive(true);
 						_namePanelRight.SetActive(false);
-						_activePortraits = _leftPortraits;
-						
+						_activePortraits = _leftPortraits;	
 						_activePortraitPanel = _leftPortraitPanel;
 					}else if (tagValue == "right")
 					{
@@ -192,15 +259,24 @@ public class UIDialogueManager : MonoBehaviour
 						_namePanelLeft.SetActive(false);
 						_activePortraits = _rightPortraits;
 						_activePortraitPanel = _rightPortraitPanel;
-					}
+					} else SpitError("ERROR: Unrecognized SIDE_TAG value ", tagValue);
 					break;
 				case LAYOUT_TAG:
 					_activePortraitPanel.GetComponent<Animator>().Play(tagValue);
 					break;
 				case POSITION_TAG:
+					if (_currentPortraits.Count == 0) 
+					{
+						foreach (GameObject portrait in _allPortraits)
+						{
+							portrait.GetComponent<Image>().color = Color.HSVToRGB(0,0,0.25f);
+						}	
+					}
 					int positionIndex = int.Parse(tagValue);
-					_currentPortraits.Insert(i, _activePortraits[positionIndex]);
-					_currentPortraits[i].SetActive(true);
+					_targetPortrait = _activePortraits[positionIndex];
+					_targetPortrait.SetActive(true);
+					_targetPortrait.GetComponent<Image>().color = Color.HSVToRGB(0,0,1);
+					_currentPortraits.Add(_targetPortrait);
 					break;
 				case STYLE_TAG:
 					// Apply Style from tagValue to _activeNamePanel and _currentPortraits[i]
@@ -208,27 +284,47 @@ public class UIDialogueManager : MonoBehaviour
 				case SPEAKER_TAG:
 					CharIdentitySO calledChar = DialogueManager.GetInstance().Callsheet.CallTime(tagValue);
 					_currentSpeakers.Add(calledChar);
-					if (i == 0) _currentSpeakerText = _currentSpeakers[i].CharName;
-					else _currentSpeakerText += " & " + _currentSpeakers[i].CharName; 
+					_currentSpeakerText = _currentSpeakers[0].CharName;
+					_targetPortrait.GetComponent<Animator>().runtimeAnimatorController = _currentSpeakers[0].PortraitController;
+					if (_currentSpeakers.Count > 1) 
+					{
+						int i = 1;
+						foreach (CharIdentitySO character in _currentSpeakers.Skip(1))
+						{
+							_currentSpeakerText += " & " + _currentSpeakers[i].CharName;
+							_targetPortrait.GetComponent<Animator>().runtimeAnimatorController = _currentSpeakers[i].PortraitController;
+							i++;
+						}
+					}
 					_activeNameText.text = _currentSpeakerText;
+					
+					break;
+				case NAMEOVERRIDE_TAG:
+					_activeNameText.text = tagValue;
 					break;
 				case ANIMATION_TAG:
-					_currentPortraits[i].GetComponent<Animator>().runtimeAnimatorController = _currentSpeakers[i].PortraitController;
-					_currentPortraits[i].GetComponent<Animator>().Play(tagValue);
-					i++;
+					_targetPortrait.GetComponent<Animator>().Play(tagValue);
+					break;
+				case DISABLE_TAG:
+					int disableIndex = int.Parse(tagValue);
+					_allPortraits[disableIndex].GetComponent<Animator>().runtimeAnimatorController = null;
+					_allPortraits[disableIndex].SetActive(false);
 					break;
 				default:
-					SpitError("Tag came in with unrecognized tagKey ", tagKey);
+					SpitError("ERROR: Tag came in with unrecognized tagKey ", tagKey);
 					break;
 			}
 		}
-
-		ChangePortraitFocus(_currentPortraits);
+		//ChangePortraitFocus(_currentPortraits); // Only kind of a fix. Will still fuck up if only the animation changes, as an example. Should be changed so that this line only runs if one or more Speaker tags were passed.
+		ResetTags();
 	}
 
 	private void ChangePortraitFocus(List<GameObject> currentPortraits)
     {
-		List<GameObject> inactivePortraits = _allPortraits;
+		foreach (GameObject portrait in _allPortraits)
+		{
+			inactivePortraits.Add(portrait);
+		}
 
 		foreach (GameObject portrait in currentPortraits)
 		{
@@ -237,22 +333,70 @@ public class UIDialogueManager : MonoBehaviour
 
 		foreach(GameObject portrait in inactivePortraits)
 		{
-			Debug.Log(portrait + " is NOT current portrait");
+			//Debug.Log("Changing color of " + portrait);
 			portrait.GetComponent<Image>().color = Color.HSVToRGB(0,0,0.25f);
 		}
 	
 		foreach(GameObject portrait in currentPortraits)
 		{
-			Debug.Log(portrait + " is current portrait");
 			portrait.GetComponent<Image>().color = Color.HSVToRGB(0,0,1);
 		}
     }
 
 	private void SpitError(string errorText, string errorCause)
 	{
-		_dialogueManager.DialogueError = true;
-		_dialogueText.text = errorText + errorCause;
+		SetError(errorText + errorCause);
 		Debug.LogWarning(errorText + errorCause);
 	}
+
+	private IEnumerator SelectFirstChoice()
+    {
+        // Event System requires we clear it first, then wait for at least one frame before we set the current selected object.
+        EventSystem.current.SetSelectedGameObject(null);
+        yield return new WaitForEndOfFrame();
+        EventSystem.current.SetSelectedGameObject(_choices[0].gameObject);
+    }
+
+
+
+	private void HideChoices()
+    {
+        foreach (GameObject choiceButton in _choices)
+        {
+            choiceButton.SetActive(false);
+        }
+    }
+
+	private void DisplayChoices()
+    {
+		if (_currentChoices.Count == 0 || _currentChoices == null)
+		{
+
+			return;
+		}
+		
+        // Defensive check to ensure our UI can support the number of incoming choices.
+        if (_currentChoices.Count > _choices.Length)
+        {
+			SpitError("ERROR: More choices were given than UI can support.", "");
+            return;
+        }
+
+        int index = 0;
+        // Enable and initialize choice buttons for each available response in the UI.
+        foreach(Choice choice in _currentChoices)
+        {
+            _choices[index].gameObject.SetActive(true);
+            _choicesText[index].text = choice.text;
+            index++;
+        }
+        // Go through the remaining choice buttons and make sure they're hidden.
+        for (int i = index; i < _choices.Length; i++)
+        {
+            _choices[i].gameObject.SetActive(false);
+        }
+
+        StartCoroutine(SelectFirstChoice());
+    }
 
 }

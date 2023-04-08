@@ -33,8 +33,7 @@ public class UIManager : MonoBehaviour
     {
         //_onSceneReady.OnEventRaised += ResetUI;
         _openDialogueUIEvent.OnEventRaised += OpenDialogueUI;
-        //_openDialogueUIEvent.
-        //_closeUIDialogueEvent.OnEventRaised += CloseUIDialogue;
+        _closeUIDialogueEvent.OnEventRaised += CloseUIDialogue;
         _setInteractionEvent.OnEventRaised += SetInteractionUI;
     }
 
@@ -42,7 +41,7 @@ public class UIManager : MonoBehaviour
     {
         //_onSceneReady.OnEventRaised -= ResetUI;
         _openDialogueUIEvent.OnEventRaised -= OpenDialogueUI;
-        //_closeUIDialogueEvent.OnEventRaised -= CloseUIDialogue;
+        _closeUIDialogueEvent.OnEventRaised -= CloseUIDialogue;
         _setInteractionEvent.OnEventRaised -= SetInteractionUI;
     }
 
@@ -57,6 +56,7 @@ public class UIManager : MonoBehaviour
 
     void CloseUIDialogue(int dialogueType)
     {
+        Debug.Log("CloseUIDialogue Method");
         _dialogueController.gameObject.SetActive(false);
         _onInteractionEndedEvent.RaiseEvent();
     }

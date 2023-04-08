@@ -14,31 +14,6 @@ public class DialogueManager : MonoBehaviour
 
     [Header("Dialogue UI")]
     [SerializeField] private UIDialogueManager _uiDialogueManager;
-    [SerializeField] private GameObject _dialoguePanel;
-    [SerializeField] private GameObject _continueIcon;
-    [SerializeField] private GameObject _namePanelLeft;
-    [SerializeField] private GameObject _namePanelRight;
-    [SerializeField] private TextMeshProUGUI _dialogueText;
-    [SerializeField] private TextMeshProUGUI _nameTextLeft;
-    [SerializeField] private TextMeshProUGUI _nameTextRight;
-    [SerializeField] private GameObject[] _leftPortraits;
-    [SerializeField] private GameObject _leftPortraitPanel;
-    [SerializeField] private GameObject _rightPortraitPanel;
-    [SerializeField] private GameObject[] _rightPortraits;
-
-    [Header("Value Holders")]
-    [SerializeField] [ReadOnly] private string _activeSide;
-    [SerializeField] [ReadOnly] private string _currentSpeakerText;
-    [SerializeField] [ReadOnly] private TextMeshProUGUI _activeNameText;
-    [SerializeField] [ReadOnly] private GameObject _activePortraitSide;
-    [SerializeField] [ReadOnly] private GameObject[] _activePortraits;
-    [SerializeField] [ReadOnly] public List<GameObject> _currentPortraits;   
-    [SerializeField] [ReadOnly] private List<CharIdentitySO> _currentSpeakers;
-
-
-    [Header("Choices UI")]
-    [SerializeField] private GameObject[] _choices;
-    private TextMeshProUGUI[] _choicesText;
 
 	[Header("Broadcasting On")]
 	[SerializeField] private DialogueLineChannelSO _openDialogueUIEvent = default;
@@ -65,7 +40,7 @@ public class DialogueManager : MonoBehaviour
 
     private GameObject _player;
 
-    private bool _dialogueError = false;
+    public bool _dialogueError = false;
 
     private Coroutine _displayLineCoroutine;
 
@@ -92,21 +67,14 @@ public class DialogueManager : MonoBehaviour
     {
         InitializeDM();
         _startDialogue.OnEventRaised += ProcessDialogueData; // When an event is raised on the channel assigned to StartDialogue
+        _makeDialogueChoiceEvent.OnEventRaised += ProcessChoice;
     }
     
     private void Start()
     {
         
         _dialogueIsPlaying = false;
-        ResetAll();
 
-        _choicesText = new TextMeshProUGUI[_choices.Length];
-        int index = 0;
-        foreach (GameObject choice in _choices)
-        {
-            _choicesText[index] = choice.GetComponentInChildren<TextMeshProUGUI>();
-            index++;
-        }
     }
     #endregion
 
@@ -117,7 +85,6 @@ public class DialogueManager : MonoBehaviour
         _currentDialogue = dialogueDataSO;
         _currentStory = new Story(dialogueDataSO.DialogueInk.text);
         _dialogueIsPlaying = true;
-        
         DialogueContinue();
 
     }
@@ -147,11 +114,20 @@ public class DialogueManager : MonoBehaviour
     #region Game State Methods
     private void ExitDialogueMode()
     {
-        _dialogueIsPlaying = false;
-        //_dialoguePanel.SetActive(false);
-        _uiDialogueManager.DialogueText.text = "";
+        //raise the special event for end of dialogue if any 
+		//_currentDialogue.FinishDialogue();
+		
         SwitchGameState();
+
+		//raise end dialogue event 
+		if (_endDialogueWithTypeEvent != null)
+		    _endDialogueWithTypeEvent.RaiseEvent((int)_currentDialogue.DialogueType);
+
+        _dialogueIsPlaying = false;
+        _currentDialogue = null;
+        _currentStory = null;
         
+        _uiDialogueManager.ResetAll();
     }
 
     private void SwitchGameState()
@@ -172,118 +148,43 @@ public class DialogueManager : MonoBehaviour
     }
     #endregion
 
-    #region ResetMethods
-    private void ResetAll()
-    {
-        _dialoguePanel.SetActive(false);
-        _namePanelLeft.SetActive(false);
-        _namePanelRight.SetActive(false);
-        foreach(GameObject portrait in _leftPortraits)
-        {
-            portrait.SetActive(false);
-        }
-        foreach(GameObject portrait in _rightPortraits)
-        {
-            portrait.SetActive(false);
-        }
-    }
-
-    private void ResetTags()
-    {
-        _nameTextLeft.text = "";
-        _nameTextRight.text = "";
-        _currentPortraits = null;
-        _activeSide = "R";
-        _activeNameText = _nameTextRight;
-    }
-    #endregion
-
     private void DialogueContinue()
     {
-        if (_currentStory.canContinue)
+        if (_currentStory.canContinue && !_dialogueError)
         {
             DisplayDialogueLine(_currentStory.Continue());
             _changeDialogueUIEvent.RaiseEvent(_currentStory.currentTags); // Passes currentTags to UI Dialogue Manager for processing
-
+            _showChoicesUIEvent.RaiseEvent(_currentStory.currentChoices); // Passes currentChoices to the UI Dialogue Manager to away display
         } else
         {
             ExitDialogueMode();
         }        
     }
 
-    private void DisplayChoices()
-    {
-        List<Choice> currentChoices = _currentStory.currentChoices;
-
-        // Defensive check to ensure our UI can support the number of incoming choices.
-        if (currentChoices.Count > _choices.Length)
-        {
-            _dialogueError = true;
-            _uiDialogueManager.DialogueText.text = "Error: More choices were given than UI can support.";
-            Debug.LogError("More choices were given than UI can support.");
-            return;
-        }
-
-        int index = 0;
-        // Enable and initialize choice buttons for each available response in the UI.
-        foreach(Choice choice in currentChoices)
-        {
-            _choices[index].gameObject.SetActive(true);
-            _choicesText[index].text = choice.text;
-            index++;
-        }
-        // Go through the remaining choice buttons and make sure they're hidden.
-        for (int i = index; i < _choices.Length; i++)
-        {
-            _choices[i].gameObject.SetActive(false);
-        }
-
-        StartCoroutine(SelectFirstChoice());
-    }
-
-    private void HideChoices()
-    {
-        foreach (GameObject choiceButton in _choices)
-        {
-            choiceButton.SetActive(false);
-        }
-    }
-
-    private IEnumerator SelectFirstChoice()
-    {
-        // Event System requires we clear it first, then wait for at least one frame before we set the current selected object.
-        EventSystem.current.SetSelectedGameObject(null);
-        yield return new WaitForEndOfFrame();
-        EventSystem.current.SetSelectedGameObject(_choices[0].gameObject);
-    }
-
     #region Input Methods
-    public void MakeChoice(int choiceIndex)
-    {
-        if (_canContinueToNextLine)
-        {
-            _currentStory.ChooseChoiceIndex(choiceIndex);
-            DialogueContinue();
-        }
-    }
 
     public void ProcessInput()
-    {
-        if (_uiDialogueManager.CanContinueToNextLine)
-        {
-            if (_currentStory.currentChoices.Count == 0) // If there are no choices in response to the current dialogue, call the DialogueContinue() method.
+    {   
+        if (_dialogueError) {_dialogueError = false; ExitDialogueMode();}
+        else{
+            if (_uiDialogueManager.CanContinueToNextLine)
             {
-                DialogueContinue();
-            } else if (_dialogueError)
+                if (_currentStory.currentChoices.Count == 0) // If there are no choices in response to the current dialogue, call the DialogueContinue() method.
+                {
+                    DialogueContinue();
+                }
+                // Otherwise, the MakeChoice() method will be called by the selected button.
+            } else
             {
-                _dialogueError = false;
-                ExitDialogueMode();
+                _uiDialogueManager.SkipLine = true;
             }
-            // Otherwise, the MakeChoice() method will be called by the selected button.
-        } else
-        {
-            _uiDialogueManager.SkipLine = true;
         }
+    }
+
+    public void ProcessChoice(int choiceIndex)
+    {
+        _currentStory.ChooseChoiceIndex(choiceIndex);
+        DialogueContinue();
     }
     #endregion
 }

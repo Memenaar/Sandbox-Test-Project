@@ -7,9 +7,18 @@ using TMPro;
 
 public class UIDialogueChoicesManager : MonoBehaviour
 {
+    [SerializeField] private UIDialogueManager _uiDialogueManager;
+
+    [Header("Broadcasting On")]
+    [SerializeField] private DialogueChoiceChannelSO _onChoiceMade = default;
 
     [SerializeField] private GameObject[] _choiceButtons;
     private TextMeshProUGUI[] _choicesText;
+    
+    
+    private void Awake()
+    {
+    }
     
     private void Start()
     {
@@ -71,5 +80,13 @@ public class UIDialogueChoicesManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         yield return new WaitForEndOfFrame();
         EventSystem.current.SetSelectedGameObject(_choiceButtons[0].gameObject);
+    }
+
+    public void MakeChoice(int choiceIndex)
+    {
+        if (_uiDialogueManager.CanContinueToNextLine)
+        {
+            _onChoiceMade.RaiseEvent(choiceIndex);
+        }
     }
 }

@@ -47,7 +47,6 @@ MonoBehaviour:
   _callsheet: {fileID: 11400000, guid: 08d051bdc823d424e96dd5a9f928dfca, type: 2}
   _inputReader: {fileID: 11400000, guid: 68e9574c2fdb0aa48b284199783c95ba, type: 2}
   _gameState: {fileID: 11400000, guid: 9a5b94051e598c9439fd97a02ae585f0, type: 2}
-  _typingSpeed: 0.04
   _uiDialogueManager: {fileID: 0}
   _dialoguePanel: {fileID: 0}
   _continueIcon: {fileID: 0}
@@ -76,7 +75,8 @@ MonoBehaviour:
   - {fileID: 0}
   _openDialogueUIEvent: {fileID: 11400000, guid: 3545d1e57ba7f6c498c6fcf3c8df1ef6, type: 2}
   _changeDialogueUIEvent: {fileID: 11400000, guid: a277617c53e4b6e498f98bf621095f15, type: 2}
-  _showChoicesUIEvent: {fileID: 0}
+  _showChoicesUIEvent: {fileID: 11400000, guid: 7a3244e7167fdbc47b87bd379409e9eb, type: 2}
   _endDialogueWithTypeEvent: {fileID: 11400000, guid: 16ad34e9e1e9bf24d84f4c4c7c310859, type: 2}
   _startDialogue: {fileID: 11400000, guid: 2efa731b09faf904cbd625cde33ab547, type: 2}
-  _makeDialogueChoiceEvent: {fileID: 0}
+  _makeDialogueChoiceEvent: {fileID: 11400000, guid: 800149e049a137943a330c5643de85eb, type: 2}
+  _dialogueError: 0
