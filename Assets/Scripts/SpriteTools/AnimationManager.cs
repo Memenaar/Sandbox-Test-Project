@@ -12,6 +12,7 @@ namespace SpriteController {
             protected List<AnimationClip> jumpAnimations = new List<AnimationClip>();
 
             [Header("Components")]
+            public string _hostTag;
             public SpriteRenderer _spriteRenderer;
             public SpriteManager _spriteManager;
             public PlayerStateMachine _psm;
@@ -34,7 +35,6 @@ namespace SpriteController {
             // Update is called once per frame
             void Update()
             {
-                // Change this script so that it reacts to the state machine rather than to pseudo-states like isGrounded.
                 if (_psm.CurrentSuperState == _psm.Factory.Grounded())
                 {
                     if (_psm.CurrentSubState == _psm.Factory.Slide())
@@ -77,7 +77,6 @@ namespace SpriteController {
                     {
                         string animName = _psm._activeChar + "_WallSlide_Left";
                         ChangeAnimationState(animName);
-                        //Debug.Log("Animation Name: " + animName);
                     }
                 } else
                 {

@@ -28,7 +28,7 @@ public class PlayerStateMachine : MonoBehaviour
         public Vector2 _moveInput;
 
         [Header("Player State")] // Variables that interface with the Player State Machine.
-        public CharID _activeChar = CharID.Ivy;
+        [SerializeField] [ReadOnly] public CharID _activeChar;
         private bool _playerInteraction = false;
         private PlayerBaseState _currentSuperState;
         private PlayerBaseState _currentSubState;
@@ -200,6 +200,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     protected void ChangeCharSize() // Change size of Character Controller to match the assigned character identity.
     {
+        _activeChar = _playerID.CharID;
         _charController.center = new Vector3(0, _playerID.CenterY, 0);
         _charController.radius = _playerID.Radius;
         _charController.height = _playerID.Height;
