@@ -2,14 +2,16 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Grass_2
   m_Shader: {fileID: -6465566751694194690, guid: ea730091f94cd224d92103055a9c2ed4, type: 3}
-  m_ShaderKeywords: ENUM_53DDCE3D33974E8AB1F99C1E4CBFF6EE_UV_Y _ALPHATEST_ON
+  m_ValidKeywords:
+  - ENUM_53DDCE3D33974E8AB1F99C1E4CBFF6EE_UV_Y
+  m_InvalidKeywords: []
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 1
   m_DoubleSidedGI: 1
@@ -79,6 +81,7 @@ Material:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
+    m_Ints: []
     m_Floats:
     - ENUM_53DDCE3D33974E8AB1F99C1E4CBFF6EE: 1
     - Vector1_1d06cbe7b81f4bf992b71af64c9dc633: 0.3
@@ -102,6 +105,7 @@ Material:
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
+    - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
     - _SampleGI: 0

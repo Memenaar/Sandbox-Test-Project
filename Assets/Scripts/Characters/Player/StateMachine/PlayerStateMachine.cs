@@ -318,4 +318,13 @@ public class PlayerStateMachine : MonoBehaviour
         return velocity; // otherwise return the original velocity.
     }
 
+    private void WaterAversion (Collision collision)
+    {
+        if (collision.gameObject.tag == "Water")
+        {
+            Debug.Log("pebis");
+        }
+    }
+
+
 }

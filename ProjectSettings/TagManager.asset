@@ -8,6 +8,7 @@ TagManager:
   - NPC
   - WallJump
   - Stairs
+  - Water
   layers:
   - Default
   - TransparentFX

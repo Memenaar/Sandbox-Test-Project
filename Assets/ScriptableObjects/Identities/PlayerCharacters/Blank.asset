@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37499b5e5484ab41b2b641c181376b1, type: 3}
+  m_Name: Blank
+  m_EditorClassIdentifier: 
+  _guid: 204e430c7ed6737439721353f3f34ea9
+  _idType: 0
+  _charID: 2
+  _charName: Blank Lively
+  _animationController: {fileID: 9100000, guid: 91480fa967ba3134588642d42a8c5edd, type: 2}
+  _portraitController: {fileID: 0}
+  _spriteLibrary: {fileID: 7108339969198208228, guid: c97046ab2d2167e40a33f4c2eee2f284, type: 3}
+  _dialogueInk: {fileID: 0}
+  _defaultDialogue: {fileID: 0}
+  _center: {x: 0, y: 1.4, z: 0}
+  _radius: 0.6
+  _height: 3
+  walkmax: 8
+  walkaccel: 150
+  walkdrag: 200
+  walkjump: 7.5
+  runmax: 12
+  runaccel: 30
+  rundrag: 20
+  runjump: 10
+  speedtuner: 25

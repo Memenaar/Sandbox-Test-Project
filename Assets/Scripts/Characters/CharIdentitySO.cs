@@ -5,7 +5,7 @@ public enum CharID
 {
     Ivy,
 	Neku,
-	Pencilboy
+	Blank
 }
 
 [CreateAssetMenu(fileName = "newCharacterIdentity", menuName = "Identities/Character")]

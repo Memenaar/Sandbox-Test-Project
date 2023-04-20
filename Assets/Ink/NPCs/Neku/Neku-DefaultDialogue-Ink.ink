@@ -1,6 +1,6 @@
-- Hey, my name is Neku. #side:right #position:0 #speaker:Neku #animation:neku_idle
-- I'm kind of a cool guy. #animation:neku_injured
-- This is just a placeholder, so come back for more later!
+- Hey, my name is Neku. I'm a placeholder from the game The World Ends With You. #side:right #position:0 #speaker:Neku #animation:neku_idle
+- My head hurts. Let's test the portrait-swapping feature. #animation:neku_injured
+- Like I said, I'm just a placeholder. Get out of here!
 - Ok Neku, sounds good. Nice to meet you. #side:left #position:0 #speaker:Ivy #animation:ivy_idle
-- Bye! #side:right #position:0 #speaker:Neku
+- Agggh! #side:right #position:0 #speaker:Neku
     -> END
