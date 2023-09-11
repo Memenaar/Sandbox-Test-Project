@@ -86,8 +86,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4796106d37e97ab44875dd8e56747249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _NPCID: {fileID: 0}
+  _NPCManager: {fileID: 0}
   _gameStateManager: {fileID: 11400000, guid: 9a5b94051e598c9439fd97a02ae585f0, type: 2}
+  _defaultDialogue: {fileID: 0}
+  _currentDialogue: {fileID: 0}
   _startDialogueEvent: {fileID: 11400000, guid: 2efa731b09faf904cbd625cde33ab547, type: 2}
   _endDialogueEvent: {fileID: 11400000, guid: 16ad34e9e1e9bf24d84f4c4c7c310859, type: 2}
   isInDialogue: 0

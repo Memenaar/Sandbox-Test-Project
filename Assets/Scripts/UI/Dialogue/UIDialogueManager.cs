@@ -304,6 +304,7 @@ public class UIDialogueManager : MonoBehaviour
 					break;
 				case ANIMATION_TAG:
 					_targetPortrait.GetComponent<Animator>().Play(tagValue);
+					Debug.Log(tagValue);
 					break;
 				case DISABLE_TAG:
 					int disableIndex = int.Parse(tagValue);

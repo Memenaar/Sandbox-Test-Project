@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _guid: 204e430c7ed6737439721353f3f34ea9
   _idType: 0
-  _charID: 2
+  _charID: 4
   _charName: Blank Lively
   _animationController: {fileID: 9100000, guid: 91480fa967ba3134588642d42a8c5edd, type: 2}
   _portraitController: {fileID: 0}

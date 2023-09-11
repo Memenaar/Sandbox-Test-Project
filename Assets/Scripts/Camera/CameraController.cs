@@ -24,6 +24,8 @@ using SpriteController;
 		private Vector3 _angle = new Vector3(); // Stores changes to the camera position before they are applied in MoveCamera()
 		private Vector3 _oldPosition; 
 		private Vector3 _currentPosition;
+		private float _scrollSpeed;
+		private float _scrollEdge;
 
 		// Zoom Values
 		private float _distance = 20; // Z-distance from the target.
@@ -43,6 +45,8 @@ using SpriteController;
 		// Getters & Setters
 		public Vector2 CurrentRotation { get { return _angle; } }
 		public bool CameraLock { get { return _cameraLock; } set { _cameraLock = value; }}
+		public float ScrollSpeed { get { return _scrollSpeed; } set { _scrollSpeed = value; }}
+		public float ScrollEdge { get { return _scrollSpeed; } set { _scrollEdge = value; }}
 
 
 		void Awake()

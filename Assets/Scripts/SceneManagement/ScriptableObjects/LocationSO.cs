@@ -8,4 +8,5 @@ using UnityEngine;
 public class LocationSO : GameSceneSO
 {
 	public string locationName;
+	public GameState sceneLoadState;
 }

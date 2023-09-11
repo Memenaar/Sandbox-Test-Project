@@ -1,0 +1,3 @@
+- Hi, I'm Isthmus. #side:right #position:0 #speaker:Isthmus #animation:isthmus_placeholder
+- Bottomtext.
+    -> END

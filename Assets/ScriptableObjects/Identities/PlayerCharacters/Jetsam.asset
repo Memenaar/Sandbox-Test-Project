@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a37499b5e5484ab41b2b641c181376b1, type: 3}
+  m_Name: Jetsam
+  m_EditorClassIdentifier: 
+  _guid: a1eb49f73fc0b214ba15c881f420b583
+  _idType: 0
+  _charID: 3
+  _charName: Jetsam
+  _animationController: {fileID: 9100000, guid: 63d4ae62460c2ed44b21a954e2426a64, type: 2}
+  _portraitController: {fileID: 9100000, guid: 4492dc93825d0e6469b92633309b9886, type: 2}
+  _spriteLibrary: {fileID: 7108339969198208228, guid: 059365265e2cfd848b60bcbee70c959a, type: 3}
+  _dialogueInk: {fileID: 4900000, guid: 83c7e513d16465d46b4ef1034360470d, type: 3}
+  _defaultDialogue: {fileID: 11400000, guid: a000f457ae6e96b4baa5ba2084eb70c6, type: 2}
+  _center: {x: 0, y: 1.25, z: 0}
+  _radius: 0.45
+  _height: 3
+  walkmax: 8
+  walkaccel: 150
+  walkdrag: 200
+  walkjump: 7.5
+  runmax: 12
+  runaccel: 30
+  rundrag: 20
+  runjump: 10
+  speedtuner: 25

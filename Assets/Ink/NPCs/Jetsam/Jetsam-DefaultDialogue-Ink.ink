@@ -1,0 +1,3 @@
+- Hi, I'm Jetsam. An original character from the world of Myriad Harbour. #side:right #position:0 #speaker:Jetsam #animation:jetsam_placeholder
+- Bottomtext.
+    -> END

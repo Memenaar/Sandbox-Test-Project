@@ -5,6 +5,8 @@ public enum CharID
 {
     Ivy,
 	Neku,
+    Isthmus,
+    Jetsam,
 	Blank
 }
 
