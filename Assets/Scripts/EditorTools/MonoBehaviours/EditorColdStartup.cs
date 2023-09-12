@@ -20,6 +20,10 @@ public class EditorColdStartup : MonoBehaviour
     
     private void Awake()
     {
+        #if UNITY_EDITOR
+	    QualitySettings.vSyncCount = 0;  // VSync must be disabled
+	    Application.targetFrameRate = 200;
+        #endif
         if (!SceneManager.GetSceneByName(_persistentManagersSO.sceneReference.editorAsset.name).isLoaded)
         {
             isColdStart = true;
